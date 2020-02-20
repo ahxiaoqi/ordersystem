@@ -1,0 +1,294 @@
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>BuyMore - eCommerce Bootstrap Template</title>
+
+    <!--======== All Stylesheet =========-->
+    <link th:href="@{${buyResPath}}+'/bootstrap/css/bootstrap.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/font-awesome.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/linearicons.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/style.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/responsive.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/selfStyle.css'" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Header -->
+<div th:insert="buyMore/common/header :: copy"></div>
+
+<!-- page header -->
+<section class="page-header">
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="section-title col-md-offset-3 col-md-6 text-center">
+                    <h2>Single Product</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
+                        eros. Nullam malesuada erat ut turpis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- menu row -->
+<section class="menu-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="menu-link">
+                    <div class="well well-lg page-label">
+                        <h3 class="pull-left">Single Product</h3>
+                        <ul class="list-inline pull-right">
+                            <li>Home</li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li>Single Product</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Single Product -->
+<section class="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-product-img">
+                    <img class="img-responsive" src="images/single-product.jpg" alt=""/>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="single-product-detail">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default active"><i class="fa fa-circle"></i> in Stock
+                        </button>
+                        <button type="button" class="btn btn-default"> 37 - in Stock</button>
+                    </div>
+                    <h3>BuyMore Template Is Fully Responsive & Eye-Catching</h3>
+                    <ul class="list-inline">
+                        <li><i class="lnr lnr-star"></i></li>
+                        <li><i class="lnr lnr-star"></i></li>
+                        <li><i class="lnr lnr-star"></i></li>
+                        <li><i class="lnr lnr-star"></i></li>
+                        <li><i class="lnr lnr-star-half"></i></li>
+                        <li><span>5 - Reviews</span></li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, mauris ac suscipit porta. Vel sed tempore, leo dictum nec turpis nibh
+                        curabitur, ultricies nibh quam neque mauris tortor sit. Vel urna quis, neque cursus id
+                        sollicitudin ipsum, euismod a libero mi. Tellus accumsan purus diam molestias suspendisse non,
+                        tellus pede cursus inceptos leo turpis nec.</p>
+                    <table class="table table-responsive table-bordered">
+                        <tr>
+                            <td>Size</td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li>XS</li>
+                                    <li>SM</li>
+                                    <li>MD</li>
+                                    <li>LG</li>
+                                    <li>XL</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Color</td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="red">Red</li>
+                                    <li class="yellow">Yel</li>
+                                    <li class="black">Bla</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="price">$287.99</div>
+                    <div class="order-tag">Tellus accumsan purus diam molestias</div>
+                    <div class="add-cart"><a class="btn btn-default" href=""><i class="lnr lnr-cart"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product description -->
+<section class="single-description">
+    <div cl class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <div class="description-tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab1" aria-controls="home" role="tab"
+                                                                  data-toggle="tab">Description</a></li>
+                        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Question</a>
+                        </li>
+                        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab"
+                                                   data-toggle="tab">About</a></li>
+                        <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab"
+                                                   data-toggle="tab">Review</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab1">
+                            <h3>Sodales scelerisque nostra ut enim nulla</h3>
+                            <p>Lorem ipsum dolor sit amet, nunc varius ligula vestibulum, porttitor lorem morbi amet.
+                                Arcu et massa a non, ac nulla eu. Urna neque cras, praesent unde eget. Vivamus sapien
+                                aliquam id, sodales scelerisque nostra ut enim nulla nulla. Venenatis eu mi justo augue
+                                dolor non. Tortor et donec wisi lectus pellentesque et. Mauris nisl sit vitae. Semper
+                                omnis netus, ligula lorem pretium, deserunt ipsum dui, etiam quisque est, sapien mauris
+                                adipiscing vitae iaculis vehicula neque. Aenean sed ac maecenas, arcu arcu in.
+                                Vestibulum phasellus mauris nibh est pretium, suspendisse facilisi dui quisque fusce
+                                penatibus.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab2">
+                            <h3>Sapien mauris adipiscing vitae iaculis vehicula</h3>
+                            <p>Lorem ipsum dolor sit amet, nunc varius ligula vestibulum, porttitor lorem morbi amet.
+                                Arcu et massa a non, ac nulla eu. Urna neque cras, praesent unde eget. Vivamus sapien
+                                aliquam id, sodales scelerisque nostra ut enim nulla nulla. Venenatis eu mi justo augue
+                                dolor non. Tortor et donec wisi lectus pellentesque et. Mauris nisl sit vitae. Semper
+                                omnis netus, ligula lorem pretium, deserunt ipsum dui, etiam quisque est, sapien mauris
+                                adipiscing vitae iaculis vehicula neque. Aenean sed ac maecenas, arcu arcu in.
+                                Vestibulum phasellus mauris nibh est pretium, suspendisse facilisi dui quisque fusce
+                                penatibus.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab3">
+                            <h3>Nunc varius is adipiscing vitae iaculis vehicula</h3>
+                            <p>Lorem ipsum dolor sit amet, nunc varius ligula vestibulum, porttitor lorem morbi amet.
+                                Arcu et massa a non, ac nulla eu. Urna neque cras, praesent unde eget. Vivamus sapien
+                                aliquam id, sodales scelerisque nostra ut enim nulla nulla. Venenatis eu mi justo augue
+                                dolor non. Tortor et donec wisi lectus pellentesque et. Mauris nisl sit vitae. Semper
+                                omnis netus, ligula lorem pretium, deserunt ipsum dui, etiam quisque est, sapien mauris
+                                adipiscing vitae iaculis vehicula neque. Aenean sed ac maecenas, arcu arcu in.
+                                Vestibulum phasellus mauris nibh est pretium, suspendisse facilisi dui quisque fusce
+                                penatibus.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab4">
+                            <h3>Praesent unde adipiscing vitae iaculis vehicula</h3>
+                            <p>Lorem ipsum dolor sit amet, nunc varius ligula vestibulum, porttitor lorem morbi amet.
+                                Arcu et massa a non, ac nulla eu. Urna neque cras, praesent unde eget. Vivamus sapien
+                                aliquam id, sodales scelerisque nostra ut enim nulla nulla. Venenatis eu mi justo augue
+                                dolor non. Tortor et donec wisi lectus pellentesque et. Mauris nisl sit vitae. Semper
+                                omnis netus, ligula lorem pretium, deserunt ipsum dui, etiam quisque est, sapien mauris
+                                adipiscing vitae iaculis vehicula neque. Aenean sed ac maecenas, arcu arcu in.
+                                Vestibulum phasellus mauris nibh est pretium, suspendisse facilisi dui quisque fusce
+                                penatibus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Product -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="section-title col-md-offset-3 col-md-6 text-center">
+                <h2>Related Product</h2>
+                <small>Check Out The Best Offer To Stay Trend.</small>
+                <div class="section-border"><span class="dash"></span></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-grid">
+                    <div class="grid-img">
+                        <img class="img-resposive" src="images/women1.jpg" alt="women"/>
+                        <strong>20%</strong>
+                        <div class="grid-overlay">
+                            <ul>
+                                <li><i class="lnr lnr-heart"></i></li>
+                                <li><i class="lnr lnr-camera"></i></li>
+                                <li><i class="lnr lnr-cart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3>Bright Scalet-Shirt <span>$65</span></h3>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-grid">
+                    <div class="grid-img">
+                        <img class="img-resposive" src="images/women2.jpg" alt="women"/>
+                        <strong>20%</strong>
+                        <div class="grid-overlay">
+                            <ul>
+                                <li><i class="lnr lnr-heart"></i></li>
+                                <li><i class="lnr lnr-camera"></i></li>
+                                <li><i class="lnr lnr-cart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3>Bright Scalet-Shirt <span>$65</span></h3>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-grid">
+                    <div class="grid-img">
+                        <img class="img-resposive" src="images/women3.jpg" alt="women"/>
+                        <strong class="new">Hot</strong>
+                        <div class="grid-overlay">
+                            <ul>
+                                <li><i class="lnr lnr-heart"></i></li>
+                                <li><i class="lnr lnr-camera"></i></li>
+                                <li><i class="lnr lnr-cart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3>Bright Scalet-Shirt <span>$65</span></h3>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-grid">
+                    <div class="grid-img">
+                        <img class="img-resposive" src="images/women4.jpg" alt="women"/>
+                        <strong class="new">New</strong>
+                        <div class="grid-overlay">
+                            <ul>
+                                <li><i class="lnr lnr-heart"></i></li>
+                                <li><i class="lnr lnr-camera"></i></li>
+                                <li><i class="lnr lnr-cart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3>Bright Scalet-Shirt <span>$65</span></h3>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 通用footer -->
+<div th:insert="buyMore/common/footer :: footer"></div>
+
+<!--======== All Javascript =========-->
+<script th:src="@{${buyResPath}}+'/bootstrap/js/jquery-2.1.1.js'" type="text/javascript"></script>
+<script th:src="@{${buyResPath}}+'/bootstrap/js/bootstrap.min.js'" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
+<script src="/res/page/xlPaging.js" type="text/javascript"></script>
+<script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
+</body>
+<script>
+    $(function () {
+        innit();
+    });
+
+    // 初始化方法
+    function innit() {
+        innitFooterBox();
+    }
+</script>
+
+</html>

@@ -1,0 +1,85 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="copy">
+    <header class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xs-7">
+                        <ul class="list-inline social-icon">
+                            <li><i class=" fa fa-facebook"></i></li>
+                            <li><i class=" fa fa-google-plus"></i></li>
+                            <li><i class=" fa fa-linkedin"></i></li>
+                            <li><i class=" fa fa-twitter"></i></li>
+                            <li><i class=" fa fa-skype"></i></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-xs-5">
+                        <ul id="useroginBox" class="list-inline security">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="middle-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-xs-6">
+                        <div><a class="site-title" href="index.html">Buy<span>More</span></a></div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-md-offset-7 col-xs-6">
+                        <div class="cart-label dropdown">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <small class="hidden-xs">Shopping Cart</small> <i class="lnr lnr-cart"></i> <span>3</span>
+                            </a>
+                            <ul class="dropdown-menu carts">
+                                <li><p> Cart Empty !!! </p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-header">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-id" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                            </div>
+                            <div class="collapse navbar-collapse" id="menu-id">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="index.html"  >首页</a>
+                                    </li>
+                                    <li ><a href="product-grid.html">全部商品</a>
+                                    </li>
+                                    <li ><a href="blog-left-sidebar.html" >评论列表</a>
+                                    </li>
+                                    <li><a href="faq.html">常见问题</a></li>
+                                    <li><a href="about.html">关于</a></li>
+                                    <li><a href="contact.html">联系我们</a></li>
+                                </ul>
+                                <div class="nav-search">
+                                    <form class="navbar-form navbar-right" role="search">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Search Your Item Here"><i class="fa fa-search search-btn"></i>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+</body>
+</html>

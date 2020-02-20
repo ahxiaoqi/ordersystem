@@ -1,0 +1,50 @@
+package com.orderSystem.entity.dto;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
+/**
+ * @author ahxiaoqi
+ * @date 2020/2/3 16:12
+ */
+@Data
+public class ProductDto {
+
+    private Integer productId;
+
+    private Integer categoryId;
+
+    private Integer subCategoryId;
+
+    private String productName;
+
+    private Integer price;
+
+    private String image;
+
+    private String description;
+
+    private String createTime;
+
+    private Integer productTagId;
+
+    private Integer activityId;
+
+    private Integer isNew;
+
+    private String productTagStr;
+
+    private String activityStr;
+
+    private String month;
+
+    private String year;
+
+    private String day;
+
+    private String commentDetail;
+
+    private Integer activityType;
+}

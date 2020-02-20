@@ -1,0 +1,255 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="footer">
+    <!-- Top footer -->
+    <section class="top-footer">
+        <div class="top-footer-overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="top-footer-title"><h3 class="dash">最新评论</h3></div>
+                        <ul id="newCommentBox" class="media-list">
+                            <li class="media latest-status footer-bg">
+                                <div class="media-left">
+                                    <a href="#"><img class="media-object" src="/res/buy_more/images/footer.jpg" alt=""></a>
+                                </div>
+                                <div class="media-body">
+                                    <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                    <small>Dec 23, 2015</small>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="top-footer-title"><h3 class="dash">新品上市</h3></div>
+                        <ul id="newGoodsBox1" class="media-list">
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="top-footer-title"><h3 class="dash">特价商品</h3></div>
+                        <ul id="minPriceGoodsBox" class="media-list">
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="top-footer-title"><h3 class="dash">新品上市</h3></div>
+                        <ul id="newGoodsBox2" class="media-list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Middle footer -->
+    <section class="middle-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 col-xs-12 text-center">
+                    <div class="input-group subscribe-form input-group-lg">
+                        <input type="text" class="form-control" placeholder="Your Email Here"
+                               aria-describedby="sizing-addon1">
+                        <span class="input-group-addon subscribe-btn" id="sizing-addon1">Subscribe <i
+                                class="fa fa-send hidden-xs"></i></span>
+                    </div>
+                    <div>
+                        <a class="site-title" href="index.html">Buy<span>More</span></a>
+                        <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                            volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
+                    </div>
+                    <ul class="list-inline social-icon">
+                        <li><i class=" fa fa-facebook"></i></li>
+                        <li><i class=" fa fa-google-plus"></i></li>
+                        <li><i class=" fa fa-linkedin"></i></li>
+                        <li><i class=" fa fa-twitter"></i></li>
+                        <li><i class=" fa fa-skype"></i></li>
+                    </ul>
+                    <ul class="list-inline address">
+                        <li><i class=" lnr lnr-home"></i>Uk Street, Unesco limted Road</li>
+                        <li><i class=" lnr lnr-envelope"></i>infogmail@gmail.com</li>
+                        <li><i class=" lnr lnr-phone-handset"></i>(+8802) 890 876; (+8802) 790 776</li>
+                    </ul>
+
+                    <!--a type="button" class="btn btn-default" data-toggle="modal" data-target=".popup">Small modal</a-->
+
+                    <div class="modal fade popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="modal-detail">
+                                                    <h3>Let Shop With Us</h3>
+                                                    <p>Get In Touch With Us Email Here</p>
+
+                                                    <div class="input-group subscribe-form input-group-lg">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Your Email Here"
+                                                               aria-describedby="sizing-addon1">
+                                                        <a class="btn btn-default"><i class="lnr lnr-envelope"></i>
+                                                            Submit</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="lnr lnr-cross"></i></span></button>
+                                                <img class="img-responsive" src="/res/buy_more/images/subscribe2.jpg"
+                                                     alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!---->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- bottom footer -->
+    <footer class="bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 col-xs-12 text-center">
+                    <p>BuyMore Template <i class=" lnr lnr-heart"></i> Boot Ultra | All Rights Reserved / More Templates
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        //初始化底部
+        function innitFooterBox() {
+            innitNewCommentBox();
+            innitFooterGoodes("newGoodsBox1", "innit_buyMore_footer_goods", 1, 4);
+            innitFooterGoodes("newGoodsBox2", "innit_buyMore_footer_goods", 5, 9);
+            innitMinPriceGoodsBox();
+        }
+
+        // 初始化底部最新评论
+        function innitNewCommentBox() {
+            var newCommentBox = $("#newCommentBox");
+            $.ajax({
+                url: "innit_buyMore_newCommentBox",
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    console.log("初始化底部最新评论------------------------------------->")
+                    console.log(data);
+                    console.log("------------------------------------------------");
+                    if (data.length >= 1) {
+                        newCommentBox.empty();
+                        data.forEach(function (item, index) {
+                            if (item.commentDetail.length > 80) {
+                                // console.log(item.detail)
+                                item.commentDetail = item.commentDetail.substr(0, 79) + "...";
+                            }
+                            var newCommentBoxStr = "<li class=\"media latest-status footer-bg\">\n" +
+                                "                            <div class=\"media-left\">\n" +
+                                "                                <a href=\"#\"><img class=\"media-object\" src=\"/res/buy_more/images/footer.jpg\" alt=\"\"></a>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"media-body\">\n" +
+                                "                                <p>" + item.commentDetail + ".</p>\n" +
+                                "                                <small>" + item.month + "月&nbsp; " + item.day + ", " + item.year + "</small>\n" +
+                                "                            </div>\n" +
+                                "                        </li>";
+                            newCommentBox.append(newCommentBoxStr);
+                        });
+                    }
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            })
+        }
+
+        // 初始化底部商品信息
+        function innitFooterGoodes(boxName, url, start, end) {
+            var box = $("#" + boxName + "");
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "post",
+                data: {
+                    "start": start,
+                    "end": end
+                },
+                success: function (data) {
+                    console.log("初始化底部商品------------------------------------->")
+                    console.log(data);
+                    console.log("------------------------------------------------");
+                    if (data.length >= 1) {
+                        box.empty();
+                        data.forEach(function (item, index) {
+                            if (item.description.length > 50) {
+                                item.description = item.description.substr(0, 49) + "...";
+                            }
+                            var str = "   <li class=\"media latest-status\">\n" +
+                                "                            <div class=\"media-left\">\n" +
+                                "                                <a href=\"#\"><img class=\"media-object\" src=\"/res/buy_more/images/footer2.jpg\" alt=\"\"></a>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"media-body\">\n" +
+                                "                                <p>" + item.description + ".</p>\n" +
+                                "                                <small>" + item.price + "</small>\n" +
+                                "                            </div>\n" +
+                                "                        </li>";
+                            box.append(str);
+                        });
+                    }
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            })
+        }
+
+        // 初始化底部特价商品
+        function innitMinPriceGoodsBox() {
+            var minPriceGoodsBox = $("#minPriceGoodsBox");
+            $.ajax({
+                url: "innit_minPriceGoodsBox",
+                dataType: "json",
+                type: "post",
+                data: {
+                    "start": 1,
+                    "end": 4
+                },
+                success: function (data) {
+                    console.log("初始化底部特价商品------------------------------------->")
+                    console.log(data);
+                    console.log("------------------------------------------------");
+                    if (data.length >= 1) {
+                        minPriceGoodsBox.empty();
+                        data.forEach(function (item, index) {
+                            if (item.description.length > 50) {
+                                item.description = item.description.substr(0, 49) + "...";
+                            }
+                            var str = "   <li class=\"media latest-status\">\n" +
+                                "                            <div class=\"media-left\">\n" +
+                                "                                <a href=\"#\"><img class=\"media-object\" src=\"/res/buy_more/images/footer2.jpg\" alt=\"\"></a>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"media-body\">\n" +
+                                "                                <p>" + item.description + ".</p>\n" +
+                                "                                <small>原价:<del>" + item.priceParam1 + "</del>&nbsp;现价:" + item.priceParam2 + "</small>\n" +
+                                "                            </div>\n" +
+                                "                        </li>";
+                            minPriceGoodsBox.append(str);
+                        });
+                    }
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            })
+        }
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>BuyMore - eCommerce Bootstrap Template</title>
+        
+        <!--======== All Stylesheet =========-->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/linearicons.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+	</head>	
+    
+    <body>
+		<!-- Header -->
+        <div th:insert="buyMore/common/header :: copy"></div>
+            
+        <!-- page header -->    
+        <section class="page-header">
+            <div class="page-header-overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title col-md-offset-3 col-md-6 text-center">
+                            <h2>recommended Products</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam                                     malesuada erat ut turpis.</p>
+                        </div>
+                    </div>
+                </div>    
+            </div>    
+        </section> 
+         
+        <!-- menu row -->    
+        <section class="menu-row" style="background-color: #E8E8E8;">    
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="menu-link">
+                            <div class="well well-lg page-label">
+                                <h3 class="pull-left">recommended Products</h3>
+                                <ul class="list-inline pull-right">
+                                    <li>Home</li>
+                                    <li><i class="fa fa-angle-double-right"></i></li>
+                                    <li>recommended Products</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>    
+		   
+        <!-- recommended products -->
+        <section class="recommended">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="recommend-details">
+                            <div class="section-title">
+                                <h3>Recommended Products for Men & Women</h3>
+                                <span class="dash pull-left"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, mauris ac suscipit porta. Vel sed tempore, leo dictum nec turpis nibh curabitur, ultricies nibh quam neque mauris tortor sit. Vel urna quis, neque cursus id sollicitudin ipsum, euismod a libero mi. Tellus accumsan purus diam molestias suspendisse non, tellus pede, cursus inceptos leo turpis nec, vestibulum a odio vel, a velit lectus congue. Nec magnis dolor praesent. Nunc leo, ornare dictumst eget ut, eros dui vestibulum.</p>
+                            <a class="btn btn-default" href="" > See Collection </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="recom-pro">
+                            <img class="img-responsive" src="images/r1.jpg" alt="" />
+                            <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="recom-pro">
+                            <img class="img-responsive" src="images/r2.jpg" alt="" />
+                            <h3>Bright Scalet-Shirt  <span>$66</span></h3>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="recom-pro">
+                            <img class="img-responsive" src="images/r3.jpg" alt="" />
+                            <h3>Bright Scalet-Shirt  <span>$67</span></h3>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                </div>    
+            </div>    
+        </section>    
+		
+		<!-- Product -->
+		<section class="product-list">
+			<div class="grid-product">
+				<div class="container">	
+					<div class="row">
+						<div class="col-md-3">
+							<div class="sidebar">
+                                <!-- category widget -->
+                                <div class="panel widget panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Category</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="category-list">
+                                            <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
+                                            <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
+                                            <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
+                                            <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
+                                            <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Discount widget -->
+                                <div class="panel hidden-xs hidden-sm discount widget panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Discount Offer</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <img class="img-responsive" src="images/g-man.jpg" alt="discount" />
+                                        <div class="discount-label">50% Off Shirts</div>
+                                    </div>
+                                </div>
+                                <!-- Size widget -->
+                                <div class="panel widget panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Size</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-inline size">
+                                            <li class="active">XS</li>
+                                            <li>SM</li>
+                                            <li>MD</li>
+                                            <li>LG</li>
+                                            <li>XL</li>
+                                        </ul>   
+                                    </div>
+                                </div>
+                                <!-- On Sale widget -->
+                                <div class="panel widget panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">On Sale</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="media-list onsale">
+                                            <li class="media latest-status">
+                                                <div class="media-left">
+                                                    <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>Bright Scalet-Shirt </p>
+                                                    <small>$25.50</small>
+                                                </div>
+                                            </li>
+                                            <li class="media latest-status">
+                                                <div class="media-left">
+                                                    <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>Bright Scalet-Shirt </p>
+                                                    <small>$45.00</small>
+                                                </div>
+                                            </li>
+                                            <li class="media latest-status">
+                                                <div class="media-left">
+                                                    <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>Bright Scalet-Shirt </p>
+                                                    <small>$35.75</small>
+                                                </div>
+                                            </li>
+                                            <li class="media latest-status">
+                                                <div class="media-left">
+                                                    <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>Bright Scalet-Shirt </p>
+                                                    <small>$85.50</small>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+                        <div class="col-md-9"> 
+                             <div class="row">
+                                <div class="col-sm-12 col-sm-12 col-xs-12">  
+                                    <div class="list-style">
+                                        <strong>Showing 1-10 of 120 Products <span class="pull-right"><i class="fa fa-th active"></i><i class="fa fa-th-list"></i></span></strong>
+                                        <div>
+                                            <a class="btn btn-default" href="#"><i class="fa fa-retweet"></i>Compare</a>
+                                            <a class="btn btn-default pull-right" href="#"><i class="fa fa-star-o"></i>See All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="row m-30">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women2.jpg" alt="women" />
+                                            <strong>20%</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women3.jpg" alt="women" />
+                                            <strong class="new">Hot</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women1.jpg" alt="women" />
+                                            <strong class="new">New</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+							<div class="row m-30">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women2.jpg" alt="women" />
+                                            <strong>20%</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women3.jpg" alt="women" />
+                                            <strong class="new">Hot</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women1.jpg" alt="women" />
+                                            <strong class="new">New</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women2.jpg" alt="women" />
+                                            <strong>20%</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women3.jpg" alt="women" />
+                                            <strong class="new">Hot</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="single-grid">
+                                        <div class="grid-img">
+                                            <img class="img-resposive" src="images/women1.jpg" alt="women" />
+                                            <strong class="new">New</strong>
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li><i class="lnr lnr-heart"></i></li>
+                                                    <li><i class="lnr lnr-camera"></i></li>
+                                                    <li><i class="lnr lnr-cart"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>	
+                                        <h3>Bright Scalet-Shirt  <span>$65</span></h3>
+                                        <p>Lorem ipsum dolor sit amet</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <nav>
+                                <ul class="pager pull-left">
+                                    <li><a href="#">Previous</a></li>
+                                    <li>
+                                        <ul class="page-numb">
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </nav>
+						</div>
+					</div>    
+				</div> 
+			</div> 
+		</section>
+			
+		<!-- Top footer -->
+		<section class="top-footer">
+            <div class="top-footer-overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="top-footer-title"><h3 class="dash">Post From Blog</h3></div>
+                            <ul class="media-list">
+                                <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>Dec 23, 2015</small>
+                                    </div>
+                                </li>
+                                 <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>Dec 23, 2015</small>
+                                    </div>
+                                </li>
+                                 <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>Dec 23, 2015</small>
+                                    </div>
+                                </li>
+                                 <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>Dec 23, 2015</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
+                            <ul class="media-list">
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$25</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$45</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$35</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$85</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="top-footer-title"><h3 class="dash">Top Sale Items</h3></div>
+                            <ul class="media-list">
+                                <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$15</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$25</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$235</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status footer-bg">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                       <small>$55</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
+                            <ul class="media-list">
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$95</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$55</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$45</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                        <small>$65</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div> 
+			</div> 
+		</section>
+        
+        <!-- Middle footer -->
+		<section class="middle-footer">
+			<div class="container">
+				<div class="row">
+                    <div class="col-md-offset-2 col-md-8 col-xs-12 text-center">
+                        <div class="input-group subscribe-form input-group-lg">
+                            <input type="text" class="form-control" placeholder="Your Email Here" aria-describedby="sizing-addon1">
+                            <span class="input-group-addon subscribe-btn" id="sizing-addon1">Subscribe <i class="fa fa-send hidden-xs"></i></span>
+                        </div>
+                        <div>
+                            <a class="site-title" href="index.html">Buy<span>More</span></a>
+                            <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam                               malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
+                        </div>    
+                        <ul class="list-inline social-icon">
+                            <li><i class=" fa fa-facebook"></i></li>
+                            <li><i class=" fa fa-google-plus"></i></li>
+                            <li><i class=" fa fa-linkedin"></i></li>
+                            <li><i class=" fa fa-twitter"></i></li>
+                            <li><i class=" fa fa-skype"></i></li>
+                        </ul>
+                        <ul class="list-inline address">
+                            <li><i class=" lnr lnr-home"></i>Uk Street, Unesco limted Road</li>
+                            <li><i class=" lnr lnr-envelope"></i>infogmail@gmail.com</li>
+                            <li><i class=" lnr lnr-phone-handset"></i>(+8802) 890 876; (+8802) 790 776</li>
+                        </ul>
+                    </div>
+				</div>    
+			</div> 
+		</section>
+        
+        <!-- bottom footer -->
+		<footer class="bottom-footer">
+			<div class="container">
+				<div class="row">
+                    <div class="col-md-offset-3 col-md-6 col-xs-12 text-center">
+                        <p>BuyMore Template <i class=" lnr lnr-heart"></i> Boot Ultra | All Rights Reserved / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                    </div>
+				</div>    
+			</div> 
+		</footer>
+        
+        <!--======== All Javascript =========-->
+        <script src="js/jquery-2.1.1.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+        <script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
+    </body>
+</html>

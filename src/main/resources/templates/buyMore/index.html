@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>主页</title>
+
+    <!--======== All Stylesheet =========-->
+    <link th:href="@{${buyResPath}}+'/bootstrap/css/bootstrap.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/font-awesome.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/linearicons.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/style.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/responsive.css'" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Header -->
+<div th:insert="buyMore/common/header :: copy"></div>
+
+<!-- home -->
+<section class="home">
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h2>2016</h2>
+                    <h1>Collections</h1>
+                    <small>Best Style For Women, Stock Avilable</small>
+                    <div><a class="btn btn-default see-collection">See Collection</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- feature box -->
+<section class="feature-box">
+    <div class="container">
+        <div id="categoryBox" class="row">
+
+        </div>
+    </div>
+</section>
+
+<!-- Ad one -->
+<section class="ad-1">
+    <div class="container">
+        <div class="ad-1">
+            <div id="categoryDetailBox" class="row">
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature Product -->
+<section class="feature-product">
+    <div class="grid-product">
+        <div class="container">
+            <div class="row">
+                <div class="section-title col-md-offset-3 col-md-6 col-xs-12 text-center">
+                    <h2>火爆热销</h2>
+                    <small>Check Out The Best Offer To Stay Trend</small>
+                    <div class="section-border"><span class="dash"></span></div>
+                </div>
+            </div>
+            <div id="hotProductBox" class="row">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fashion box -->
+<!--模板初始背景定义在样式表中 主图为 fashion-content的背景图片  副图为的 counter背景图片 -->
+<section class="fashion-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7 p-0 text-center">
+                <div id="f-b" class="carousel slide" data-ride="carousel">
+                    <div id="slideBox" class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="fashion-content"
+                                 style="background: url('/res/buy_more/images/fashion-banner2.jpg')">
+                                <small>This Summer</small>
+                                <h2>Fashion Model.</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque
+                                    volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
+                                <ul class="list-inline">
+                                    <li><i class="lnr lnr-star"></i></li>
+                                    <li><i class="lnr lnr-star"></i></li>
+                                    <li><i class="lnr lnr-star"></i></li>
+                                    <li><i class="lnr lnr-star"></i></li>
+                                    <li><i class="lnr lnr-star"></i></li>
+                                </ul>
+                                <div><a class="btn btn-default">See Collection</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#f-b" role="button" data-slide="prev"><i
+                            class="lnr lnr-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#f-b" role="button" data-slide="next"><i
+                            class="lnr lnr-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-5 p-0">
+                <div id="slideboxDouble" class="counter">
+                    <div class="counter-content">
+                        <small>页面初始值</small>
+                        <h2 class="save-offer">Save 50% Offer</h2>
+                        <div><a class="btn btn-default">Shop Now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Trends -->
+<section class="news-trends">
+    <div class="grid-product">
+        <div class="container">
+            <div class="row">
+                <div class="section-title col-md-offset-3 col-md-6 col-xs-12 text-center">
+                    <h2>新品上市</h2>
+                    <small>Check Out The Best Offer To Stay Trend</small>
+                    <div class="section-border"><span class="dash"></span></div>
+                </div>
+            </div>
+            <div id="newProductBox" class="row">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--<div class="tlinks">Collect from <a href="http://www.cssmoban.com/">自助建站</a></div>-->
+<!-- add Two -->
+<section class="ad-2">
+    <div class="over-color">
+        <div class="container-fluid">
+            <div id="indexActivityBox" class="row">
+                <div class="col-md-12 col-xs-12 text-center">
+                    <small>Sale 25% Offer</small>
+                    <h2>Beauty Behind The Madness</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
+                        eros. Nullam malesuada erat ut turpis.</p>
+                    <strong>$499 . $299</strong>
+                    <div><a class="btn btn-default">See Collection</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rescent Posts -->
+<section class="rescent-posts">
+    <div class="container">
+        <div class="row">
+            <div class="section-title col-md-offset-3 col-md-6 col-xs-12 text-center">
+                <h2>评论墙</h2>
+                <small>Check Out The Best Offer To Stay Trend</small>
+                <div class="section-border"><span class="dash"></span></div>
+            </div>
+        </div>
+        <div id="commentBox" class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-post">
+                    <div class="post-img">
+                        <img src="/res/buy_more/images/b-post-1.jpg" width="100%" alt="women"/>
+                        <div class="date-overlay"><span>24</span>
+                            <div>Nov</div>
+                        </div>
+                    </div>
+                    <h3><span><img class="pull-left" src="/res/buy_more/images/admin.jpg" alt=""/></span>Latest Trendy
+                        Fashion for Women & Man Limited Stock</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat
+                        mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FAQ & Brands -->
+<section class="faq-brands">
+    <div class="container">
+        <div class="row">
+            <div class="section-title col-md-offset-3 col-md-6 col-xs-12 text-center">
+                <h2>FAQ & Brands</h2>
+                <small>Check Out The Best Offer To Stay Trend</small>
+                <div class="section-border"><span class="dash"></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div id="brand" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#brand" data-slide-to="0" class="active"></li>
+                        <li data-target="#brand" data-slide-to="1"></li>
+                        <li data-target="#brand" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand5.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand2.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand3.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand4.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand5.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand2.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand3.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand4.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand5.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand2.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand3.png" alt="brand"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="well well-lg">
+                                        <img src="/res/buy_more/images/brand4.png" alt="brand"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="panel-group faq" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                       href="#1" aria-expanded="true" aria-controls="collapseOne"><i
+                                    class="lnr lnr-inbox"></i>Women Latest fashion Clothes</a></h4>
+                        </div>
+                        <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <strong>Trendy Styles dolor sit amet reprehenderit</strong>
+                                <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                    brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                                       data-parent="#accordion" href="#2" aria-expanded="false"
+                                                       aria-controls="collapseTwo"><i class="lnr lnr-inbox"></i>Men
+                                Latest fashion Clothes</a></h4>
+                        </div>
+                        <div id="2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <strong>Trendy Styles dolor sit amet reprehenderit</strong>
+                                <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                    brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                                       data-parent="#accordion" href="#3" aria-expanded="false"
+                                                       aria-controls="collapseThree"><i class="lnr lnr-inbox"></i>Men
+                                Latest fashion Clothes</a></h4>
+                        </div>
+                        <div id="3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <strong>Trendy Styles dolor sit amet reprehenderit</strong>
+                                <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                    brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                            <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                                       data-parent="#accordion" href="#4" aria-expanded="false"
+                                                       aria-controls="collapseTwo"><i class="lnr lnr-inbox"></i>Men
+                                Latest fashion Clothes</a></h4>
+                        </div>
+                        <div id="4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <strong>Trendy Styles dolor sit amet reprehenderit</strong>
+                                <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                    brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--collapse-->
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- 通用footer -->
+<div th:insert="buyMore/common/footer :: footer"></div>
+
+<!--======== All Javascript =========-->
+<script th:src="@{${buyResPath}}+'/bootstrap/js/jquery-2.1.1.js'" type="text/javascript"></script>
+<script th:src="@{${buyResPath}}+'/bootstrap/js/bootstrap.min.js'" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
+<!-- 使用thymeleaf标签引入通用script -->
+<script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
+<script>
+    //页面加载完执行初始化
+    $(function () {
+        innit();
+    })
+
+    // 初始化方法
+    function innit() {
+        innnitCategory();
+        innitHotProduct();
+        innitNewProduct();
+        innitSlideBox();
+        innitIndexBanner();
+        innitCommentBox();
+        innitFooterBox();
+    }
+
+    //初始化分类
+    function innnitCategory() {
+        var categoryBox = $("#categoryBox");
+        var categoryDetailBox = $("#categoryDetailBox");
+        categoryBox.empty();
+        categoryDetailBox.empty();
+        $.ajax({
+            url: "innit_buyMore_category",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                data.forEach(function (item, index) {
+                    categoryBox.append(" <div class=\"col-md-3 col-sm-6 col-xs-12\">\n" +
+                        "                <div class=\"f-s-b\">\n" +
+                        "                    <div class=\"well well-sm\">\n" +
+                        "                        <i class=\"lnr lnr-heart\"></i>\n" +
+                        "                        <h3>" + item.categoryName + "</h3>\n" +
+                        "                        <small>On Order Over " + item.orders + "</small>\n" +
+                        "                    </div>\n" +
+                        "                </div>\n" +
+                        "            </div>");
+                    categoryDetailBox.append("   <div class=\"col-md-3 col-sm-6 col-xs-12\">\n" +
+                        "                        <div class=\"ad-box-1\">\n" +
+                        "                        <img src=\"" + item.image + "\" alt=\"bag\"/>\n" +
+                        "                        <div class=\"overlay\">\n" +
+                        "                        <small>" + item.tag + "</small>\n" +
+                        "                    <h3>" + item.description + "</h3>\n" +
+                        "                    </div>\n" +
+                        "                    </div>\n" +
+                        "                    </div>");
+
+                })
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    // 初始化热销产品
+    function innitHotProduct() {
+        var hotProductBox = $("#hotProductBox");
+        hotProductBox.empty();
+        $.ajax({
+            url: "innit_buyMore_hot_product",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                productDetail(data, hotProductBox);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    // 初始化新品上市
+    function innitNewProduct() {
+        var newProductBox = $("#newProductBox");
+        newProductBox.empty();
+        $.ajax({
+            url: "innit_buyMore_new_product",
+            dataType: "json",
+            data: {
+              "size":4
+            },
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                productDetail(data.records, newProductBox);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    // 商品数据组装(新品火爆通用)
+    function productDetail(data, box) {
+        let tagStr = " ";
+        let activityStr = " ";
+        let isNewStr = " ";
+        var str = "";
+        data.forEach(function (item, index) {
+            if (item.productTagId > 0) {
+                tagStr = " <strong>" + item.productTagStr + "</strong>";
+            }
+            if (item.isNew == 1) {
+                isNewStr = "<strong class=\"new\">New</strong>";
+            }
+            if (item.activityType == 2) {
+                activityStr = "<strong>" + item.activityStr + "%</strong>";
+            }
+            str = "<div class=\"col-md-3 col-sm-6 col-xs-12\">\n" +
+                "                    <div class=\"single-grid\">\n" +
+                "                        <div class=\"grid-img\">\n" +
+                "                            <img class=\"img-resposive\" src=\"" + item.image + "\" alt=\"women\"/>\n" +
+                tagStr + isNewStr + activityStr +
+                "                            <div class=\"grid-overlay\">\n" +
+                "                                <ul>\n" +
+                "                                    <li><i class=\"lnr lnr-heart\"></i></li>\n" +
+                "                                    <li><i class=\"lnr lnr-camera\"></i></li>\n" +
+                "                                    <li><i class=\"lnr lnr-cart\"></i></li>\n" +
+                "                                </ul>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                        <h3>" + item.productName + " <span>¥" + item.price + "</span></h3>\n" +
+                "                        <p>" + item.description + "</p>\n" +
+                "                    </div>\n" +
+                "                </div>";
+            box.append(str);
+        })
+    }
+
+    // 初始化轮播图
+    function innitSlideBox() {
+        var str = "";
+        var slideBox = $("#slideBox");
+        $.ajax({
+            url: "innit_buyMore_slidebox",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log("初始化轮播图------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------")
+                if (data.length >= 1) {
+                    slideBox.empty();
+                    data.forEach(function (item, index) {
+                        if (item.isIndex == 1) {
+                            str = "<div class=\"item active\">";
+                        } else {
+                            str = "<div class=\"item\">";
+                        }
+                        str +=
+                            "                            <div class=\"fashion-content\" style=\"background: url('" + item.image + "')\">\n" +
+                            "                                <small>" + item.doubleTitle + "</small>\n" +
+                            "                                <h2>" + item.mainTitle + "</h2>\n" +
+                            "                                <p>" + item.description + "</p>\n" +
+                            "                                <ul class=\"list-inline\">\n" +
+                            "                                    <li><i class=\"lnr lnr-star\"></i></li>\n" +
+                            "                                    <li><i class=\"lnr lnr-star\"></i></li>\n" +
+                            "                                    <li><i class=\"lnr lnr-star\"></i></li>\n" +
+                            "                                    <li><i class=\"lnr lnr-star\"></i></li>\n" +
+                            "                                    <li><i class=\"lnr lnr-star\"></i></li>\n" +
+                            "                                </ul>\n" +
+                            "                                <div><a class=\"btn btn-default\" href='" + item.href + "'>" + item.hrefStr + "</a></div>\n" +
+                            "                            </div>\n" +
+                            "                        </div>";
+                        slideBox.append(str);
+                    });
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+        var slideboxDouble = $("#slideboxDouble");
+        $.ajax({
+            url: "innit_buyMore_slideboxDouble",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log("初始化轮播图副图------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------");
+                if (data != null) {
+                    slideboxDouble.empty();
+                    var str = "<div class=\"counter-content\">\n" +
+                        "                        <small>" + data.title + "</small>\n" +
+                        "                        <h2 class=\"save-offer\">" + data.detail + "</h2>\n" +
+                        "                        <div><a class=\"btn btn-default\">" + data.hrefStr + "</a></div>\n" +
+                        "                    </div>";
+                    slideboxDouble.append(str);
+                    // 设置背景图片
+                    slideboxDouble.css("background-image", "url(" + data.image + ")");
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    // 初始化活动banner
+    function innitIndexBanner() {
+        var indexActivityBox = $("#indexActivityBox");
+        $.ajax({
+            url: "innit_buyMore_indexActivity",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log("初始化首页活动banner------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------");
+                if (data != null) {
+                    indexActivityBox.empty();
+                    var str = " <div class=\"col-md-12 col-xs-12 text-center\" >\n" +
+                        "                    <small>" + data.activityStr + "</small>\n" +
+                        "                    <h2>" + data.title + "</h2>\n" +
+                        "                    <p>" + data.description + "</p>\n" +
+                        "                    <strong>原价:<del>" + data.priceParam1 + "</del>&nbsp;活动价: " + data.priceParam2 + "</strong>\n" +
+                        "                    <div><a class=\"btn btn-default\" href='" + data.href + "'>" + data.hrefStr + "</a></div>\n" +
+                        "                </div>";
+                    indexActivityBox.append(str);
+                    $(".ad-2").css("background-image", "url(" + data.image + ")");
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    //初始化评论墙
+    function innitCommentBox() {
+        var commentBox = $("#commentBox");
+        $.ajax({
+            url: "innit_buyMore_commentBox",
+            dataType: "json",
+            type: "post",
+            data: {"size": 3},
+            success: function (data) {
+                console.log("初始化评论墙------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------");
+                if (data.length >= 1) {
+                    commentBox.empty();
+                    data.forEach(function (item, index) {
+                        if (item.detail.length > 80) {
+                            // console.log(item.detail)
+                            item.detail = item.detail.substr(0, 79) + "...";
+                        }
+                        var str = "<div class=\"col-md-4 col-sm-6 col-xs-12\">\n" +
+                            "                <div class=\"single-post\">\n" +
+                            "                    <div class=\"post-img\">\n" +
+                            "                        <img src=\"/res/buy_more/images/b-post-1.jpg\" width=\"100%\" alt=\"women\"/>\n" +
+                            "                        <div class=\"date-overlay\"><span>" + item.day + "</span>\n" +
+                            "                            <div>" + item.month + "月</div>\n" +
+                            "                        </div>\n" +
+                            "                    </div>\n" +
+                            "                    <h3><span><img class=\"pull-left\" src=\"/res/buy_more/images/admin.jpg\" alt=\"\"/></span>" + item.title + "</h3>\n" +
+                            "                    <p>" + item.detail + ".</p>\n" +
+                            "                </div>\n" +
+                            "            </div>";
+                        commentBox.append(str);
+                    });
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

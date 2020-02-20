@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script th:fragment="loginCheck">
+    $(function () {
+        userInnit();
+    });
+
+    function userInnit() {
+        var accountId = $.cookie("accountId");
+        $("#useroginBox").empty();
+        if (accountId != null) {
+            $.ajax({
+                url: "accountIndo_innit",
+                data: {"accountId": accountId},
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == 1000) {
+                        $("#useroginBox").append("<li><i class=\"lnr lnr-heart\"></i>\n" +
+                            "                <span  class=\"hidden-xs\">" + data.msg + "</span>" +
+                            "</li>");
+                        $("#useroginBox").append("<li><i class=\"lnr lnr-heart\"></i>\n" +
+                            "                <span onclick=\"loginOut()\" class=\"hidden-xs\">退出</span>" +
+                            "</li>");
+                    } else {
+                        $("#useroginBox").append("<li><i class=\"lnr lnr-lock\"></i>\n" +
+                            "                <span onclick=\"$(location).prop('href', '/LO3432HS/clogin');\" class=\"hidden-xs\">Login</span>" +
+                            "</li>");
+                    }
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            })
+        } else {
+            $("#useroginBox").append("<li><i class=\"lnr lnr-lock\"></i>\n" +
+                "                <span onclick=\"$(location).prop('href', '/LO3432HS/clogin');\" class=\"hidden-xs\">Login</span>" +
+                "</li>");
+
+        }
+    }
+
+    function loginOut() {
+        $.removeCookie('accountId', {path: '/'});
+        $(location).prop('href', '/LO3432HS/clogin');
+    }
+
+</script>
+</body>
+</html>
