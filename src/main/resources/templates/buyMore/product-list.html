@@ -141,6 +141,10 @@
                     </div>
 
                     <!-- 商品列表 -->
+                    <div id="searchCondition">
+                        <input id="pBoxCId" type="hidden" name="categoryId" value="0">
+                        <input id="pBoxSubCId" type="hidden" name="subCategoryId" value="0">
+                    </div>
                     <div id="productListBox" tabindex="0" hidefocus="true">
 
                     </div>
@@ -238,7 +242,7 @@
                         str = " <div class=\"col-md-2 col-sm-4 col-xs-6\">\n" +
                             "                                    <div class=\"subcategory-img\">\n" +
                             "                                        <img class=\"img-responsive\" src=\"" + item.image + "\" alt=\"\"/>\n" +
-                            "                                        <div id='sunCategoryHref"+index+"' class=\"subcategoryHref subcategory-overlay\" onclick='subCategoryActive("+index+");'>" + item.subCategoryName + "</div>\n" +
+                            "                                        <div id='sunCategoryHref"+item.subCategoryId+"' class=\"subcategoryHref subcategory-overlay\" onclick='subCategoryActive("+item.subCategoryId+");'>" + item.subCategoryName + "</div>\n" +
                             "                                    </div>\n" +
                             "                                </div>";
                         subCategory.append(str);
@@ -253,9 +257,10 @@
     }
 
     //子分类样式
-    function subCategoryActive(index){
+    function subCategoryActive(subCategoryId){
         $(".subcategoryHref").removeClass("subcategory-active");
-        $("#sunCategoryHref"+index+"").addClass("subcategory-active");
+        $("#sunCategoryHref"+subCategoryId+"").addClass("subcategory-active");
+        innitProductListBox();
     }
 
     // 初始化特价商品

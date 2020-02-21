@@ -19,12 +19,12 @@ public class productMapperProvider {
             LEFT_OUTER_JOIN("t_product_tag c ON a.productTagId = c.productTagId");
             if (Optional.ofNullable(product.getCategoryId()).isPresent()) {
                 if (product.getCategoryId() > 0) {
-                    WHERE("a.categoryId = #{categoryId}");
+                    WHERE("a.categoryId = #{product.categoryId}");
                 }
             }
             if (Optional.ofNullable(product.getSubCategoryId()).isPresent()) {
                 if (product.getSubCategoryId() > 0) {
-                    WHERE("subCategoryId = #{subCategoryId}");
+                    WHERE("subCategoryId = #{product.subCategoryId}");
                 }
             }
             ORDER_BY("createTime desc");
