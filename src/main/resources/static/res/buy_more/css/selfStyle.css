@@ -100,5 +100,11 @@ input[type="number"]{
     -moz-appearance:textfield;
 }
 
+.single-product .table li:hover{
+    background-color: antiquewhite;
+}
+.specActive{
+    background-color: antiquewhite!important;
+}
 
 

@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orderSystem.entity.Product;
+import com.orderSystem.entity.Spec;
 import com.orderSystem.entity.dto.CommentDto;
 import com.orderSystem.entity.dto.ProductDto;
 import com.orderSystem.provider.productMapperProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -33,4 +32,11 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     @SelectProvider(value = productMapperProvider.class,method = "innitProductListBox")
     IPage<ProductDto> innitProductList(Page<Product> page, Product product);
+
+    @Select("select * from t_product  where productId = #{productId}")
+    @Results({
+            @Result(column = "productId", property = "productId"),
+            @Result(property = "specList", column = "productId", many = @Many(select = "com.orderSystem.mapper.SpecMapper.selectSpecByProductId", fetchType = FetchType.EAGER))
+    })
+    ProductDto innitProductDetail(Integer productId);
 }

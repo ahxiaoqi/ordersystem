@@ -3,6 +3,8 @@ package com.orderSystem.provider;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orderSystem.entity.Product;
 import org.apache.ibatis.jdbc.SQL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
  * @date 2020/2/3 19:03
  */
 public class productMapperProvider {
+    Logger logger = LoggerFactory.getLogger(productMapperProvider.class);
     public String innitProductListBox(Page<Product> page, Product product) {
         String sql = new SQL() {{
             SELECT("a.*,b.activityStr,b.activityType,c.productTagStr");
@@ -24,11 +27,12 @@ public class productMapperProvider {
             }
             if (Optional.ofNullable(product.getSubCategoryId()).isPresent()) {
                 if (product.getSubCategoryId() > 0) {
-                    WHERE("subCategoryId = #{product.subCategoryId}");
+                    WHERE("a.subCategoryId = #{product.subCategoryId}");
                 }
             }
             ORDER_BY("createTime desc");
         }}.toString();
+//        logger.info(sql);
         return sql;
     }
 

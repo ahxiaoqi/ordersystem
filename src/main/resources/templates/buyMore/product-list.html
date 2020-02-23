@@ -182,7 +182,6 @@
         innitMinPriceGoodsBoxBody();
         innitOfferBox();
         innitFooterBox();
-        innitProductListBox();
     }
 
     function innitCategory() {
@@ -216,7 +215,9 @@
         // console.log($(".categoryHref"));
         $(".categoryHref").removeClass("active");
         $("#" + id + " i:eq(0)").addClass("active");
+        $("#pBoxCId").val(""+categoryId+"");
         innitSubCategory(categoryId);
+        $(".subcategoryHref:eq(0)").click();
     }
 
     //初始化子分类
@@ -239,6 +240,10 @@
                 if (data.records.length >= 1) {
                     subCategory.empty();
                     data.records.forEach(function (item, index) {
+                        if(index == 0){
+                            $("#pBoxSubCId").val(""+item.subCategoryId+"");
+                            innitProductListBox();
+                        }
                         str = " <div class=\"col-md-2 col-sm-4 col-xs-6\">\n" +
                             "                                    <div class=\"subcategory-img\">\n" +
                             "                                        <img class=\"img-responsive\" src=\"" + item.image + "\" alt=\"\"/>\n" +
@@ -260,6 +265,7 @@
     function subCategoryActive(subCategoryId){
         $(".subcategoryHref").removeClass("subcategory-active");
         $("#sunCategoryHref"+subCategoryId+"").addClass("subcategory-active");
+        $("#pBoxSubCId").val(""+subCategoryId+"");
         innitProductListBox();
     }
 
@@ -339,13 +345,19 @@
         if (current == null || current <= 0) {
             current = 1;
         }
+        console.log("分类id的值---------------------------->"+ $("#pBoxCId").val())
+        console.log("子分类id的值---------------------------->"+ $("#pBoxSubCId").val())
+        const categoryId = $("#pBoxCId").val() == 0 ?  null: $("#pBoxCId").val();
+        const subCategoryId = $("#pBoxSubCId").val() == 0 ? null : $("#pBoxSubCId").val();
         $.ajax({
             url: "innit_productListBox",
             dataType: "json",
             type: "post",
             data: {
                 "current": current,
-                "size": 3
+                "size": 3,
+                "categoryId":categoryId,
+                "subCategoryId":subCategoryId
             },
             success: function (data) {
                 console.log("初始化商品列表------------------------------------->")
@@ -355,8 +367,8 @@
                 let tagStr = " ";
                 let activityStr = " ";
                 let isNewStr = " ";
+                productListBox.empty();
                 if (data.records.length >= 1) {
-                    productListBox.empty();
                     data.records.forEach(function (item, index) {
                         if (item.productTagId > 0) {
                             tagStr = " <strong>" + item.productTagStr + "</strong>";
@@ -400,6 +412,9 @@
                     // 翻页插件
                     boxFooter2(data.total, data.size, data.current, data.pages);
                 }
+                else{
+                    $("#page").empty();
+                }
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -408,6 +423,7 @@
     }
 
     function boxFooter2(total, size, current, pages) {
+        $("#page").empty();
         $("#page").paging({
             nowPage: current, // 当前页码,默认为1
             pageNum: pages, // 总页码

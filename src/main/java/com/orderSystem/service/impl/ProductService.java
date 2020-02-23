@@ -77,4 +77,8 @@ public class ProductService  implements GeneralService<Product> {
     public IPage<ProductDto> innitProductListBox(Product product, Page<Product> page) {
         return productMapper.innitProductList(page,product);
     }
+
+    public ProductDto innitProductDetail(Integer productId) {
+        return productMapper.innitProductDetail(productId);
+    }
 }

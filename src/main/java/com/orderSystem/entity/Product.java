@@ -41,6 +41,9 @@ public class Product {
     @TableField(value = "image")
     private String image;
 
+    @TableField(value = "detailImage")
+    private String detailImage;
+
     @TableField(value = "description")
     private String description;
 

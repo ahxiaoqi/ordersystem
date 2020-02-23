@@ -1,4 +1,4 @@
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="footer">
     <!-- Top footer -->
@@ -56,8 +56,10 @@
                     </div>
                     <div>
                         <a class="site-title" href="index.html">Buy<span>More</span></a>
-                        <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
-                            volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
+                        <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio.
+                            Quisque
+                            volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                            non.</p>
                     </div>
                     <ul class="list-inline social-icon">
                         <li><i class=" fa fa-facebook"></i></li>
@@ -95,8 +97,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"><i class="lnr lnr-cross"></i></span></button>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true"><i class="lnr lnr-cross"></i></span>
+                                                </button>
                                                 <img class="img-responsive" src="/res/buy_more/images/subscribe2.jpg"
                                                      alt=""/>
                                             </div>
@@ -147,7 +151,7 @@
                     if (data.length >= 1) {
                         newCommentBox.empty();
                         data.forEach(function (item, index) {
-                            if (item.commentDetail.length > 80) {
+                            if (item.commentDetail != null && item.commentDetail.length > 80) {
                                 // console.log(item.detail)
                                 item.commentDetail = item.commentDetail.substr(0, 79) + "...";
                             }

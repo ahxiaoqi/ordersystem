@@ -3,7 +3,10 @@ package com.orderSystem.entity.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.orderSystem.entity.Spec;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author ahxiaoqi
@@ -23,6 +26,8 @@ public class ProductDto {
     private Integer price;
 
     private String image;
+
+    private String detailImage;
 
     private String description;
 
@@ -47,4 +52,6 @@ public class ProductDto {
     private String commentDetail;
 
     private Integer activityType;
+
+    private List<Spec> specList;
 }

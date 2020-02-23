@@ -221,7 +221,7 @@
             success: function (data) {
                 console.log(data);
                 data.forEach(function (item, index) {
-                    if(index == 1){
+                    if(index == 0){
                         $("#pBoxCId").val(""+item.categoryId+"");
                     }
                     str = " <li id='categoryLi" + index + "' onclick=\" categoryClick(this.id," + item.categoryId + ");\"> <i class=\"fa fa-eye side-icon pull-left categoryHref ";
@@ -271,7 +271,7 @@
                 if (data.records.length >= 1) {
                     subCategory.empty();
                     data.records.forEach(function (item, index) {
-                        if(index == 1){
+                        if(index == 0){
                             $("#pBoxSubCId").val(""+item.subCategoryId+"");
                             innitProductListBox();
                         }
@@ -443,7 +443,7 @@
     }
 
     function showDetail(productId) {
-        $(location).prop('href', "/AWyOfhUI/buyMore/single-product.html?productId=" + productId);
+        $(location).prop('href', "single-product.html?productId=" + productId);
     }
 
     function likeThis(productId) {
@@ -458,6 +458,7 @@
 
     // 翻页插件
     function boxFooter2(total, size, current, pages) {
+        $("#page").empty();
         $("#page").paging({
             nowPage: current, // 当前页码,默认为1
             pageNum: pages, // 总页码

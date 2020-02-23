@@ -81,7 +81,8 @@ public class BuyMoreController {
     }
 
     @RequestMapping(value = "single-product", method = RequestMethod.GET)
-    public String single_product(Model model, HttpServletRequest request) {
+    public String single_product(@RequestParam("productId")Integer productId,Model model, HttpServletRequest request) {
+        model.addAttribute("productId",productId);
         return SINGLE_PRODUCT;
     }
 
@@ -191,6 +192,13 @@ public class BuyMoreController {
     @RequestMapping(value = "innit_productListBox", method = RequestMethod.POST)
     public IPage<ProductDto> innitProductListBox(Product product,Page<Product> page) {
         return productService.innitProductListBox(product,page);
+    }
+
+    // 初始化商品列表
+    @ResponseBody
+    @RequestMapping(value = "innit_productDetail", method = RequestMethod.POST)
+    public ProductDto innitProductDetail(@RequestParam("productId")Integer productId) {
+        return productService.innitProductDetail(productId);
     }
 
 }
