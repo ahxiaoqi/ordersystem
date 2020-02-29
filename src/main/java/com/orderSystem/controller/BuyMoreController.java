@@ -184,7 +184,8 @@ public class BuyMoreController {
     @ResponseBody
     @RequestMapping(value = "innit_subcategory", method = RequestMethod.POST)
     public IPage<SubCategory> innitSubCategory(@RequestParam("categoryId")Integer categoryId,Page<SubCategory> page) {
-        return subCategoryService.innitSubCategory(categoryId,page);
+        SubCategory subCategory = SubCategory.builder().categoryId(categoryId).status(1).build();
+        return subCategoryService.innitSubCategory(subCategory,page);
     }
 
     // 初始化商品列表

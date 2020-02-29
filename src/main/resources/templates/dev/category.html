@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Forms - Ready Bootstrap Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+
+    <!-- 使用thymeleaf标签引入通用script -->
+    <link th:replace="dev/common/css :: css"></link>
+
+</head>
+<body>
+<div class="wrapper">
+    <!-- 通用导航 -->
+    <div th:insert="dev/common/header :: header"></div>
+
+    <div class="sidebar">
+        <div class="scrollbar-inner sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/res/assets_dev/img/profile.jpg">
+                </div>
+                <div class="info">
+                    <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									admin
+									<span class="user-level">管理员</span>
+									<span class="caret"></span>
+								</span>
+                    </a>
+                    <div class="clearfix"></div>
+
+                    <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                        <ul class="nav">
+                            <li>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a href="index.html">
+                        <i class="la la-dashboard"></i>
+                        <p>首页</p>
+                        <span class="badge badge-count">5</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="category.html">
+                        <i class="la la-table"></i>
+                        <p>分类管理</p>
+                        <span class="badge badge-count">14</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="product.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>商品管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="order.html">
+                        <i class="la la-th"></i>
+                        <p>订单列表</p>
+                        <span class="badge badge-count">6</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">Forms</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">主分类</div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">序号</th>
+                                        <th scope="col">名称</th>
+                                        <th scope="col">状态</th>
+                                        <th scope="col">标签</th>
+                                        <th scope="col" style="width:30%">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="categoryTr">
+                                    <tr>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+<!--                            <div class="card-action">-->
+<!--                                <button class="btn btn-success">Submit</button>-->
+<!--                                <button class="btn btn-danger">Cancel</button>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">子分类</div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">序号</th>
+                                        <th scope="col">名称</th>
+                                        <th scope="col">状态</th>
+                                        <th scope="col" style="width:30%">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="subCategoryTr">
+
+                                    </tbody>
+                                </table>
+                            </div>
+<!--                            <div class="card-action">-->
+<!--                                <button class="btn btn-success">Submit</button>-->
+<!--                                <button class="btn btn-danger">Cancel</button>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 使用thymeleaf标签引入通用footer -->
+        <script th:replace="dev/common/footer :: footer"></script>
+    </div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
+                <p>
+                    <b>We'll let you know when it's done</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- 使用thymeleaf标签引入通用script -->
+<script th:replace="dev/common/js :: js"></script>
+<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
+<script src="/res/page/xlPaging.js" type="text/javascript"></script>
+<script>
+
+    $(function () {
+        innnitCategory();
+    })
+
+    function innnitCategory() {
+        var categoryTr = $("#categoryTr");
+        categoryTr.empty();
+        $.ajax({
+            url: "innit_dev_category",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                data.forEach(function (item, index) {
+                    var str = "<tr data-Id='"+item.categoryId+"' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + index + "</td>\n" +
+                        "<td> " + item.categoryName + " </td>\n";
+                    if (item.status == 1) {
+                        str += "<td>启用</td>\n"
+                    } else {
+                        str += "<td> 禁用 </td>\n"
+                    }
+                    str += "<td> " + item.tag + " </td>\n" +
+                        "<td> <button class=\"btn btn-success\">编辑</button>&nbsp;" +
+                        "<button class=\"btn btn-danger\">删除</button> </td></tr>";
+                    categoryTr.append(str);
+                })
+                $("#categoryTr tr:eq(0)").click();
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+
+    function innitSubCategory(categoryId) {
+        var subCategoryTr = $("#subCategoryTr");
+        $.ajax({
+            url: "innit_dev_subcategory",
+            dataType: "json",
+            type: "post",
+            data: {
+                "categoryId": categoryId,
+                "size": 100,
+                "current": "1"
+            },
+            success: function (data) {
+                console.log("初始化子分类------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------");
+                var str = "";
+                if (data.records.length >= 1) {
+                    subCategoryTr.empty();
+                    data.records.forEach(function (item, index) {
+                        var str = "<tr data-Id='"+item.categoryId+"'><td>" + index + "</td>\n" +
+                            "<td> " + item.subCategoryName + " </td>\n";
+                        if (item.status == 1) {
+                            str += "<td>启用</td>\n"
+                        } else {
+                            str += "<td> 禁用 </td>\n"
+                        }
+                        str += "<td> <button class=\"btn btn-success\">编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\">删除</button> </td></tr>";
+                        subCategoryTr.append(str);
+                    });
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+
+</script>
+</html>

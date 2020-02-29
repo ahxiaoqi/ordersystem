@@ -54,9 +54,9 @@ public class SubCategoryService implements GeneralService<SubCategory> {
         subCategoryMapper.deleteById(id);
     }
 
-    public IPage<SubCategory> innitSubCategory(Integer categoryId, Page<SubCategory> page) {
+    public IPage<SubCategory> innitSubCategory(SubCategory subCategory, Page<SubCategory> page) {
         QueryWrapper<SubCategory> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(SubCategory.builder().categoryId(categoryId).build());
+        queryWrapper.setEntity(subCategory);
         return subCategoryMapper.selectPage(page,queryWrapper);
     }
 }
