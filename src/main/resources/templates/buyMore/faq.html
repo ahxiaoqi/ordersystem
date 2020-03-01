@@ -5,13 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>BuyMore - eCommerce Bootstrap Template</title>
-        
-        <!--======== All Stylesheet =========-->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/font-awesome.min.css" rel="stylesheet">
-		<link href="css/linearicons.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/responsive.css" rel="stylesheet">
+
+        <div th:insert="buyMore/common/css :: css"></div>
 	</head>	
     
     <body>
@@ -420,10 +415,7 @@
 				</div>    
 			</div> 
 		</footer>
-        
-        <!--======== All Javascript =========-->
-        <script src="js/jquery-2.1.1.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-        <script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
+
+        <script th:replace="buyMore/common/js :: js"></script>
     </body>
 </html>

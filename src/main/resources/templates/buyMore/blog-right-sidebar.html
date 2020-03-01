@@ -1,615 +1,676 @@
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<title>BuyMore - eCommerce Bootstrap Template</title>
-        
-        <!--======== All Stylesheet =========-->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/font-awesome.min.css" rel="stylesheet">
-		<link href="css/linearicons.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/responsive.css" rel="stylesheet">
-	</head>	
-    
-    <body>
-		<!-- Header -->
-        <header class="header">
-            <div class="top-header">
-                <div class="container">
-					<div class="row">
-						<div class="col-md-6 col-xs-7">
-							<ul class="list-inline social-icon">
-								<li><i class=" fa fa-facebook"></i></li>
-								<li><i class=" fa fa-google-plus"></i></li>
-								<li><i class=" fa fa-linkedin"></i></li>
-								<li><i class=" fa fa-twitter"></i></li>
-								<li><i class=" fa fa-skype"></i></li>
-							</ul>
-						</div>
-						<div class="col-md-6 col-xs-5">
-							<ul class="list-inline security">
-								<li title="Login"><i class=" lnr lnr-lock"></i><span class="hidden-xs">Login</span></li>
-								<li title="Register"><i class=" lnr lnr-pencil"></i><span class="hidden-xs">Register</span></li>
-								<li title="Wishlist"><i class=" lnr lnr-heart"></i><span class="hidden-xs">Wishlist</span></li>
-							</ul>
-						</div>
-					</div>    
-                </div>    
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>BuyMore - eCommerce Bootstrap Template</title>
+
+    <div th:insert="buyMore/common/css :: css"></div>
+</head>
+
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-7">
+                    <ul class="list-inline social-icon">
+                        <li><i class=" fa fa-facebook"></i></li>
+                        <li><i class=" fa fa-google-plus"></i></li>
+                        <li><i class=" fa fa-linkedin"></i></li>
+                        <li><i class=" fa fa-twitter"></i></li>
+                        <li><i class=" fa fa-skype"></i></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-xs-5">
+                    <ul class="list-inline security">
+                        <li title="Login"><i class=" lnr lnr-lock"></i><span class="hidden-xs">Login</span></li>
+                        <li title="Register"><i class=" lnr lnr-pencil"></i><span class="hidden-xs">Register</span></li>
+                        <li title="Wishlist"><i class=" lnr lnr-heart"></i><span class="hidden-xs">Wishlist</span></li>
+                    </ul>
+                </div>
             </div>
-            
-			<div class="middle-header">
-                <div class="container">
-					<div class="row">
-						<div class="col-md-2 col-xs-6">
-							<div><a class="site-title" href="index.html">Buy<span>More</span></a></div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-md-offset-7 col-xs-6">
-							<div class="cart-label dropdown"> 
-                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <small class="hidden-xs">Shopping Cart</small> <i class="lnr lnr-cart"></i> <span>3</span>   
-                                </a> 
-                                <ul class="dropdown-menu carts">
-                                    <li><p> Cart Empty !!! </p></li>
-                                </ul>
+        </div>
+    </div>
+
+    <div class="middle-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-xs-6">
+                    <div><a class="site-title" href="index.html">Buy<span>More</span></a></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-md-offset-7 col-xs-6">
+                    <div class="cart-label dropdown">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <small class="hidden-xs">Shopping Cart</small> <i class="lnr lnr-cart"></i> <span>3</span>
+                        </a>
+                        <ul class="dropdown-menu carts">
+                            <li><p> Cart Empty !!! </p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-header">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#menu-id" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                        </div>
+                        <div class="collapse navbar-collapse" id="menu-id">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown"><a href="#" class="dropdown-toggle p-l-0" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true"
+                                                        aria-expanded="false">Home</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html">Home 1</a></li>
+                                        <li><a href="index2.html">Home 2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true" aria-expanded="false">Products</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="product-grid.html">Product Grid</a></li>
+                                        <li><a href="product-list.html">Product List</a></li>
+                                        <li><a href="recommaded-product.html">Recommended Item</a></li>
+                                        <li><a href="single-product.html">Single Product</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                               role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="blog-left-sidebar.html">Blog page 1</a></li>
+                                        <li><a href="blog-right-sidebar.html">Blog page 2</a></li>
+                                        <li><a href="blog-ful-width.html">Blog page 3</a></li>
+                                        <li><a href="single-post-left-sidebar.html">single page 1</a></li>
+                                        <li><a href="single-post-right-sidebar.html">single page 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <div class="nav-search">
+                                <form class="navbar-form navbar-right" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search Your Item Here"><i
+                                            class="fa fa-search search-btn"></i>
+                                    </div>
+                                </form>
                             </div>
-						</div>
-					</div>   
-                </div>     
-            </div>
-            
-			<div class="bottom-header">
-				<div class="row">
-					<div class="col-md-12 col-xs-12">
-						<nav class="navbar navbar-default">
-							<div class="container">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-id" aria-expanded="false">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</div>
-								<div class="collapse navbar-collapse" id="menu-id">
-									<ul class="nav navbar-nav">
-                                        <li class="dropdown"><a href="#" class="dropdown-toggle p-l-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-											<ul class="dropdown-menu">
-                                                <li><a href="index.html">Home 1</a></li>
-                                                <li><a href="index2.html">Home 2</a></li>
-											</ul>
-										</li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
-											<ul class="dropdown-menu">
-                                                <li><a href="product-grid.html">Product Grid</a></li>
-                                                <li><a href="product-list.html">Product List</a></li>
-                                                <li><a href="recommaded-product.html">Recommended Item</a></li>
-                                                <li><a href="single-product.html">Single Product</a></li>
-											</ul>
-										</li>
-										<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-											<ul class="dropdown-menu">
-                                                <li><a href="blog-left-sidebar.html">Blog page 1</a></li>
-                                                <li><a href="blog-right-sidebar.html">Blog page 2</a></li>
-                                                <li><a href="blog-ful-width.html">Blog page 3</a></li>
-                                                <li><a href="single-post-left-sidebar.html">single page 1</a></li>
-                                                <li><a href="single-post-right-sidebar.html">single page 2</a></li>
-											</ul>
-										</li>
-										<li><a href="faq.html">FAQ</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="contact.html">Contact</a></li>
-									</ul>
-									<div class="nav-search">
-										<form class="navbar-form navbar-right" role="search">
-											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Search Your Item Here"><i class="fa fa-search search-btn"></i>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</nav>
-					</div>
-				</div> 
-            </div>
-        </header>
-            
-        <!-- page header -->    
-        <section class="page-header">
-            <div class="page-header-overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title col-md-offset-3 col-md-6 text-center">
-                            <h2>Blog Posts</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam                                     malesuada erat ut turpis.</p>
                         </div>
                     </div>
-                </div>    
-            </div>    
-        </section> 
-         
-        <!-- menu row -->    
-        <section class="menu-row">    
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="menu-link">
-                            <div class="well well-lg page-label">
-                                <h3 class="pull-left">Blog Posts</h3>
-                                <ul class="list-inline pull-right">
-                                    <li>Home</li>
-                                    <li><i class="fa fa-angle-double-right"></i></li>
-                                    <li>Blog Posts</li>
-                                </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- page header -->
+<section class="page-header">
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="section-title col-md-offset-3 col-md-6 text-center">
+                    <h2>Blog Posts</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
+                        eros. Nullam malesuada erat ut turpis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- menu row -->
+<section class="menu-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="menu-link">
+                    <div class="well well-lg page-label">
+                        <h3 class="pull-left">Blog Posts</h3>
+                        <ul class="list-inline pull-right">
+                            <li>Home</li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li>Blog Posts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- blog post -->
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- blog post -->
+            <div class="col-md-9">
+                <div class="row m-30">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-2.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
                             </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-1.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                </div> <!-- blog post row -->
+                <div class="row m-30">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-2.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-1.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                </div> <!-- blog post row -->
+                <div class="row m-30">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-2.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-1.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                </div> <!-- blog post row -->
+                <div class="row m-30">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-2.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-1.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                </div> <!-- blog post row -->
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-2.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-post">
+                            <div class="post-img">
+                                <img src="images/b-post-1.jpg" width="100%" alt="women"/>
+                                <div class="date-overlay"><span>24</span>
+                                    <div>Nov</div>
+                                </div>
+                            </div>
+                            <h3><span><img class="pull-left" src="images/admin.jpg" alt=""/></span>Latest Trendy Fashion
+                                for Women & Man Limited Stock</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                                volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra
+                                non.</p>
+                        </div>
+                    </div>
+                </div> <!-- blog post row -->
+
+                <!-- Pagination -->
+                <nav>
+                    <ul class="pager pull-left">
+                        <li><a href="#">Previous</a></li>
+                        <li>
+                            <ul class="page-numb">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- right sidebar -->
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <!-- category widget -->
+                    <div class="panel widget panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Category</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="category-list">
+                                <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i
+                                        class="fa fa-angle-right pull-right"></i></li>
+                                <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i
+                                        class="fa fa-angle-right pull-right"></i></li>
+                                <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i
+                                        class="fa fa-angle-right pull-right"></i></li>
+                                <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i
+                                        class="fa fa-angle-right pull-right"></i></li>
+                                <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i
+                                        class="fa fa-angle-right pull-right"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Size widget -->
+                    <div class="panel widget panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Size</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-inline size">
+                                <li class="active">XS</li>
+                                <li>SM</li>
+                                <li>MD</li>
+                                <li>LG</li>
+                                <li>XL</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Manufatues widget -->
+                    <div class="panel manufatue widget panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Manufactues</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="category-list">
+                                <li><i class="side-icon pull-right active">15</i>Gucci</li>
+                                <li><i class="side-icon pull-right active">37</i>Asos</li>
+                                <li><i class="side-icon pull-right active">50</i>Blubery</li>
+                                <li><i class="side-icon pull-right active">78</i>H&M</li>
+                                <li><i class="side-icon pull-right active">94</i>Tesco</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- On Sale widget -->
+                    <div class="panel widget panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">On Sale</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="media-list onsale">
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Bright Scalet-Shirt </p>
+                                        <small>$25.50</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Bright Scalet-Shirt </p>
+                                        <small>$45.00</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Bright Scalet-Shirt </p>
+                                        <small>$35.75</small>
+                                    </div>
+                                </li>
+                                <li class="media latest-status">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Bright Scalet-Shirt </p>
+                                        <small>$85.50</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Discount widget -->
+                    <div class="panel discount widget panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Discount Offer</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive" src="images/g-man.jpg" alt="discount"/>
+                            <div class="discount-label">50% Off Shirts</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>    
-		   
-       <!-- blog post -->
-        <section>
-            <div class="container">
-                <div class="row">
-                    <!-- blog post -->
-                    <div class="col-md-9">
-                        <div class="row m-30">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-2.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top footer -->
+<section class="top-footer">
+    <div class="top-footer-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="top-footer-title"><h3 class="dash">Post From Blog</h3></div>
+                    <ul class="media-list">
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-1.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>Dec 23, 2015</small>
                             </div>
-                        </div> <!-- blog post row -->    
-                        <div class="row m-30">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-2.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-1.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>Dec 23, 2015</small>
                             </div>
-                        </div> <!-- blog post row -->    
-                        <div class="row m-30">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-2.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-1.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>Dec 23, 2015</small>
                             </div>
-                        </div> <!-- blog post row -->    
-                        <div class="row m-30">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-2.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-1.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>Dec 23, 2015</small>
                             </div>
-                        </div> <!-- blog post row -->    
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-2.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <img src="images/b-post-1.jpg" width="100%" alt="women" />
-                                        <div class="date-overlay"><span>24</span> <div>Nov</div></div>
-                                    </div>	
-                                    <h3><span><img class="pull-left" src="images/admin.jpg" alt="" /></span>Latest Trendy Fashion for Women & Man Limited Stock</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam 										malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                                </div>
-                            </div>
-                        </div> <!-- blog post row -->    
-                        
-                        <!-- Pagination -->
-                        <nav>
-                            <ul class="pager pull-left">
-                                <li><a href="#">Previous</a></li>
-                                <li>
-                                    <ul class="page-numb">
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- right sidebar -->
-                    <div class="col-md-3">
-                        <div class="sidebar">
-                            <!-- category widget -->
-                            <div class="panel widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Category</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="category-list">
-                                        <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Size widget -->
-                            <div class="panel widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Size</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-inline size">
-                                        <li class="active">XS</li>
-                                        <li>SM</li>
-                                        <li>MD</li>
-                                        <li>LG</li>
-                                        <li>XL</li>
-                                    </ul>   
-                                </div>
-                            </div>
-                            <!-- Manufatues widget -->
-                            <div class="panel manufatue widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Manufactues</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="category-list">
-                                        <li><i class="side-icon pull-right active">15</i>Gucci </li>
-                                        <li><i class="side-icon pull-right active">37</i>Asos </li>
-                                        <li><i class="side-icon pull-right active">50</i>Blubery </li>
-                                        <li><i class="side-icon pull-right active">78</i>H&M </li>
-                                        <li><i class="side-icon pull-right active">94</i>Tesco </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- On Sale widget -->
-                            <div class="panel widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">On Sale</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="media-list onsale">
-                                        <li class="media latest-status">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Bright Scalet-Shirt </p>
-                                                <small>$25.50</small>
-                                            </div>
-                                        </li>
-                                        <li class="media latest-status">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Bright Scalet-Shirt </p>
-                                                <small>$45.00</small>
-                                            </div>
-                                        </li>
-                                        <li class="media latest-status">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Bright Scalet-Shirt </p>
-                                                <small>$35.75</small>
-                                            </div>
-                                        </li>
-                                        <li class="media latest-status">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Bright Scalet-Shirt </p>
-                                                <small>$85.50</small>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Discount widget -->
-                            <div class="panel discount widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Discount Offer</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <img class="img-responsive" src="images/g-man.jpg" alt="discount" />
-                                    <div class="discount-label">50% Off Shirts</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>    
-        </section>
-			
-		<!-- Top footer -->
-		<section class="top-footer">
-            <div class="top-footer-overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Post From Blog</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$25</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$45</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$35</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$85</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Top Sale Items</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$15</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$25</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$235</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                       <small>$55</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$95</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$55</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$45</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$65</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>    
-                </div> 
-			</div> 
-		</section>
-        
-        <!-- Middle footer -->
-		<section class="middle-footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-md-offset-2 col-md-8 col-xs-12 text-center">
-                        <div class="input-group subscribe-form input-group-lg">
-                            <input type="text" class="form-control" placeholder="Your Email Here" aria-describedby="sizing-addon1">
-                            <span class="input-group-addon subscribe-btn" id="sizing-addon1">Subscribe <i class="fa fa-send hidden-xs"></i></span>
-                        </div>
-                        <div>
-                            <a class="site-title" href="index.html">Buy<span>More</span></a>
-                            <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam                               malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                        </div>    
-                        <ul class="list-inline social-icon">
-                            <li><i class=" fa fa-facebook"></i></li>
-                            <li><i class=" fa fa-google-plus"></i></li>
-                            <li><i class=" fa fa-linkedin"></i></li>
-                            <li><i class=" fa fa-twitter"></i></li>
-                            <li><i class=" fa fa-skype"></i></li>
-                        </ul>
-                        <ul class="list-inline address">
-                            <li><i class=" lnr lnr-home"></i>Uk Street, Unesco limted Road</li>
-                            <li><i class=" lnr lnr-envelope"></i>infogmail@gmail.com</li>
-                            <li><i class=" lnr lnr-phone-handset"></i>(+8802) 890 876; (+8802) 790 776</li>
-                        </ul>
-                    </div>
-				</div>    
-			</div> 
-		</section>
-        
-        <!-- bottom footer -->
-		<footer class="bottom-footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-md-offset-3 col-md-6 col-xs-12 text-center">
-                        <p>BuyMore Template <i class=" lnr lnr-heart"></i> Boot Ultra | All Rights Reserved / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-                    </div>
-				</div>    
-			</div> 
-		</footer>
-        
-        <!--======== All Javascript =========-->
-        <script src="js/jquery-2.1.1.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
+                    <ul class="media-list">
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$25</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$45</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$35</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$85</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="top-footer-title"><h3 class="dash">Top Sale Items</h3></div>
+                    <ul class="media-list">
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$15</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$25</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$235</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status footer-bg">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$55</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
+                    <ul class="media-list">
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$95</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$55</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$45</small>
+                            </div>
+                        </li>
+                        <li class="media latest-status">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
+                            </div>
+                            <div class="media-body">
+                                <p>Lorem ipsum dolor sit amet consectetuer.</p>
+                                <small>$65</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Middle footer -->
+<section class="middle-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-xs-12 text-center">
+                <div class="input-group subscribe-form input-group-lg">
+                    <input type="text" class="form-control" placeholder="Your Email Here"
+                           aria-describedby="sizing-addon1">
+                    <span class="input-group-addon subscribe-btn" id="sizing-addon1">Subscribe <i
+                            class="fa fa-send hidden-xs"></i></span>
+                </div>
+                <div>
+                    <a class="site-title" href="index.html">Buy<span>More</span></a>
+                    <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque
+                        volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
+                </div>
+                <ul class="list-inline social-icon">
+                    <li><i class=" fa fa-facebook"></i></li>
+                    <li><i class=" fa fa-google-plus"></i></li>
+                    <li><i class=" fa fa-linkedin"></i></li>
+                    <li><i class=" fa fa-twitter"></i></li>
+                    <li><i class=" fa fa-skype"></i></li>
+                </ul>
+                <ul class="list-inline address">
+                    <li><i class=" lnr lnr-home"></i>Uk Street, Unesco limted Road</li>
+                    <li><i class=" lnr lnr-envelope"></i>infogmail@gmail.com</li>
+                    <li><i class=" lnr lnr-phone-handset"></i>(+8802) 890 876; (+8802) 790 776</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- bottom footer -->
+<footer class="bottom-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 col-xs-12 text-center">
+                <p>BuyMore Template <i class=" lnr lnr-heart"></i> Boot Ultra | All Rights Reserved / More Templates <a
+                        href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
+                        href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script th:replace="buyMore/common/js :: js"></script>
+</body>
 </html>

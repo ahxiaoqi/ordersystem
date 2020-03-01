@@ -44,6 +44,14 @@ public class BuyMoreController {
 
     private final String SINGLE_PRODUCT = "buyMore/single-product";
 
+    private final String ABOUT = "buyMore/about";
+
+    private final String FAQ = "buyMore/faq.html";
+
+    private final String BLOG_LEFT_SIDEBAR = "buyMore/blog-left-sidebar";
+
+    private final String CONTACT = "buyMore/contact";
+
     @Autowired
     CategoryService categoryService;
 
@@ -78,6 +86,26 @@ public class BuyMoreController {
     @RequestMapping(value = "product-list", method = RequestMethod.GET)
     public String product_list(Model model, HttpServletRequest request) {
         return PRODUCT_LIST;
+    }
+
+    @RequestMapping(value = "about", method = RequestMethod.GET)
+    public String about(Model model, HttpServletRequest request) {
+        return ABOUT;
+    }
+
+    @RequestMapping(value = "faq", method = RequestMethod.GET)
+    public String faq(Model model, HttpServletRequest request) {
+        return FAQ;
+    }
+
+    @RequestMapping(value = "blog-left-sidebar", method = RequestMethod.GET)
+    public String blob(Model model, HttpServletRequest request) {
+        return BLOG_LEFT_SIDEBAR;
+    }
+
+    @RequestMapping(value = "contact", method = RequestMethod.GET)
+    public String contact(Model model, HttpServletRequest request) {
+        return CONTACT;
     }
 
     @RequestMapping(value = "single-product", method = RequestMethod.GET)

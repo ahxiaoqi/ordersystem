@@ -1,5 +1,7 @@
 package com.orderSystem.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orderSystem.entity.Category;
@@ -32,10 +34,10 @@ public class DevController {
     @Autowired
     SubCategoryService subCategoryService;
 
-    private final String DEV_INDEX = "/dev/index";
-    private final String DEV_CATEGORY = "/dev/category";
-    private final String DEV_PRODUCT = "/dev/product";
-    private final String DEV_ORDER = "/dev/order";
+    private final String DEV_INDEX = "dev/index";
+    private final String DEV_CATEGORY = "dev/category";
+    private final String DEV_PRODUCT = "dev/product";
+    private final String DEV_ORDER = "dev/order";
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String clogin(Model model, HttpServletRequest request) {
@@ -71,5 +73,6 @@ public class DevController {
         SubCategory subCategory = SubCategory.builder().categoryId(categoryId).build();
         return subCategoryService.innitSubCategory(subCategory,page);
     }
+
 
 }

@@ -7,12 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>主页</title>
 
-    <!--======== All Stylesheet =========-->
-    <link th:href="@{${buyResPath}}+'/bootstrap/css/bootstrap.min.css'" rel="stylesheet"/>
-    <link th:href="@{${buyResPath}}+'/css/font-awesome.min.css'" rel="stylesheet"/>
-    <link th:href="@{${buyResPath}}+'/css/linearicons.css'" rel="stylesheet"/>
-    <link th:href="@{${buyResPath}}+'/css/style.css'" rel="stylesheet"/>
-    <link th:href="@{${buyResPath}}+'/css/responsive.css'" rel="stylesheet"/>
+    <div th:insert="buyMore/common/css :: css"></div>
 </head>
 
 <body>
@@ -361,11 +356,7 @@
 <!-- 通用footer -->
 <div th:insert="buyMore/common/footer :: footer"></div>
 
-<!--======== All Javascript =========-->
-<script th:src="@{${buyResPath}}+'/bootstrap/js/jquery-2.1.1.js'" type="text/javascript"></script>
-<script th:src="@{${buyResPath}}+'/bootstrap/js/bootstrap.min.js'" type="text/javascript"></script>
-<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
+<script th:replace="buyMore/common/js :: js"></script>
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
 <script>
@@ -485,7 +476,7 @@
                 "                        <div class=\"grid-img\">\n" +
                 "                            <img class=\"img-resposive\" src=\"" + item.image + "\" alt=\"women\"/>\n" +
                 tagStr + isNewStr + activityStr +
-                "                            <div class=\"grid-overlay\">\n" +
+                "                            <div class=\"grid-overlay\" onclick='showDetail(" + item.productId + ")'>\n" +
                 "                                <ul>\n" +
                 "                                    <li><i class=\"lnr lnr-heart\"></i></li>\n" +
                 "                                    <li><i class=\"lnr lnr-camera\"></i></li>\n" +
@@ -499,6 +490,10 @@
                 "                </div>";
             box.append(str);
         })
+    }
+
+    function showDetail(productId) {
+        $(location).prop('href', "single-product.html?productId=" + productId);
     }
 
     // 初始化轮播图
