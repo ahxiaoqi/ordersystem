@@ -38,10 +38,8 @@ public class SlideService implements GeneralService<Slide> {
 
     @Override
     public void save(Slide slide) {
-        QueryWrapper<Slide> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(slide);
         if (Optional.ofNullable(slide.getSlideId()).isPresent()) {
-            slideMapper.update(slide,queryWrapper);
+            slideMapper.updateById(slide);
         } else {
             slideMapper.insert(slide);
         }

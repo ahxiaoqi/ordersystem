@@ -38,10 +38,8 @@ public class DoubleSlideService implements GeneralService<DoubleSlide> {
 
     @Override
     public void save(DoubleSlide doubleSlide) {
-        QueryWrapper<DoubleSlide> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(doubleSlide);
         if (Optional.ofNullable(doubleSlide.getDoubleSlideId()).isPresent()) {
-            doubleSlideMapper.update(doubleSlide, queryWrapper);
+            doubleSlideMapper.updateById(doubleSlide);
         } else {
             doubleSlideMapper.insert(doubleSlide);
         }

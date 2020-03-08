@@ -39,10 +39,8 @@ public class ActivityService implements GeneralService<Activity> {
 
     @Override
     public void save(Activity activity) {
-        QueryWrapper<Activity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(activity);
         if (Optional.ofNullable(activity.getActivityId()).isPresent()) {
-            activityMapper.update(activity, queryWrapper);
+            activityMapper.updateById(activity);
         } else {
             activityMapper.insert(activity);
         }

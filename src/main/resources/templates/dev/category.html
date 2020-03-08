@@ -114,10 +114,10 @@
                                     </tbody>
                                 </table>
                             </div>
-<!--                            <div class="card-action">-->
-<!--                                <button class="btn btn-success">Submit</button>-->
-<!--                                <button class="btn btn-danger">Cancel</button>-->
-<!--                            </div>-->
+                            <!--                            <div class="card-action">-->
+                            <!--                                <button class="btn btn-success">Submit</button>-->
+                            <!--                                <button class="btn btn-danger">Cancel</button>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -140,15 +140,16 @@
                                     </tbody>
                                 </table>
                             </div>
-<!--                            <div class="card-action">-->
-<!--                                <button class="btn btn-success">Submit</button>-->
-<!--                                <button class="btn btn-danger">Cancel</button>-->
-<!--                            </div>-->
+                            <!--                            <div class="card-action">-->
+                            <!--                                <button class="btn btn-success">Submit</button>-->
+                            <!--                                <button class="btn btn-danger">Cancel</button>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- 使用thymeleaf标签引入通用footer -->
         <script th:replace="dev/common/footer :: footer"></script>
     </div>
@@ -156,27 +157,104 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+
+<!--主分类编辑-->
+<div class="modal fade" id="categoryModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
+                <h6 class="modal-title">主分类</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
-                <p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
-                <p>
-                    <b>We'll let you know when it's done</b></p>
+            <div class="modal-body">
+                <form role="form">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label>分类名称</label>
+                        <input type="text" class="form-control" id="categoryName" placeholder="请输入主分类名称">
+                    </div>
+                    <div class="form-group">
+                        <label>启用|禁用</label>
+                        <select name="categoryStatus" class="form-control input-pill" id="categoryStatus">
+                            <option value="1">启用</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>标签</label>
+                        <input type="text" class="form-control" id="tagName" placeholder="请输入标签名称">
+                    </div>
+
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveCategory()">保存</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
+
+<!--子分类编辑-->
+<div class="modal fade" id="subCategoryModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">子分类</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <input type="hidden" id="subCategoryId">
+                        <label>子分类名称</label>
+                        <input type="text" class="form-control" id="subCategoryName" placeholder="请输入子分类名称">
+                    </div>
+                    <div class="form-group">
+                        <label>启用|禁用</label>
+                        <select name="subCategoryStatus" class="form-control input-pill" id="subCategoryStatus">
+                            <option value="1">启用</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveSubCategory()">保存</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--提示-->
+<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">提示</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="tipsBox" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 <!-- 使用thymeleaf标签引入通用script -->
@@ -189,6 +267,135 @@
         innnitCategory();
     })
 
+    function categoryEdit(categoryId) {
+        // 取消父级点击事件
+        // window.event.cancelBubble = true;
+        $("#categoryModel").modal("show");
+        categoryDetail(categoryId)
+    }
+
+    function subCategoryEdit(subCategoryId) {
+        $("#subCategoryModel").modal("show");
+        subCategoryDetail(subCategoryId)
+    }
+
+    function del(type) {
+        if (type == 1) {
+            $("#tipsBox").empty();
+            $("#tipsBox").append("确定要删除主分类吗?关联子分类也会删除")
+        }
+        if (type == 2) {
+            $("#tipsBox").empty();
+            $("#tipsBox").append("确定要删除子分类吗?")
+        }
+        $("#tips").modal("show");
+    }
+
+    function saveCategory() {
+        $.ajax({
+            url: "save_category",
+            dataType: "json",
+            type: "post",
+            data: {
+                "categoryId": $("#categoryId").val(),
+                "categoryName": $("#categoryName").val(),
+                "status": $("#categoryStatus").val(),
+                "tag": $("#tagName").val(),
+            },
+            success: function (data) {
+                console.log(data);
+                $("#categoryModel").modal("hide");
+                innnitCategory();
+                $.notify({
+                    icon: 'la la-bell',
+                    title: '提示',
+                    message: '操作成功',
+                }, {
+                    type: 'success',
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    time: 10,
+                });
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+
+    }
+
+    function saveSubCategory() {
+        $.ajax({
+            url: "save_subCategory",
+            dataType: "json",
+            type: "post",
+            data: {
+                "subCategoryId": $("#subCategoryId").val(),
+                "subCategoryName": $("#subCategoryName").val(),
+                "status": $("#categoryStatus").val()
+            },
+            success: function (data) {
+                console.log(data);
+                $("#subCategoryModel").modal("hide");
+                innitSubCategory($("#subCategoryId").val())
+                $.notify({
+                    icon: 'la la-bell',
+                    title: '提示',
+                    message: '操作成功',
+                }, {
+                    type: 'success',
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    time: 10,
+                });
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function categoryDetail(categoryId) {
+        $.ajax({
+            url: "get_category_detail",
+            dataType: "json",
+            type: "post",
+            data: {"categoryId": categoryId},
+            success: function (data) {
+                console.log(data);
+                $("#categoryId").val(data.categoryId);
+                $("#categoryName").val(data.categoryName);
+                $("#categoryStatus").val(data.status);
+                $("#tagName").val(data.tag);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function subCategoryDetail(subCategoryId) {
+        $.ajax({
+            url: "get_subCategory_detail",
+            dataType: "json",
+            type: "post",
+            data: {"subCategoryId": subCategoryId},
+            success: function (data) {
+                console.log(data);
+                $("#subCategoryId").val(data.subCategoryId);
+                $("#subCategoryName").val(data.subCategoryName);
+                $("#subCategoryStatus").val(data.status);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
     function innnitCategory() {
         var categoryTr = $("#categoryTr");
         categoryTr.empty();
@@ -199,7 +406,7 @@
             success: function (data) {
                 console.log(data);
                 data.forEach(function (item, index) {
-                    var str = "<tr data-Id='"+item.categoryId+"' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + index + "</td>\n" +
+                    var str = "<tr data-Id='" + item.categoryId + "' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + index + "</td>\n" +
                         "<td> " + item.categoryName + " </td>\n";
                     if (item.status == 1) {
                         str += "<td>启用</td>\n"
@@ -207,8 +414,8 @@
                         str += "<td> 禁用 </td>\n"
                     }
                     str += "<td> " + item.tag + " </td>\n" +
-                        "<td> <button class=\"btn btn-success\">编辑</button>&nbsp;" +
-                        "<button class=\"btn btn-danger\">删除</button> </td></tr>";
+                        "<td> <button class=\"btn btn-success\" onclick='categoryEdit(" + item.categoryId + ")'>编辑</button>&nbsp;" +
+                        "<button class=\"btn btn-danger\" onclick='del(1)'>删除</button> </td></tr>";
                     categoryTr.append(str);
                 })
                 $("#categoryTr tr:eq(0)").click();
@@ -239,15 +446,15 @@
                 if (data.records.length >= 1) {
                     subCategoryTr.empty();
                     data.records.forEach(function (item, index) {
-                        var str = "<tr data-Id='"+item.categoryId+"'><td>" + index + "</td>\n" +
+                        var str = "<tr data-Id='" + item.subCategoryId + "'><td>" + index + "</td>\n" +
                             "<td> " + item.subCategoryName + " </td>\n";
                         if (item.status == 1) {
                             str += "<td>启用</td>\n"
                         } else {
                             str += "<td> 禁用 </td>\n"
                         }
-                         str += "<td> <button class=\"btn btn-success\">编辑</button>&nbsp;" +
-                            "<button class=\"btn btn-danger\">删除</button> </td></tr>";
+                        str += "<td> <button class=\"btn btn-success\" onclick='subCategoryEdit(" + item.subCategoryId + ")'>编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\" onclick='del(2)'>删除</button> </td></tr>";
                         subCategoryTr.append(str);
                     });
                 }

@@ -43,10 +43,8 @@ public class ProductService  implements GeneralService<Product> {
 
     @Override
     public void save(Product product) {
-        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(product);
         if (Optional.ofNullable(product.getCategoryId()).isPresent()) {
-            productMapper.update(product,queryWrapper);
+            productMapper.updateById(product);
         } else {
             productMapper.insert(product);
         }

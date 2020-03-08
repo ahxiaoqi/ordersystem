@@ -40,10 +40,8 @@ public class SubCategoryService implements GeneralService<SubCategory> {
 
     @Override
     public void save(SubCategory subCategory) {
-        QueryWrapper<SubCategory> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(subCategory);
         if (Optional.ofNullable(subCategory.getSubCategoryId()).isPresent()) {
-            subCategoryMapper.update(subCategory,queryWrapper);
+            subCategoryMapper.updateById(subCategory);
         } else {
             subCategoryMapper.insert(subCategory);
         }

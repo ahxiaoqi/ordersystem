@@ -38,10 +38,8 @@ public class AccountService implements GeneralService<Account> {
 
     @Override
     public void save(Account account) {
-        QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(account);
         if (Optional.ofNullable(account.getAccountId()).isPresent()) {
-            accountMapper.update(account,queryWrapper);
+            accountMapper.updateById(account);
         } else {
             accountMapper.insert(account);
         }

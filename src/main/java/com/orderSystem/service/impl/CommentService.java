@@ -38,10 +38,8 @@ public class CommentService implements GeneralService<Comment> {
 
     @Override
     public void save(Comment comment) {
-        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(comment);
         if (Optional.ofNullable(comment.getCommentId()).isPresent()) {
-            commentMapper.update(comment, queryWrapper);
+            commentMapper.updateById(comment);
         } else {
             commentMapper.insert(comment);
         }

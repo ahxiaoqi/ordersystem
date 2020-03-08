@@ -42,10 +42,8 @@ public class CategoryService implements GeneralService<Category>{
 
     @Override
     public void save(Category category) {
-        QueryWrapper<Category> queryWrapper = new QueryWrapper<>();
-        queryWrapper.setEntity(category);
         if (Optional.ofNullable(category.getCategoryId()).isPresent()) {
-            categoryMapper.update(category,queryWrapper);
+            categoryMapper.updateById(category);
         } else {
             categoryMapper.insert(category);
         }
