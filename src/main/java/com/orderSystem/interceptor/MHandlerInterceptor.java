@@ -35,7 +35,7 @@ public class MHandlerInterceptor extends HandlerInterceptorAdapter {
                     request.setAttribute("buyResPath", buyResPath);
                 }
             } else {
-//                request.setAttribute("AdminAccount", AdminBaseController.getAdminAccountInfo());
+
             }
         } else {
             MWebUtil.noCache(response);

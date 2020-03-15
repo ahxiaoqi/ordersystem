@@ -1,6 +1,5 @@
 package com.orderSystem.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -10,27 +9,18 @@ import com.orderSystem.entity.SubCategory;
 import com.orderSystem.service.impl.CategoryService;
 import com.orderSystem.service.impl.SubCategoryService;
 import com.orderSystem.util.MConstant.MConstant;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author ahxiaoqi
@@ -39,6 +29,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(MConstant.ADMIN_PATH_PREV + "/dev/")
 public class DevController {
+
+    private final Logger logger = LoggerFactory.getLogger(DevController.class);
 
     @Autowired
     CategoryService categoryService;
@@ -73,9 +65,9 @@ public class DevController {
 
     @ResponseBody
     @RequestMapping(value = "innit_dev_category", method = RequestMethod.POST)
-    public List<Category> innitCategory() {
+    public IPage<Category> innitCategory(Page<Category> page) {
         Category category = Category.builder().build();
-        return categoryService.selectListByWrapper(category);
+        return categoryService.innitCategory(category, page);
     }
 
     // 初始化子分类
@@ -140,6 +132,29 @@ public class DevController {
             return ReturnData.returnError(1001, "删除子分类出错");
         }
         return ReturnData.returnSuccess(null);
+    }
+
+    @PostMapping("/upload")
+    @ResponseBody
+    public ReturnData upload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ReturnData.returnError(1002, "文件为空!");
+        }
+        // 随便写的
+        long l = System.currentTimeMillis() >> 4 << 3;
+        String fileName = l + file.getOriginalFilename();
+        String filePath = "C:\\Users\\16399\\Desktop\\demo\\项目\\src\\main\\resources\\static\\res\\upload\\";
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            JSONObject json = new JSONObject();
+            json.put("path", dest.getPath());
+            return ReturnData.returnSuccess(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.info("文件上传出错");
+            return ReturnData.returnError(1001, "文件上传出错");
+        }
     }
 
 
