@@ -88,7 +88,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">Forms</h4>
+                <h4 class="page-title">分类管理</h4>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
@@ -140,10 +140,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!--                            <div class="card-action">-->
-                            <!--                                <button class="btn btn-success">Submit</button>-->
-                            <!--                                <button class="btn btn-danger">Cancel</button>-->
-                            <!--                            </div>-->
+                            <div id="subCategoryTips" class="card-action">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -274,6 +273,24 @@
         categoryDetail(categoryId)
     }
 
+    function categoryAdd() {
+        // 取消父级点击事件
+        // window.event.cancelBubble = true;
+        $("#categoryId").val("");
+        $("#categoryName").val("");
+        $("#categoryStatus").val(1);
+        $("#tagName").val("");
+        $("#categoryModel").modal("show");
+    }
+
+    function subCategoryAdd() {
+        $("#subCategoryId").val("");
+        $("#categoryId").val($("#categoryIdTmp").val());
+        $("#subCategoryName").val("");
+        $("#subCategoryStatus").val(1);
+        $("#subCategoryModel").modal("show");
+    }
+
     function subCategoryEdit(subCategoryId) {
         $("#subCategoryModel").modal("show");
         subCategoryDetail(subCategoryId)
@@ -305,19 +322,8 @@
             success: function (data) {
                 console.log(data);
                 $("#categoryModel").modal("hide");
-                innnitCategory();
-                $.notify({
-                    icon: 'la la-bell',
-                    title: '提示',
-                    message: '操作成功',
-                }, {
-                    type: 'success',
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    },
-                    time: 10,
-                });
+                tips("操作成功");
+                innitCategory();
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -332,6 +338,7 @@
             dataType: "json",
             type: "post",
             data: {
+                "categoryId": $("#categoryId").val(),
                 "subCategoryId": $("#subCategoryId").val(),
                 "subCategoryName": $("#subCategoryName").val(),
                 "status": $("#categoryStatus").val()
@@ -415,9 +422,9 @@
                     }
                     str += "<td> " + item.tag + " </td>\n" +
                         "<td> <button class=\"btn btn-success\" onclick='categoryEdit(" + item.categoryId + ")'>编辑</button>&nbsp;" +
-                        "<button class=\"btn btn-danger\" onclick='del(1)'>删除</button> </td></tr>";
+                        "<button class=\"btn btn-danger\" onclick='del(1," + item.categoryId + ")'>删除</button> </td></tr>";
                     categoryTr.append(str);
-                })
+                });
                 $("#categoryTr tr:eq(0)").click();
             },
             error: function () {
@@ -444,7 +451,7 @@
                 console.log("------------------------------------------------");
                 var str = "";
                 if (data.records.length >= 1) {
-                    subCategoryTr.empty();
+                    $("#subCategoryTips").empty();
                     data.records.forEach(function (item, index) {
                         var str = "<tr data-Id='" + item.subCategoryId + "'><td>" + index + "</td>\n" +
                             "<td> " + item.subCategoryName + " </td>\n";
@@ -454,15 +461,33 @@
                             str += "<td> 禁用 </td>\n"
                         }
                         str += "<td> <button class=\"btn btn-success\" onclick='subCategoryEdit(" + item.subCategoryId + ")'>编辑</button>&nbsp;" +
-                            "<button class=\"btn btn-danger\" onclick='del(2)'>删除</button> </td></tr>";
+                            "<button class=\"btn btn-danger\" onclick='del(2," + item.categoryId + "," + item.subCategoryId + ")'>删除</button> </td></tr>";
                         subCategoryTr.append(str);
                     });
+                } else {
+                    $("#subCategoryTips").empty();
+                    $("#subCategoryTips").append("暂无数据");
                 }
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
             }
         })
+    }
+
+    function tips(msg) {
+        $.notify({
+            icon: 'la la-bell',
+            title: '提示',
+            message: msg,
+        }, {
+            type: 'success',
+            placement: {
+                from: "top",
+                align: "center"
+            },
+            time: 10,
+        });
     }
 
 

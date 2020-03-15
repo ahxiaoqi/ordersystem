@@ -118,5 +118,29 @@ public class DevController {
         return ReturnData.returnSuccess(null);
     }
 
+    // 主分类删除
+    @ResponseBody
+    @RequestMapping(value = "del_Category", method = RequestMethod.POST)
+    public ReturnData delCategory(@RequestParam("categoryId") Integer categoryId) {
+        try {
+            categoryService.deleteById(categoryId);
+        } catch (Exception e) {
+            return ReturnData.returnError(1001, "删除分类出错");
+        }
+        return ReturnData.returnSuccess(null);
+    }
+
+    // 子分类删除
+    @ResponseBody
+    @RequestMapping(value = "del_subCategory", method = RequestMethod.POST)
+    public ReturnData delSubCategory(@RequestParam("subCategoryId") Integer subCategoryId) {
+        try {
+            subCategoryService.deleteById(subCategoryId);
+        } catch (Exception e) {
+            return ReturnData.returnError(1001, "删除子分类出错");
+        }
+        return ReturnData.returnSuccess(null);
+    }
+
 
 }
