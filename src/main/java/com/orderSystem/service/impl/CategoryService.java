@@ -64,4 +64,9 @@ public class CategoryService implements GeneralService<Category> {
         subCategoryMapper.delete(queryWrapper.setEntity(build));
     }
 
+    public IPage<Category> innitCategory(Category category, Page<Category> page) {
+        QueryWrapper<Category> queryWrapper = new QueryWrapper<>();
+        queryWrapper.setEntity(category);
+        return categoryMapper.selectPage(page, queryWrapper);
+    }
 }
