@@ -8,6 +8,7 @@ import com.orderSystem.entity.Category;
 import com.orderSystem.entity.SubCategory;
 import com.orderSystem.mapper.AccountMapper;
 import com.orderSystem.mapper.CategoryMapper;
+import com.orderSystem.mapper.SubCategoryMapper;
 import com.orderSystem.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,16 @@ import java.util.Optional;
  * @date 2020/1/27 13:20
  */
 @Service
-public class CategoryService implements GeneralService<Category>{
+public class CategoryService implements GeneralService<Category> {
 
     @Autowired
     @SuppressWarnings("all")
     CategoryMapper categoryMapper;
+
+    @Autowired
+    @SuppressWarnings("all")
+    SubCategoryMapper subCategoryMapper;
+
 
     @Override
     public Category selectOneByWrapper(Category category) {
@@ -53,6 +59,9 @@ public class CategoryService implements GeneralService<Category>{
     @Override
     public void deleteById(Integer id) {
         categoryMapper.deleteById(id);
+        QueryWrapper<SubCategory> queryWrapper = new QueryWrapper<>();
+        SubCategory build = SubCategory.builder().categoryId(id).build();
+        subCategoryMapper.delete(queryWrapper.setEntity(build));
     }
 
 }
