@@ -10,6 +10,7 @@ import com.orderSystem.entity.dto.ProductDto;
 import com.orderSystem.provider.productMapperProvider;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
+import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
@@ -30,6 +31,12 @@ public interface ProductMapper extends BaseMapper<Product> {
     @Select("select a.price,a.image,a.description,b.year,b.month,b.day from t_product a left join t_comment b on a.productId = b.productId limit #{start},#{end}")
     List<CommentDto> innitFooterGoods(@Param("start")int start,@Param("end")int end);
 
+    @Results({
+            @Result(column = "categoryId", property = "categoryId"),
+            @Result(property = "categoryName", column = "categoryId", one = @One(select = "com.orderSystem.mapper.CategoryMapper.selectCategoryName"),jdbcType = JdbcType.VARCHAR),
+            @Result(column = "subCategoryId", property = "subCategoryId"),
+            @Result(property = "subCategoryName", column = "subCategoryId", one = @One(select = "com.orderSystem.mapper.SubCategoryMapper.selectSubCategoryName"),jdbcType = JdbcType.VARCHAR),
+    })
     @SelectProvider(value = productMapperProvider.class,method = "innitProductListBox")
     IPage<ProductDto> innitProductList(Page<Product> page, Product product);
 

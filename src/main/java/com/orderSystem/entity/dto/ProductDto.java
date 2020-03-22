@@ -3,7 +3,9 @@ package com.orderSystem.entity.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.orderSystem.entity.Category;
 import com.orderSystem.entity.Spec;
+import com.orderSystem.entity.SubCategory;
 import lombok.Data;
 
 import java.util.List;
@@ -54,4 +56,8 @@ public class ProductDto {
     private Integer activityType;
 
     private List<Spec> specList;
+
+    private String categoryName;
+
+    private String subCategoryName;
 }

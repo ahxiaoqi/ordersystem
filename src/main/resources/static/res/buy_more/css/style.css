@@ -35,6 +35,15 @@ p{
     border-bottom: 2px solid #A82541;
 }
 
+.btn-add{
+	border: 0;
+	color: #fff;
+	background-color: #FFE401;
+	box-shadow: none;
+	border-radius: 0;
+    border-bottom: 2px solid #A82541;
+}
+
 .section-title{
     position: relative;
     mmargin-bottom: 30px;
