@@ -1,18 +1,23 @@
 package com.orderSystem.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orderSystem.data.ReturnData;
 import com.orderSystem.entity.Category;
+import com.orderSystem.entity.Product;
 import com.orderSystem.entity.SubCategory;
+import com.orderSystem.entity.dto.ProductDto;
 import com.orderSystem.service.impl.CategoryService;
+import com.orderSystem.service.impl.ProductService;
 import com.orderSystem.service.impl.SubCategoryService;
 import com.orderSystem.util.MConstant.MConstant;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * @author ahxiaoqi
@@ -32,16 +38,25 @@ public class DevController {
 
     private final Logger logger = LoggerFactory.getLogger(DevController.class);
 
+    @Value("${uploadPath}")
+    private String uploadPath;
+
+
     @Autowired
     CategoryService categoryService;
 
     @Autowired
     SubCategoryService subCategoryService;
 
+    @Autowired
+    ProductService productService;
+
     private final String DEV_INDEX = "dev/index";
     private final String DEV_CATEGORY = "dev/category";
     private final String DEV_PRODUCT = "dev/product";
     private final String DEV_ORDER = "dev/order";
+    private final String DEV_ACTIVITY = "dev/activity";
+    private final String DEV_SLIDE = "dev/slide";
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String clogin(Model model, HttpServletRequest request) {
@@ -61,6 +76,16 @@ public class DevController {
     @RequestMapping(value = "order", method = RequestMethod.GET)
     public String order(Model model, HttpServletRequest request) {
         return DEV_ORDER;
+    }
+
+    @RequestMapping(value = "activity", method = RequestMethod.GET)
+    public String activity(Model model, HttpServletRequest request) {
+        return DEV_ACTIVITY;
+    }
+
+    @RequestMapping(value = "slide", method = RequestMethod.GET)
+    public String slide(Model model, HttpServletRequest request) {
+        return DEV_SLIDE;
     }
 
     @ResponseBody
@@ -110,6 +135,14 @@ public class DevController {
         return ReturnData.returnSuccess(null);
     }
 
+    // 产品保存
+    @ResponseBody
+    @RequestMapping(value = "save_product", method = RequestMethod.POST)
+    public ReturnData saveProduct(Product product) {
+        productService.save(product);
+        return ReturnData.returnSuccess(null);
+    }
+
     // 主分类删除
     @ResponseBody
     @RequestMapping(value = "del_Category", method = RequestMethod.POST)
@@ -134,6 +167,46 @@ public class DevController {
         return ReturnData.returnSuccess(null);
     }
 
+    // 初始化商品列表
+    @ResponseBody
+    @RequestMapping(value = "innit_dev_product_list", method = RequestMethod.POST)
+    public IPage<ProductDto> innitDevProductList(Page<Product> page, Product product) {
+        return productService.innitProductListBox(product, page);
+    }
+
+    //  全部分类名称
+    @ResponseBody
+    @RequestMapping(value = "innitCategoryName", method = RequestMethod.POST)
+    public List<Category> innitCategoryName() {
+        return categoryService.selectListByWrapper(Category.builder().build());
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "innitSubCategoryName", method = RequestMethod.POST)
+    public List<SubCategory> innitSubCategoryName(@RequestParam("categoryId") Integer categoryId) {
+        return subCategoryService.selectListByWrapper(SubCategory.builder().categoryId(categoryId).build());
+    }
+
+    // 产品删除
+    @ResponseBody
+    @RequestMapping(value = "del_product", method = RequestMethod.POST)
+    public ReturnData delProduct(@RequestParam("productId") Integer productId) {
+        try {
+            productService.deleteById(productId);
+            return ReturnData.returnSuccess(null);
+        } catch (Exception e) {
+            return ReturnData.returnError(1001, "删除商品异常");
+        }
+    }
+
+    // 产品删除
+    @ResponseBody
+    @RequestMapping(value = "get_product_detail", method = RequestMethod.POST)
+    public Product getProductDetail(@RequestParam("productId") Integer productId) {
+        return productService.selectOneByWrapper(Product.builder().productId(productId).build());
+    }
+
+
     @PostMapping("/upload")
     @ResponseBody
     public ReturnData upload(@RequestParam("file") MultipartFile file) {
@@ -141,14 +214,15 @@ public class DevController {
             return ReturnData.returnError(1002, "文件为空!");
         }
         // 随便写的
-        long l = System.currentTimeMillis() >> 4 << 3;
-        String fileName = l + file.getOriginalFilename();
-        String filePath = "C:\\Users\\16399\\Desktop\\demo\\项目\\src\\main\\resources\\static\\res\\upload\\";
+        long tmp = System.currentTimeMillis() >> 4 << 3 * 4;
+        String suffix = Objects.requireNonNull(file.getOriginalFilename()).split("\\.")[1];
+        String fileName = tmp + "." + suffix;
+        String filePath = uploadPath;
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
             JSONObject json = new JSONObject();
-            json.put("path", dest.getPath());
+            json.put("path", "uploadPath/" + fileName);
             return ReturnData.returnSuccess(json);
         } catch (IOException e) {
             e.printStackTrace();

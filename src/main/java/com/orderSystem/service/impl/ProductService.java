@@ -43,7 +43,7 @@ public class ProductService  implements GeneralService<Product> {
 
     @Override
     public void save(Product product) {
-        if (Optional.ofNullable(product.getCategoryId()).isPresent()) {
+        if (Optional.ofNullable(product.getProductId()).isPresent()) {
             productMapper.updateById(product);
         } else {
             productMapper.insert(product);
@@ -79,4 +79,5 @@ public class ProductService  implements GeneralService<Product> {
     public ProductDto innitProductDetail(Integer productId) {
         return productMapper.innitProductDetail(productId);
     }
+
 }

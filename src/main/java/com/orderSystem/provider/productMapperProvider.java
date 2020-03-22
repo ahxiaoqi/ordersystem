@@ -14,6 +14,7 @@ import java.util.Optional;
  */
 public class productMapperProvider {
     Logger logger = LoggerFactory.getLogger(productMapperProvider.class);
+
     public String innitProductListBox(Page<Product> page, Product product) {
         String sql = new SQL() {{
             SELECT("a.*,b.activityStr,b.activityType,c.productTagStr");
@@ -29,6 +30,9 @@ public class productMapperProvider {
                 if (product.getSubCategoryId() > 0) {
                     WHERE("a.subCategoryId = #{product.subCategoryId}");
                 }
+            }
+            if (Optional.ofNullable(product.getProductName()).isPresent() && !"".equals(product.getProductName())) {
+                WHERE("productName like concat('%',#{product.productName},'%')");
             }
             ORDER_BY("createTime desc");
         }}.toString();

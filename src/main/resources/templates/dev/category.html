@@ -74,6 +74,20 @@
                         <span class="badge badge-count">50</span>
                     </a>
                 </li>
+                <li class="nav-item " >
+                    <a href="activity.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>活动管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item active" >
+                    <a href="slide.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="order.html">
                         <i class="la la-th"></i>
@@ -186,6 +200,10 @@
                     <input type="text" class="form-control" id="tagName" placeholder="请输入标签名称">
                 </div>
                 <div class="form-group">
+                    <label>描述</label>
+                    <input type="text" class="form-control" id="description" placeholder="请输入描述">
+                </div>
+                <div class="form-group">
                     <label>主分类图</label>
                     <div class="row" style="height: 300px">
                         <form id="fileForm"><!--action="/eryTuUd4/dev/upload" method="post"-->
@@ -218,20 +236,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <input type="hidden" id="subCategoryId">
-                        <label>子分类名称</label>
-                        <input type="text" class="form-control" id="subCategoryName" placeholder="请输入子分类名称">
+                <div class="form-group">
+                    <input type="hidden" id="subCategoryId">
+                    <label>子分类名称</label>
+                    <input type="text" class="form-control" id="subCategoryName" placeholder="请输入子分类名称">
+                </div>
+                <div class="form-group">
+                    <label>启用|禁用</label>
+                    <select name="subCategoryStatus" class="form-control input-pill" id="subCategoryStatus">
+                        <option value="1">启用</option>
+                        <option value="2">禁用</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>子分类图</label>
+                    <div class="row" style="height: 300px">
+
+                        <form id="SubCategoryFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait2" class="file" type="file" multiple data-min-file-count="1"
+                                       data-show-preview="true">
+                            </div>
+                        </form>
+                        <div id="SubCategoryImg">
+
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>启用|禁用</label>
-                        <select name="subCategoryStatus" class="form-control input-pill" id="subCategoryStatus">
-                            <option value="1">启用</option>
-                            <option value="2">禁用</option>
-                        </select>
-                    </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="saveSubCategory()">保存</button>
@@ -282,7 +313,7 @@
         // window.event.cancelBubble = true;
         $("#categoryModel").modal("show");
         $("#categoryModel").on('shown.bs.modal', function () {
-            initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
         });
 
         categoryDetail(categoryId);
@@ -334,6 +365,7 @@
                 "categoryName": $("#categoryName").val(),
                 "status": $("#categoryStatus").val(),
                 "tag": $("#tagName").val(),
+                "description":$("#description").val(),
                 "image": $("#categoryImgPath").val() == "" ? null : $("#categoryImgPath").val()
             },
             success: function (data) {
@@ -358,7 +390,8 @@
                 "categoryId": $("#categoryId").val(),
                 "subCategoryId": $("#subCategoryId").val(),
                 "subCategoryName": $("#subCategoryName").val(),
-                "status": $("#categoryStatus").val()
+                "status": $("#categoryStatus").val(),
+                "image": $("#subCategoryImgPath").val() == "" ? null : $("#subCategoryImgPath").val()
             },
             success: function (data) {
                 console.log(data);
@@ -395,6 +428,7 @@
                 $("#categoryName").val(data.categoryName);
                 $("#categoryStatus").val(data.status);
                 $("#tagName").val(data.tag);
+                $("#description").val(data.description);
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -433,6 +467,7 @@
             },
             success: function (data) {
                 console.log(data);
+                categoryTr.empty();
                 if (data.records.length >= 1) {
                     data.records.forEach(function (item, index) {
                         let str = "<tr data-Id='" + item.categoryId + "' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + parseInt(index + 1) + "</td>\n" +
@@ -507,20 +542,6 @@
         })
     }
 
-    function tips(msg) {
-        $.notify({
-            icon: 'la la-bell',
-            title: '提示',
-            message: msg,
-        }, {
-            type: 'success',
-            placement: {
-                from: "top",
-                align: "center"
-            },
-            time: 10,
-        });
-    }
 
     // 翻页插件
     function boxFooter2(box, total, size, current, pages, cllback) {

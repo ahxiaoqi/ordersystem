@@ -1,188 +1,578 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Notifications - Ready Bootstrap Dashboard</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<!-- 使用thymeleaf标签引入通用script -->
-	<link th:replace="dev/common/css :: css"></link>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Notifications - Ready Bootstrap Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!-- 使用thymeleaf标签引入通用script -->
+    <link th:replace="dev/common/css :: css"></link>
 </head>
 <body>
-	<div class="wrapper">
-		<!-- 通用导航 -->
-		<div th:insert="dev/common/header :: header"></div>
+<div class="wrapper">
+    <!-- 通用导航 -->
+    <div th:insert="dev/common/header :: header"></div>
 
-		<div class="sidebar">
-			<div class="scrollbar-inner sidebar-wrapper">
-				<div class="user">
-					<div class="photo">
-						<img src="/res/assets_dev/img/profile.jpg">
-					</div>
-					<div class="info">
-						<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+    <div class="sidebar">
+        <div class="scrollbar-inner sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/res/assets_dev/img/profile.jpg">
+                </div>
+                <div class="info">
+                    <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									admin
 									<span class="user-level">管理员</span>
 									<span class="caret"></span>
 								</span>
-						</a>
-						<div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
 
-						<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
-							<ul class="nav">
-								<li>
-									<a href="#profile">
-										<span class="link-collapse">My Profile</span>
-									</a>
-								</li>
-								<li>
-									<a href="#edit">
-										<span class="link-collapse">Edit Profile</span>
-									</a>
-								</li>
-								<li>
-									<a href="#settings">
-										<span class="link-collapse">Settings</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<ul class="nav">
-					<li class="nav-item ">
-						<a href="index.html">
-							<i class="la la-dashboard"></i>
-							<p>首页</p>
-							<span class="badge badge-count">5</span>
-						</a>
-					</li>
-					<li class="nav-item" >
-						<a href="category.html">
-							<i class="la la-table"></i>
-							<p>分类管理</p>
-							<span class="badge badge-count">14</span>
-						</a>
-					</li>
-					<li class="nav-item active" >
-						<a href="product.html">
-							<i class="la la-keyboard-o"></i>
-							<p>商品管理</p>
-							<span class="badge badge-count">50</span>
-						</a>
-					</li>
-					<li class="nav-item" >
-						<a href="order.html">
-							<i class="la la-th"></i>
-							<p>订单列表</p>
-							<span class="badge badge-count">6</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+                    <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                        <ul class="nav">
+                            <li>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a href="index.html">
+                        <i class="la la-dashboard"></i>
+                        <p>首页</p>
+                        <span class="badge badge-count">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="category.html">
+                        <i class="la la-table"></i>
+                        <p>分类管理</p>
+                        <span class="badge badge-count">14</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="product.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>商品管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="activity.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>活动管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item " >
+                    <a href="slide.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="order.html">
+                        <i class="la la-th"></i>
+                        <p>订单列表</p>
+                        <span class="badge badge-count">6</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 
-			<div class="main-panel">
-				<div class="content">
-					<div class="container-fluid">
-						<h4 class="page-title">Notifications</h4>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-<!--									<div class="card-header">-->
-<!--										<div class="card-title">Bootstrap Notify</div>-->
-<!--										<div class="card-category">Turn standard bootstrap alerts into "growl" like notifications from <a class="link" href="http://bootstrap-notify.remabledesigns.com/">Bootstrap Notify</a></div>-->
-<!--									</div>-->
-									<div class="card-body">
-										<div class="form">
-											<div class="form-group from-show-notify row">
-												<div class="col-lg-3 col-md-3 col-sm-12 text-right">
-													<label>Placement :</label>
-												</div>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<select class="form-control input-fixed" id="notify_placement_from">
-														<option value="top">Top</option>
-														<option value="bottom">Bottom</option>
-													</select>
-													<select class="form-control input-fixed" id="notify_placement_align">
-														<option value="left">Left</option>
-														<option value="right" selected="">Right</option>
-														<option value="center">Center</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group from-show-notify row">
-												<div class="col-lg-3 col-md-3 col-sm-12 text-right">
-													<label>State :</label>
-												</div>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<select class="form-control input-fixed" id="notify_state">
-														<option value="primary">Primary</option>
-														<option value="info">Info</option>
-														<option value="success">Success</option>
-														<option value="warning">Warning</option>
-														<option value="danger">Danger</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group from-show-notify row">
-												<div class="col-lg-3 col-md-3 col-sm-12 text-right">
-													<label>Style :</label>
-												</div>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<select class="form-control input-fixed" id="notify_style">
-														<option value="plain">Plain</option>
-														<option value="withicon">With Icon</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card-footer">
-										<div class="form">
-											<div class="form-group from-show-notify row">
-												<div class="col-lg-3 col-md-3 col-sm-12">
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">商品列表</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="input-group mb-3">
+                                    <select name="categoryDrop" class="form-control input-pill"
+                                            id="categoryDrop">
+                                        <option value="0">请选择主分类</option>
+                                    </select>
+                                    <select name="subCategoryDrop" class="form-control input-pill"
+                                            id="subCategoryDrop">
+                                        <option value="0">请选择子分类</option>
+                                    </select>
+                                    <input id="searchName" type="text" placeholder="请输入商品名"
+                                           class="form-control  input-pill">
+                                    <div class="input-group-append">
+                                     <span class="input-group-text" onclick="innitProductList(1)">
+                                            <i class="la la-search search-icon"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">产品名称</th>
+                                        <th scope="col">主分类</th>
+                                        <th scope="col">子分类</th>
+                                        <th scope="col">价格</th>
+                                        <th scope="col">产品图</th>
+                                        <th scope="col">产品详情图</th>
+                                        <th scope="col">标签</th>
+                                        <th scope="col">是否新品</th>
+                                        <th scope="col" style="width:20%">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="productTableTr">
 
-												</div>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<button id="displayNotif" class="btn btn-success">Display</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 使用thymeleaf标签引入通用footer -->
-				<script th:replace="dev/common/footer :: footer"></script>
-			</div>
-		</div>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header bg-primary">
-					<h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body text-center">									
-					<p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
-					<p>
-					<b>We'll let you know when it's done</b></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer">
+                                <div class="form">
+                                    <div class="form-group from-show-notify row">
+                                        <div class="col-lg-3 col-md-3 col-sm-12">
+
+                                        </div>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <div class="pageBtn" id="productPage"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 使用thymeleaf标签引入通用footer -->
+        <script th:replace="dev/common/footer :: footer"></script>
+    </div>
+</div>
+
+
+<!--主分类编辑-->
+<div class="modal fade" id="productModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">商品信息</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label>产品名称</label>
+                    <input type="text" class="form-control" id="productName" placeholder="请输入产品名称">
+                </div>
+                <div class="form-group">
+                    <label>主分类</label>
+                    <select name="detailCategory" class="form-control input-pill" id="detailCategory">
+                        <option value="1">请选择主分类</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>子分类</label>
+                    <select name="detailSubCategory" class="form-control input-pill" id="detailSubCategory">
+                        <option value="1">请选择子分类</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>价格</label>
+                    <input type="text" class="form-control" id="price" placeholder="请输入价格">
+                </div>
+                <div class="form-group">
+                    <label>产品图</label>
+                    <div class="row" style="height: 300px">
+
+                        <form id="productFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait1" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1">
+                            </div>
+
+                        </form>
+                        <div id="productImg">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>产品图详情图</label>
+                    <div class="row" style="height: 300px">
+
+                        <form id="productFileForm2" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait2" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1">
+                            </div>
+
+                        </form>
+                        <div id="productDetailImg">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>标签</label>
+                    <input type="text" class="form-control" id="tag" placeholder="请输入标签">
+                </div>
+                <div class="form-group">
+                    <label>是否新品</label>
+                    <select name="isNew" class="form-control input-pill" id="isNew">
+                        <option value="1">是</option>
+                        <option value="2" selected>否</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveProduct()">保存</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--提示-->
+<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">提示</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="tipsBox" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button id="delBtn" type="button" class="btn btn-primary">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="dev/common/js :: js"></script>
+
+<script>
+    $(function () {
+        innitProductList(1);
+        innitCategoryName();
+        $("#categoryDrop").change(function () {
+            innitSubCategoryName($("#categoryDrop").val());
+        });
+        initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        initFileInput("file-Portrait2", "eryTuUd4/dev/upload");
+    });
+
+
+    // 初始化文件上传
+    function initFileInput(ctrlName, uploadUrl, btnName) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            uploadUrl: uploadUrl, // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: true,
+            maxFileSize: 1000,
+            maxFilesNum: 1,
+            uploadButtonName: btnName,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
+    }
+
+    // 文件上传表单
+    $("#productFileForm").submit(function (e) {
+        var formData = new FormData();
+        formData.append("file", $("#file-Portrait1")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#productImg").empty();
+                $("#productImg").append("<input type='hidden' id='productImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+    // 文件上传表单
+    $("#productFileForm2").submit(function (e) {
+        var formData = new FormData();
+        formData.append("file", $("#file-Portrait2")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#productDetailImg").empty();
+                $("#productDetailImg").append("<input type='hidden' id='productDetailImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+
+    function innitCategoryName() {
+        $.ajax({
+            url: "innitCategoryName",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                let str = "";
+                data.forEach(function (item, index) {
+                    str = "<option  value='" + item.categoryId + "'>" + item.categoryName + "</option>";
+                    $("#categoryDrop").append(str);
+                })
+            },
+            error: function () {
+                console.log("分类名称初始化错误")
+            }
+        })
+    }
+
+    function innitSubCategoryName(categoryId) {
+        $.ajax({
+            url: "innitSubCategoryName",
+            dataType: "json",
+            type: "post",
+            data: {"categoryId": categoryId},
+            success: function (data) {
+                let str = "";
+                $("#subCategoryDrop").empty();
+                $("#subCategoryDrop").append("<option value=\"0\">请选择子分类</option>");
+                data.forEach(function (item, index) {
+                    str = "<option  value='" + item.subCategoryId + "'>" + item.subCategoryName + "</option>";
+                    $("#subCategoryDrop").append(str);
+                })
+            },
+            error: function () {
+                console.log("分类名称初始化错误")
+            }
+        })
+    }
+
+
+    function innitProductList(current) {
+        const productTableTr = $("#productTableTr");
+        if (current == null) {
+            current = 1;
+        }
+        let categoryId = $("#categoryDrop").val();
+        let subCategoryId = $("#subCategoryDrop").val();
+        let productName = $("#searchName").val();
+        productTableTr.empty();
+        $.ajax({
+            url: "innit_dev_product_list",
+            dataType: "json",
+            type: "post",
+            data: {
+                "size": 5,
+                "categoryId": categoryId,
+                "subCategoryId": subCategoryId,
+                "productName": productName,
+                "current": current
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.records.length >= 1) {
+                    data.records.forEach(function (item, index) {
+                        let str = "<tr data-Id='" + item.productId + "' ><td>" + item.productName + "</td>\n";
+                        let categoryName = "";
+                        if (item.categoryName != null) {
+                            categoryName = item.categoryName;
+                        }
+                        let subCategoryName = "";
+                        if (item.subCategoryName != null) {
+                            subCategoryName = item.subCategoryName;
+                        }
+                        str += "<td> " + categoryName + " </td>\n" +
+                            "<td> " + subCategoryName + " </td>\n" +
+                            "<td> " + item.price + " </td>\n" +
+                            "<td> <img style='width:62px;height:82px' src='" + item.image + "'></td>\n"+
+                            "<td> <img style='width:62px;height:82px' src='" + item.detailImage + "'></td>\n";
+                        let productTagStr = "无";
+                        if (item.productTagStr != null) {
+                            productTagStr = item.productTagStr;
+                        }
+                        str += "<td> " + productTagStr + " </td>\n";
+                        let isNewStr = "否";
+                        if (item.isNew === 1) {
+                            isNewStr = "是";
+                        }
+                        str += "<td> " + isNewStr + " </td>\n" +
+                            "<td> <button class=\"btn btn-success\" onclick='productEdit(" + item.productId + ")'>编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\" onclick='del(1," + item.productId + ")'>删除</button> </td></tr>";
+                        productTableTr.append(str);
+                    });
+                    // 翻页插件
+                    $("#categoryTr tr:eq(0)").click();
+                    boxFooter2($("#productPage"), data.total, data.size, data.current, data.pages, innitProductList);
+
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function productAdd() {
+        $("#productId").val();
+        $("#productName").val(data.productName);
+        $("#detailCategory").val(data.subCategoryName);
+        $("#detailSubCategory").val(data.status);
+        $("#price").val(data.price);
+        $("#tag").val(data.tag);
+        $("#isNew").val(data.isNew);
+    }
+
+    function productEdit(productId) {
+        $("#productModel").modal("show");
+        productDetail(productId)
+    }
+
+    function productDetail(productId) {
+        $.ajax({
+            url: "get_product_detail",
+            dataType: "json",
+            type: "post",
+            data: {"productId": productId},
+            success: function (data) {
+                console.log(data);
+                $("#productId").val(data.productId);
+                $("#productName").val(data.productName);
+                $("#detailCategory").val(data.subCategoryName);
+                $("#detailSubCategory").val(data.status);
+                $("#price").val(data.price);
+                $("#tag").val(data.tag);
+                $("#isNew").val(data.isNew);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function saveProduct() {
+        $.ajax({
+            url: "save_product",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": $("#productId").val(),
+                "productName": $("#productName").val(),
+                "categoryId": $("#detailCategory").val() == "" ? null : $("#detailCategory").val(),
+                "price": $("#price").val(),
+                "tag": $("#tag").val(),
+                "image": $("#productImgPath").val() == "" ? null : $("#productImgPath").val(),
+                "detailImage": $("#productDetailImgPath").val() == "" ? null : $("#productDetailImgPath").val(),
+                "isNew": $("#isNew").val()
+            },
+            success: function (data) {
+                console.log(data);
+                $("#productModel").modal("hide");
+                tips("操作成功");
+                innitProductList(1);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+
+    }
+
+
+    function del(type, productId) {
+        $("#tipsBox").empty();
+        $("#tipsBox").append("确定要删除该商品吗?");
+        $("#delBtn").removeAttr("onclick");
+        $("#delBtn").click(function () {
+            delProduct(productId)
+        });
+        $("#tips").modal("show");
+    }
+
+    // 删除主分类
+    function delProduct(productId) {
+        $.ajax({
+            url: "del_product",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitProductList(1);
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+    // 翻页插件
+    function boxFooter2(box, total, size, current, pages, cllback) {
+        box.empty();
+        box.paging({
+            nowPage: current, // 当前页码,默认为1
+            pageNum: pages, // 总页码
+            buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
+            callback: function (num) { //回调函数,num为当前页码
+                innitProductList(num, 1, 1);
+            }
+        });
+    }
+
+</script>
 </html>
