@@ -376,8 +376,8 @@
         if (current == null || current <= 0) {
             current = 1;
         }
-        console.log("分类id的值---------------------------->"+ $("#pBoxCId").val())
-        console.log("子分类id的值---------------------------->"+ $("#pBoxSubCId").val())
+        console.log("分类id的值---------------------------->"+ $("#pBoxCId").val());
+        console.log("子分类id的值---------------------------->"+ $("#pBoxSubCId").val());
         const categoryId = $("#pBoxCId").val() == 0 ?  null: $("#pBoxCId").val();
         const subCategoryId = $("#pBoxSubCId").val() == 0 ? null : $("#pBoxSubCId").val();
         $.ajax({
@@ -394,7 +394,9 @@
                 console.log("初始化商品列表------------------------------------->")
                 console.log(data);
                 console.log("------------------------------------------------");
-                var str = "";
+                let tmp = 0;
+                let tmp2 = 0;
+                let str = "";
                 let tagStr = " ";
                 let activityStr = " ";
                 let isNewStr = " ";
@@ -410,7 +412,16 @@
                         if (parseInt(item.activityType) == 2) {
                             activityStr = "<strong>" + item.activityStr + "%</strong>";
                         }
-                        str = "<div class=\"col-md-4 col-sm-6 col-xs-12\">\n" +
+                        if (tmp === 0){
+                            str+="<div class=\"row m-30\">";
+                        }
+                        tmp++;
+                        if (tmp === 3) {
+                            str += "<div class=\"row m-30\">";
+                            tmp = 0;
+                            tmp2 = 1;
+                        }
+                        str += "<div class=\"col-md-4 col-sm-6 col-xs-12\">\n" +
                             "                    <div class=\"single-grid\">\n" +
                             "                        <div class=\"grid-img\">\n" +
                             "                            <img class=\"img-resposive\" src=\"" + item.image + "\" alt=\"women\"/>\n" +
@@ -426,8 +437,12 @@
                             "                        <p>" + item.description + "</p>\n" +
                             "                    </div>\n" +
                             "                </div>";
-                        productListBox.append(str);
+                        if (tmp2 === 1) {
+                            str += "</div>";
+                            tmp2 = 0;
+                        }
                     });
+                    productListBox.append(str);
                     // boxFooter(data.total, data.size, data.current, data.pages);
                     // 翻页插件
                     boxFooter2(data.total, data.size, data.current, data.pages);

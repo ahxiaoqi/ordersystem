@@ -37,11 +37,15 @@ p{
 
 .btn-add{
 	border: 0;
-	color: #fff;
+	color: #000;
 	background-color: #FFE401;
 	box-shadow: none;
 	border-radius: 0;
     border-bottom: 2px solid #A82541;
+}
+.btn-add:hover{
+	border: 0;
+	color: #fff;
 }
 
 .section-title{
