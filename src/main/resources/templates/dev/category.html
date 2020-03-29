@@ -117,6 +117,7 @@
                                 <div class="card-title">主分类</div>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="categoryAdd()">添加</button>
                                 <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
@@ -146,6 +147,8 @@
                                 <div class="card-title">子分类</div>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="subCategoryAdd()">添加</button>
+                                <input type="hidden" id="categoryIdTmp">
                                 <table class="table table-head-bg-success table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
@@ -173,8 +176,6 @@
         <!-- 使用thymeleaf标签引入通用footer -->
         <script th:replace="dev/common/footer :: footer"></script>
     </div>
-</div>
-</div>
 </div>
 <!-- Modal -->
 
@@ -213,13 +214,19 @@
                 <div class="form-group">
                     <label>主分类图</label>
                     <div class="row" style="height: 300px">
-                        <form id="fileForm"><!--action="/eryTuUd4/dev/upload" method="post"-->
-                            <input id="file-Portrait1" class="file" type="file" multiple data-min-file-count="1"
-                                   data-show-preview="true">
-                            <div id="categoryImg">
 
+                        <form id="categoryFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait1" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1">
                             </div>
+
                         </form>
+                        <!--                        <input id="file-Portrait1" class="file" type="file" multiple data-min-file-count="1"-->
+                        <!--                               data-preview-file-type="text"     data-show-preview="true">-->
+                        <div id="categoryImg">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,7 +301,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确认</button>
+                <button id="delBtn" type="button" class="btn btn-primary">确认</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             </div>
         </div>
@@ -305,15 +312,108 @@
 
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="dev/common/js :: js"></script>
-<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
-<script src="/res/page/xlPaging.js" type="text/javascript"></script>
 <script>
 
     // todo 分类图上传
 
     $(function () {
-        innnitCategory();
-    })
+        innitCategory();
+
+        initFileInput("file-Portrait1", "eryTuUd4/dev/upload");
+        initFileInput("file-Portrait2", "eryTuUd4/dev/upload");
+    });
+
+    //初始化fileinput控件（第一次初始化）
+    function initFileInput(ctrlName, uploadUrl, btnName) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            uploadUrl: uploadUrl, // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: true,
+            maxFileSize: 1000,
+            maxFilesNum: 1,
+            uploadButtonName: btnName,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
+
+        // // // 沙雕插件,异步事件失败了,随便写一个好了
+        // $("#" + btnName + "").removeAttr("onclick");
+        // $("#" + btnName + "").click(function () {
+        //     var formData = new FormData();
+        //     console.log($("#file-Portrait1"));
+        //     formData.append("file", $("#file-Portrait1")[0].files[0]);
+        //     $.ajax({
+        //         url: "upload",
+        //         dataType: "json",
+        //         type: "post",
+        //         processData: false, // 使数据不做处理
+        //         contentType: false, // 不要设置Content-Type请求头
+        //         data: formData,
+        //         success: function (data) {
+        //             console.log(data);
+        //             tips("文件上传成功");
+        //             $("#" + hiddenBox + "").empty();
+        //             $("#" + hiddenBox + "").append("<input type='hidden' id='" + hiddenBtnId + "' name='" + hiddenName + "' value='" + data.data.path + "'>");
+        //             // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        //         },
+        //         error: function () {
+        //             bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+        //         }
+        //     })
+        // });
+    }
+
+    $("#categoryFileForm").submit(function (e) {
+        var formData = new FormData();
+        console.log($("#file-Portrait1"));
+        formData.append("file", $("#file-Portrait1")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#categoryImg").empty();
+                $("#categoryImg").append("<input type='hidden' id='categoryImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+    $("#SubCategoryFileForm").submit(function (e) {
+        var formData = new FormData();
+        formData.append("file", $("#file-Portrait2")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#SubCategoryImg").empty();
+                $("#SubCategoryImg").append("<input type='hidden' id='subCategoryImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+
 
     function categoryEdit(categoryId) {
         // 取消父级点击事件
@@ -350,18 +450,27 @@
         subCategoryDetail(subCategoryId)
     }
 
-    function del(type) {
-        if (type == 1) {
+    function del(type, categoryId, subCategoryId) {
+        if (type === 1) {
             $("#tipsBox").empty();
-            $("#tipsBox").append("确定要删除主分类吗?关联子分类也会删除")
+            $("#tipsBox").append("确定要删除主分类吗?关联子分类也会删除");
+            $("#delBtn").unbind();
+            $("#delBtn").click(function () {
+                delCategory(categoryId)
+            });
         }
         if (type == 2) {
             $("#tipsBox").empty();
-            $("#tipsBox").append("确定要删除子分类吗?")
+            $("#tipsBox").append("确定要删除子分类吗?");
+            $("#delBtn").unbind();
+            $("#delBtn").click(function () {
+                delSubCategory(categoryId, subCategoryId)
+            });
         }
         $("#tips").modal("show");
     }
 
+    // 保存主分类
     function saveCategory() {
         $.ajax({
             url: "save_category",
@@ -388,6 +497,56 @@
 
     }
 
+    // 删除主分类
+    function delCategory(categoryId) {
+        $.ajax({
+            url: "del_Category",
+            dataType: "json",
+            type: "post",
+            data: {
+                "categoryId": categoryId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitCategory();
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+    // 删除子分类
+    function delSubCategory(categoryId, subCategoryId) {
+        $.ajax({
+            url: "del_subCategory",
+            dataType: "json",
+            type: "post",
+            data: {
+                "subCategoryId": subCategoryId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitSubCategory(categoryId);
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+
+    // 保存子分类
     function saveSubCategory() {
         $.ajax({
             url: "save_subCategory",
@@ -403,19 +562,8 @@
             success: function (data) {
                 console.log(data);
                 $("#subCategoryModel").modal("hide");
-                innitSubCategory($("#subCategoryId").val())
-                $.notify({
-                    icon: 'la la-bell',
-                    title: '提示',
-                    message: '操作成功',
-                }, {
-                    type: 'success',
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    },
-                    time: 10,
-                });
+                innitSubCategory($("#categoryIdTmp").val());
+                tips("操作成功");
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -461,8 +609,11 @@
         })
     }
 
-    function innnitCategory() {
-        var categoryTr = $("#categoryTr");
+    function innitCategory(current) {
+        const categoryTr = $("#categoryTr");
+        if (current == null) {
+            current = 1;
+        }
         categoryTr.empty();
         $.ajax({
             url: "innit_dev_category",
@@ -505,8 +656,12 @@
     }
 
 
-    function innitSubCategory(categoryId) {
-        var subCategoryTr = $("#subCategoryTr");
+    function innitSubCategory(categoryId, current) {
+        const subCategoryTr = $("#subCategoryTr");
+        $("#categoryIdTmp").val(categoryId);
+        if (current == null) {
+            current = 1;
+        }
         $.ajax({
             url: "innit_dev_subcategory",
             dataType: "json",
@@ -520,13 +675,14 @@
                 console.log("初始化子分类------------------------------------->")
                 console.log(data);
                 console.log("------------------------------------------------");
-                var str = "";
+                const str = "";
+                subCategoryTr.empty();
                 if (data.records.length >= 1) {
                     $("#subCategoryTips").empty();
                     data.records.forEach(function (item, index) {
-                        var str = "<tr data-Id='" + item.subCategoryId + "'><td>" + index + "</td>\n" +
+                        let str = "<tr data-Id='" + item.subCategoryId + "'><td>" + parseInt(index + 1) + "</td>\n" +
                             "<td> " + item.subCategoryName + " </td>\n";
-                        if (item.status == 1) {
+                        if (item.status === 1) {
                             str += "<td>启用</td>\n"
                         } else {
                             str += "<td> 禁用 </td>\n"
