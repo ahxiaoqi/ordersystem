@@ -198,7 +198,7 @@
                         "                        </button>\n" +
                         "                        <button type=\"button\" class=\"btn btn-default\"> 37 - in Stock</button>\n" +
                         "                    </div>\n" +
-                        "                    <h3>"+data.productName+"</h3>\n" +
+                        "                    <h3>" + data.productName + "</h3>\n" +
                         "                    <ul class=\"list-inline\">\n" +
                         "                        <li><i class=\"lnr lnr-star\"></i></li>\n" +
                         "                        <li><i class=\"lnr lnr-star\"></i></li>\n" +
@@ -207,7 +207,7 @@
                         "                        <li><i class=\"lnr lnr-star-half\"></i></li>\n" +
                         "                        <li><span>5 - Reviews</span></li>\n" +
                         "                    </ul>\n" +
-                        "                    <p>"+data.description+"</p>\n" +
+                        "                    <p>" + data.description + "</p>\n" +
                         "                    <table class=\"table table-responsive table-bordered\">\n" +
                         "                        <tr>\n" +
                         "                            <td>口味</td>\n" +
@@ -215,9 +215,9 @@
                         "                                <ul id='specList' class=\"list-inline\">\n";
                     if (data.specList.length > 0) {
                         for (var b = 0; b < data.specList.length; b++) {
-                            var tmpName = "specTmp"+b;
+                            var tmpName = "specTmp" + b;
                             window[tmpName] = data.specList[b].price.split(",");
-                            str += "<li id='spec"+b+"' onclick='specActive(this.id,"+tmpName+")'>" + data.specList[b].specTitle + "</li>"
+                            str += "<li id='spec" + b + "' onclick='specActive(this.id," + tmpName + ")'>" + data.specList[b].specTitle + "</li>"
                             // console.log(tmpName)
                         }
                         str += "                                </ul>\n" +
@@ -233,11 +233,24 @@
                             "                                </ul>\n" +
                             "                            </td>\n" +
                             "                        </tr>\n" +
+                            "                       <tr> \n" +
+                            "                            <td>数量</td>\n" +
+                            "                  <td> \n" +
+                            "                      <div class='list-inline'>\n" +
+                            "                             <div>" +
+                            "<input type='hidden' id='countInput' value='1'>" +
+                            "                              <span style=\"font-size:1.5em;cursor:pointer;\" onclick='countReduce()'>－</span>\n" +
+                            "                             <span  style=\"font-size:1.5em\" id='countBox'>1</span>\n" +
+                            "                             <span style=\"font-size:1.5em;cursor:pointer;\" onclick='countAdd()'>＋</span>\n" +
+                            "                      </div>\n" +
+                            "                 </td>>\n" +
+                            "                     <\tr>\n" +
                             "                    </table>\n";
                     }
                     str += "                    <div id='specPrice' class=\"price\">$287.99</div>\n" +
                         "                    <div class=\"order-tag\">Tellus accumsan purus diam molestias</div>\n" +
-                        "                    <div class=\"add-cart\"><a class=\"btn btn-default\" href=\"\"><i class=\"lnr lnr-cart\"></i>添加到购物车</a>\n" +
+                        "                    <div class=\"add-cart\"><a class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='addCar()'><i class=\"lnr lnr-cart\"></i>添加到购物车</a>\n" +
+                        "                   <a class=\"btn btn-add\" href=\"javacript:void(0);\" onclick='buy()' >立即购买</a>   \n" +
                         "                    </div>\n" +
                         "                </div>\n" +
                         "            </div>";
@@ -252,11 +265,75 @@
         })
     }
 
-    function specActive(id,tmpName) {
+    function countAdd() {
+        event.stopPropagation();
+        $("#countBox").text("");
+        let count = parseInt($("#countInput").val());
+        if (count >= 0) {
+            count += 1;
+        }
+        $("#countInput").val(count);
+        $("#countBox").text(count)
+    }
+
+    function countReduce() {
+        event.stopPropagation();
+        $("#countBox").text("");
+        let count = parseInt($("#countInput").val());
+        if (count > 1) {
+            count -= 1;
+        }
+        $("#countInput").val(count);
+        $("#countBox").text(count)
+    }
+
+    function addCar(productId, specId, type, count) {
+        alert("加入购物车");
+        $.ajax({
+            url: "add_car",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+                "specId": specId,
+                "type": specId,
+                "count": count
+            },
+            success: function (data) {
+                bs4pop.notice('加入购物车成功!', {position: 'topcenter'});
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function buy(productId, specId, type, count) {
+        alert("立即购买");
+        $.ajax({
+            url: "buy_now",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+                "specId": specId,
+                "type": specId,
+                "count": count
+            },
+            success: function (data) {
+                bs4pop.notice('购买成功!', {position: 'topcenter'});
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function specActive(id, tmpName) {
         $("#specList li").removeClass("specActive");
-        $("#"+id+"").addClass("specActive");
+        $("#" + id + "").addClass("specActive");
         // console.log(tmpName);
-        $("#specPrice").text("¥"+tmpName[0]);
+        $("#specPrice").text("¥" + tmpName[0]);
     }
 
     // 初始化热销产品

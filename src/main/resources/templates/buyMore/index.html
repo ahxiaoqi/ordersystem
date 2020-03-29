@@ -20,9 +20,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                    <h2>2016</h2>
-                    <h1>Collections</h1>
-                    <small>Best Style For Women, Stock Avilable</small>
+                    <h2>2020</h2>
+                    <h1>春季特惠</h1>
+                    <small>春季美食节,盛大开启</small>
                     <div><a class="btn btn-default see-collection">See Collection</a></div>
                 </div>
             </div>
@@ -400,7 +400,7 @@
                         "            </div>");
                     categoryDetailBox.append("   <div class=\"col-md-3 col-sm-6 col-xs-12\">\n" +
                         "                        <div class=\"ad-box-1\">\n" +
-                        "                        <img src=\"" + item.image + "\" alt=\"bag\"/>\n" +
+                        "                        <img style='width:270px;height:250px' src=\"" + item.image + "\" alt=\"bag\"/>\n" +
                         "                        <div class=\"overlay\">\n" +
                         "                        <small>" + item.tag + "</small>\n" +
                         "                    <h3>" + item.description + "</h3>\n" +
@@ -442,7 +442,7 @@
             url: "innit_buyMore_new_product",
             dataType: "json",
             data: {
-              "size":4
+                "size": 4
             },
             type: "post",
             success: function (data) {
@@ -511,7 +511,7 @@
                 if (data.length >= 1) {
                     slideBox.empty();
                     data.forEach(function (item, index) {
-                        if (item.isIndex == 1) {
+                        if (index == 0) {
                             str = "<div class=\"item active\">";
                         } else {
                             str = "<div class=\"item\">";

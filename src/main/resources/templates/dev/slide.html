@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Typography - Ready Bootstrap Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!-- 使用thymeleaf标签引入通用script -->
+    <link th:replace="dev/common/css :: css"></link>
+</head>
+<body>
+<div class="wrapper">
+    <!-- 通用导航 -->
+    <div th:insert="dev/common/header :: header"></div>
+    <div class="sidebar">
+        <div class="scrollbar-inner sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/res/assets_dev/img/profile.jpg">
+                </div>
+                <div class="info">
+                    <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									admin
+									<span class="user-level">管理员</span>
+									<span class="caret"></span>
+								</span>
+                    </a>
+                    <div class="clearfix"></div>
+
+                    <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                        <ul class="nav">
+                            <li>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a href="index.html">
+                        <i class="la la-dashboard"></i>
+                        <p>首页</p>
+                        <span class="badge badge-count">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="category.html">
+                        <i class="la la-table"></i>
+                        <p>分类管理</p>
+                        <span class="badge badge-count">14</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="product.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>商品管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="activity.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>活动管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="slide.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="slideDouble.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播副图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="order.html">
+                        <i class="la la-th"></i>
+                        <p>订单列表</p>
+                        <span class="badge badge-count">6</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">轮播图</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <!--									<div class="card-header">-->
+                            <!--										<div class="card-title">订单列表</div>-->
+                            <!--										<div class="card-category">Order List</div>-->
+                            <!--									</div>-->
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="slideAdd()">添加</button>
+                                <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">序号</th>
+                                        <th scope="col">主标题</th>
+                                        <th scope="col">副标题</th>
+                                        <th scope="col">排序</th>
+                                        <th scope="col">开启|关闭</th>
+                                        <th scope="col" style="width:30%">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="sliderTableTr">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer">
+                                <hr>
+                                <div class="pageBtn" id="sliderPage"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 使用thymeleaf标签引入通用footer -->
+        <script th:replace="dev/common/footer :: footer"></script>
+    </div>
+</div>
+<!-- Modal -->
+<!--主分类编辑-->
+<div class="modal fade" id="slideModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">活动信息</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="slideId">
+                <div class="form-group">
+                    <label>产品名称</label>
+                    <input type="text" class="form-control" id="mainTitle" placeholder="请输入主标题">
+                </div>
+                <div class="form-group">
+                    <label>活动文字</label>
+                    <input type="text" class="form-control" id="doubleTitle" placeholder="请输入副标题">
+                </div>
+                <div class="form-group">
+                    <label>活动描述</label>
+                    <input type="text" class="form-control" id="description" placeholder="请输入活动描述">
+                </div>
+                <div class="form-group">
+                    <label>排序</label>
+                    <input type="text" class="form-control" id="order" placeholder="请输入轮播图排序">
+                </div>
+                <div class="form-group">
+                    <label>开启|关闭</label>
+                    <select name="status" class="form-control input-pill" id="status">
+                        <option value="1">开启</option>
+                        <option value="2">关闭</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>活动图</label>
+                    <div class="row" style="height: 300px">
+
+                        <form id="slideFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait1" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1">
+                            </div>
+
+                        </form>
+                        <div id="productImg">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveSlide()">保存</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--提示-->
+<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">提示</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="tipsBox" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button id="delBtn" type="button" class="btn btn-primary">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!-- 使用thymeleaf标签引入通用script -->
+<script th:replace="dev/common/js :: js"></script>
+<script>
+
+    $(function () {
+        innitSlide(1);
+        initFileInput("file-Portrait1", "eryTuUd4/dev/upload");
+    });
+
+    function initFileInput(ctrlName, uploadUrl, btnName) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            uploadUrl: uploadUrl, // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: true,
+            maxFileSize: 1000,
+            maxFilesNum: 1,
+            uploadButtonName: btnName,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
+    }
+
+
+    $("#slideFileForm").submit(function (e) {
+        var formData = new FormData();
+        console.log($("#file-Portrait1"));
+        formData.append("file", $("#file-Portrait1")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#productImg").empty();
+                $("#productImg").append("<input type='hidden' id='image' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+
+
+    function innitSlide(current) {
+        let sliderTableTr = $("#sliderTableTr");
+        if (current == null) {
+            current = 1;
+        }
+        $.ajax({
+            url: "innitSlide",
+            dataType: "json",
+            type: "post",
+            data: {
+                "size": 5,
+                "current": current
+            },
+            success: function (data) {
+                console.log(data);
+                sliderTableTr.empty();
+                if (data.records.length >= 1) {
+                    data.records.forEach(function (item, index) {
+                        let str = "<tr data-Id='" + item.slideId + "' ><td>" + parseInt(index + 1) + "</td>\n" +
+                            "<td> " + item.mainTitle + " </td>\n";
+                        str += "<td> " + item.doubleTitle + " </td>\n";
+                        str += "<td> " + item.slideOrder + " </td>\n";
+                        if (item.status == 1) {
+                            str += "<td>开启</td>";
+                        } else {
+                            str += "<td>关闭</td>";
+                        }
+                        str += "<td> <button class=\"btn btn-success\" onclick='slideEdit(" + item.slideId + ")'>编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\" onclick='del(" + item.slideId + ")'>删除</button> </td></tr>";
+                        sliderTableTr.append(str);
+                    });
+                    // 翻页插件
+                    boxFooter2($("#sliderPage"), data.total, data.size, data.current, data.pages, innitSlide);
+                }
+                /*
+                slideId
+                mainTitle
+                doubleTitle
+                description
+                href
+                hrefStr
+                image
+                status
+                */
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+
+    function slideEdit(slideId) {
+        // 取消父级点击事件
+        // window.event.cancelBubble = true;
+        $("#slideModel").modal("show");
+        $("#slideModel").on('shown.bs.modal', function () {
+            // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        });
+
+        slideDetail(slideId);
+    }
+
+    function slideDetail(slideId) {
+        $.ajax({
+            url: "get_slide_detail",
+            dataType: "json",
+            type: "post",
+            data: {"slideId": slideId},
+            success: function (data) {
+                console.log(data);
+                $("#slideId").val(slideId);
+                $("#mainTitle").val(data.mainTitle);
+                $("#doubleTitle").val(data.doubleTitle);
+                $("#description").val(data.description);
+                $("#status").val(data.status);
+                $("#slideOrder").val(data.slideOrder);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function slideAdd() {
+        $("#slideId").val("");
+        $("#mainTitle").val("");
+        $("#doubleTitle").val("");
+        $("#description").val("");
+        $("#status").val("");
+        $("#slideOrder").val("");
+        $("#slideModel").modal("show");
+    }
+
+    function saveSlide() {
+        $.ajax({
+            url: "save_slide",
+            dataType: "json",
+            type: "post",
+            data: {
+                "slideId": $("#slideId").val(),
+                "mainTitle": $("#mainTitle").val(),
+                "doubleTitle": $("#doubleTitle").val(),
+                "description": $("#description").val(),
+                "status": $("#status").val(),
+                "slideOrder": $("#slideOrder").val(),
+                "image": $("#image").val()
+            },
+            success: function (data) {
+                console.log(data);
+                $("#slideModel").modal("hide");
+                innitSlide();
+                tips("操作成功");
+            }
+            ,
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function removeClick() {
+        $("#delBtn").unbind();
+    }
+
+    function del(slideId) {
+        removeClick();
+        $("#delBtn").click(function () {
+            delSlide(slideId)
+        });
+        $("#tipsBox").empty();
+        $("#tipsBox").append("确定要删除该轮播图吗?");
+        $("#tips").modal("show");
+    }
+
+    function delSlide(slideId) {
+        removeClick();
+        $.ajax({
+            url: "del_slide",
+            dataType: "json",
+            type: "post",
+            data: {
+                "slideId": slideId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitSlide(1);
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+
+    // 翻页插件
+    function boxFooter2(box, total, size, current, pages) {
+        box.empty();
+        box.paging({
+            nowPage: current, // 当前页码,默认为1
+            pageNum: pages, // 总页码
+            buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
+            callback: function (num) { //回调函数,num为当前页码
+                // console.log(num);
+
+                innitSlide(num);
+            }
+        });
+    }
+</script>
+</html>

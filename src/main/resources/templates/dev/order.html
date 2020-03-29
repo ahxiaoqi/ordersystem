@@ -1,252 +1,300 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Typography - Ready Bootstrap Dashboard</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<!-- 使用thymeleaf标签引入通用script -->
-	<link th:replace="dev/common/css :: css"></link>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Typography - Ready Bootstrap Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!-- 使用thymeleaf标签引入通用script -->
+    <link th:replace="dev/common/css :: css"></link>
 </head>
 <body>
-	<div class="wrapper">
-		<!-- 通用导航 -->
-		<div th:insert="dev/common/header :: header"></div>
-		<div class="sidebar">
-			<div class="scrollbar-inner sidebar-wrapper">
-				<div class="user">
-					<div class="photo">
-						<img src="/res/assets_dev/img/profile.jpg">
-					</div>
-					<div class="info">
-						<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+<div class="wrapper">
+    <!-- 通用导航 -->
+    <div th:insert="dev/common/header :: header"></div>
+    <div class="sidebar">
+        <div class="scrollbar-inner sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/res/assets_dev/img/profile.jpg">
+                </div>
+                <div class="info">
+                    <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									admin
 									<span class="user-level">管理员</span>
 									<span class="caret"></span>
 								</span>
-						</a>
-						<div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
 
-						<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
-							<ul class="nav">
-								<li>
-									<a href="#profile">
-										<span class="link-collapse">My Profile</span>
-									</a>
-								</li>
-								<li>
-									<a href="#edit">
-										<span class="link-collapse">Edit Profile</span>
-									</a>
-								</li>
-								<li>
-									<a href="#settings">
-										<span class="link-collapse">Settings</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<ul class="nav">
-					<li class="nav-item ">
-						<a href="index.html">
-							<i class="la la-dashboard"></i>
-							<p>首页</p>
-							<span class="badge badge-count">5</span>
-						</a>
-					</li>
-					<li class="nav-item" >
-						<a href="category.html">
-							<i class="la la-table"></i>
-							<p>分类管理</p>
-							<span class="badge badge-count">14</span>
-						</a>
-					</li>
-					<li class="nav-item " >
-						<a href="product.html">
-							<i class="la la-keyboard-o"></i>
-							<p>商品管理</p>
-							<span class="badge badge-count">50</span>
-						</a>
-					</li>
-					<li class="nav-item active"  >
-						<a href="order.html">
-							<i class="la la-th"></i>
-							<p>订单列表</p>
-							<span class="badge badge-count">6</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-			<div class="main-panel">
-				<div class="content">
-					<div class="container-fluid">
-						<h4 class="page-title">Typography</h4>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Card Title</div>
-										<div class="card-category">Card Category</div>
-									</div>
-									<div class="card-body">
-										<table class="table table-typo">
-											<tbody>
-												<tr>
-													<td>
-														<p>Header 1</p>
+                    <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                        <ul class="nav">
+                            <li>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a href="index.html">
+                        <i class="la la-dashboard"></i>
+                        <p>首页</p>
+                        <span class="badge badge-count">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="category.html">
+                        <i class="la la-table"></i>
+                        <p>分类管理</p>
+                        <span class="badge badge-count">14</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="product.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>商品管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="activity.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>活动管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="slide.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="slideDouble.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播副图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="order.html">
+                        <i class="la la-th"></i>
+                        <p>订单列表</p>
+                        <span class="badge badge-count">6</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">订单列表</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <!--									<div class="card-header">-->
+                            <!--										<div class="card-title">订单列表</div>-->
+                            <!--										<div class="card-category">Order List</div>-->
+                            <!--									</div>-->
+                            <div class="card-body">
+                                <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">序号</th>
+                                        <th scope="col">主订单编号</th>
+                                        <th scope="col">用户id</th>
+                                        <th scope="col">支付价格</th>
+                                        <th scope="col">创建时间</th>
+                                        <th scope="col" style="width:30%">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="orderTableTr">
 
-													</td>
-													<td><span class="h1">h1. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Header 2</p>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer">
+                                <hr>
+                                <div class="pageBtn" id="orderPage"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 使用thymeleaf标签引入通用footer -->
+        <script th:replace="dev/common/footer :: footer"></script>
+    </div>
+</div>
+</div>
+<!-- Modal -->
+<!--主分类编辑-->
+<div class="modal fade" id="orderModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">订单详情</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="orderId">
+                <div class="form-group">
+                    <label>主订单编号</label>
+                    <input type="text" class="form-control" readonly id="orderCode">
+                </div>
+                <div class="form-group">
+                    <label>用户id</label>
+                    <input type="text" class="form-control" readonly id="accountId">
+                </div>
+                <div class="form-group">
+                    <label>价格</label>
+                    <input type="text" class="form-control" readonly id="price">
+                </div>
+                <div class="form-group">
+                    <label>创建时间</label>
+                    <input type="text" class="form-control" id="createTime" readonly>
+                </div>
+                <div class="form-group">
+                    <label>子订单列表</label>
+                    <div>
+                        <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                            <thead>
+                            <tr>
+                                <th scope="col">序号</th>
+                                <th scope="col">主订单编号</th>
+                                <th scope="col">子订单编号</th>
+                                <th scope="col">支付价格</th>
+                                <th scope="col">创建时间</th>
+                            </tr>
+                            </thead>
+                            <tbody id="subOrderTableTr">
 
-													</td>
-													<td><span class="h2">h2. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Header 3</p>
+                            </tbody>
+                        </table>
 
-													</td>
-													<td><span class="h3">h3. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Header 4</p>
-
-													</td>
-													<td><span class="h4">h4. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Header 5</p>
-
-													</td>
-													<td><span class="h5">h5. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Header 5</p>
-
-													</td>
-													<td><span class="h6">h6. Bootstrap heading</span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Paragraph</p>
-
-													</td>
-													<td><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Paragraph Lead</p>
-
-													</td>
-													<td><p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Quote</p>
-
-													</td>
-													<td><blockquote>
-														<p class="blockquote blockquote-primary">
-															"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-															<br>
-															<br>
-															<small>
-																- Noaa
-															</small>
-														</p>
-													</blockquote></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Primary Text</p>
-
-													</td>
-													<td><p class="text-primary">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Info Text</p>
-
-													</td>
-													<td><p class="text-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Success Text</p>
-
-													</td>
-													<td><p class="text-success">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Warning Text</p>
-
-													</td>
-													<td><p class="text-warning">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Danger Text</p>
-
-													</td>
-													<td><p class="text-danger">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-												<tr>
-													<td>
-														<p>Muted Text</p>
-
-													</td>
-													<td><p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p></span></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="card-footer">
-										<hr>
-										Card Footer
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 使用thymeleaf标签引入通用footer -->
-				<script th:replace="dev/common/footer :: footer"></script>
-			</div>
-		</div>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header bg-primary">
-					<h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body text-center">									
-					<p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
-					<p>
-					<b>We'll let you know when it's done</b></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="dev/common/js :: js"></script>
+<script>
+
+    $(function () {
+        innitOrder(1);
+    });
+
+    function innitOrder(current) {
+        let orderTableTr = $("#orderTableTr");
+        if (current == null) {
+            current = 1;
+        }
+        $.ajax({
+            url: "innitOrder",
+            dataType: "json",
+            type: "post",
+            data: {
+                "size": 5,
+                "current": current
+            },
+            success: function (data) {
+                console.log(data);
+                orderTableTr.empty();
+                if (data.records.length >= 1) {
+                    data.records.forEach(function (item, index) {
+                        let str = "<tr data-Id='" + item.orderId + "' ><td>" + parseInt(index + 1) + "</td>\n" +
+                            "<td> " + item.orderCode + " </td>\n";
+                        str += "<td> " + item.accountId + " </td>\n";
+                        str += "<td> " + item.price + " </td>\n";
+                        str += "<td> " + item.createTime + " </td>\n";
+                        str += "<td> <button class=\"btn btn-success\" onclick='orderDetail(" + item.orderId + ")'>订单详情</button>&nbsp;";
+                        orderTableTr.append(str);
+                    });
+                    // 翻页插件
+                    boxFooter2($("#orderPage"), data.total, data.size, data.current, data.pages);
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function orderDetail(orderId) {
+        $("#orderModel").modal("show");
+        $("#orderModel").on('shown.bs.modal', function () {
+            // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        });
+        let subOrderTableTr = $("#subOrderTableTr");
+        subOrderTableTr.empty();
+        $.ajax({
+            url: "get_order_detail",
+            dataType: "json",
+            type: "post",
+            data: {"orderId": orderId},
+            success: function (data) {
+                console.log(data);
+                $("#orderId").val(orderId);
+                $("#orderCode").val(data.orderCode);
+                $("#accountId").val(data.accountId);
+                $("#price").val(data.price);
+                $("#createTime").val(data.createTime);
+                if (data.orderSub.length >= 1) {
+                    data.orderSub.forEach(function (item, index) {
+                        let str = "<tr data-Id='" + item.orderSubId + "' ><td>" + parseInt(index + 1) + "</td>\n" +
+                            "<td> " + item.orderCode + " </td>\n";
+                        str += "<td> " + item.orderSubId + " </td>\n";
+                        str += "<td> " + item.price + " </td>\n";
+                        str += "<td> " + item.createTime + " </td>\n";
+                        subOrderTableTr.append(str);
+                    })
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    // 翻页插件
+    function boxFooter2(box, total, size, current, pages) {
+        box.empty();
+        box.paging({
+            nowPage: current, // 当前页码,默认为1
+            pageNum: pages, // 总页码
+            buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
+            callback: function (num) { //回调函数,num为当前页码
+                // console.log(num);
+                innitOrder(num);
+
+            }
+        });
+    }
+</script>
 </html>

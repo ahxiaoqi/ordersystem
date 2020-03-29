@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8"/>
     <title>Forms - Ready Bootstrap Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
 
     <!-- 使用thymeleaf标签引入通用script -->
     <link th:replace="dev/common/css :: css"></link>
-
 </head>
 <body>
 <div class="wrapper">
@@ -74,6 +74,27 @@
                         <span class="badge badge-count">50</span>
                     </a>
                 </li>
+                <li class="nav-item " >
+                    <a href="activity.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>活动管理</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item active" >
+                    <a href="slide.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="slideDouble.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播副图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="order.html">
                         <i class="la la-th"></i>
@@ -88,7 +109,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">Forms</h4>
+                <h4 class="page-title">分类管理</h4>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
@@ -96,6 +117,7 @@
                                 <div class="card-title">主分类</div>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="categoryAdd()">添加</button>
                                 <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
@@ -114,10 +136,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!--                            <div class="card-action">-->
-                            <!--                                <button class="btn btn-success">Submit</button>-->
-                            <!--                                <button class="btn btn-danger">Cancel</button>-->
-                            <!--                            </div>-->
+                            <div class="card-action">
+                                <div class="pageBtn" id="CategoryPage"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -126,6 +147,8 @@
                                 <div class="card-title">子分类</div>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="subCategoryAdd()">添加</button>
+                                <input type="hidden" id="categoryIdTmp">
                                 <table class="table table-head-bg-success table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
@@ -140,10 +163,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!--                            <div class="card-action">-->
-                            <!--                                <button class="btn btn-success">Submit</button>-->
-                            <!--                                <button class="btn btn-danger">Cancel</button>-->
-                            <!--                            </div>-->
+                            <div class="card-action">
+                                <div id="subCategoryTips"></div>
+                                <div class="pageBtn" id="subCategoryPage"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -153,8 +176,6 @@
         <!-- 使用thymeleaf标签引入通用footer -->
         <script th:replace="dev/common/footer :: footer"></script>
     </div>
-</div>
-</div>
 </div>
 <!-- Modal -->
 
@@ -170,25 +191,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <input type="hidden" id="categoryId">
-                    <div class="form-group">
-                        <label>分类名称</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="请输入主分类名称">
-                    </div>
-                    <div class="form-group">
-                        <label>启用|禁用</label>
-                        <select name="categoryStatus" class="form-control input-pill" id="categoryStatus">
-                            <option value="1">启用</option>
-                            <option value="2">禁用</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>标签</label>
-                        <input type="text" class="form-control" id="tagName" placeholder="请输入标签名称">
-                    </div>
+                <input type="hidden" id="categoryId">
+                <div class="form-group">
+                    <label>分类名称</label>
+                    <input type="text" class="form-control" id="categoryName" placeholder="请输入主分类名称">
+                </div>
+                <div class="form-group">
+                    <label>启用|禁用</label>
+                    <select name="categoryStatus" class="form-control input-pill" id="categoryStatus">
+                        <option value="1">启用</option>
+                        <option value="2">禁用</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>标签</label>
+                    <input type="text" class="form-control" id="tagName" placeholder="请输入标签名称">
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <input type="text" class="form-control" id="description" placeholder="请输入描述">
+                </div>
+                <div class="form-group">
+                    <label>主分类图</label>
+                    <div class="row" style="height: 300px">
 
-                </form>
+                        <form id="categoryFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait1" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1">
+                            </div>
+
+                        </form>
+                        <!--                        <input id="file-Portrait1" class="file" type="file" multiple data-min-file-count="1"-->
+                        <!--                               data-preview-file-type="text"     data-show-preview="true">-->
+                        <div id="categoryImg">
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="saveCategory()">保存</button>
@@ -210,20 +250,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <input type="hidden" id="subCategoryId">
-                        <label>子分类名称</label>
-                        <input type="text" class="form-control" id="subCategoryName" placeholder="请输入子分类名称">
+                <div class="form-group">
+                    <input type="hidden" id="subCategoryId">
+                    <label>子分类名称</label>
+                    <input type="text" class="form-control" id="subCategoryName" placeholder="请输入子分类名称">
+                </div>
+                <div class="form-group">
+                    <label>启用|禁用</label>
+                    <select name="subCategoryStatus" class="form-control input-pill" id="subCategoryStatus">
+                        <option value="1">启用</option>
+                        <option value="2">禁用</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>子分类图</label>
+                    <div class="row" style="height: 300px">
+
+                        <form id="SubCategoryFileForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="file-Portrait2" class="file" type="file" multiple data-min-file-count="1"
+                                       data-show-preview="true">
+                            </div>
+                        </form>
+                        <div id="SubCategoryImg">
+
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>启用|禁用</label>
-                        <select name="subCategoryStatus" class="form-control input-pill" id="subCategoryStatus">
-                            <option value="1">启用</option>
-                            <option value="2">禁用</option>
-                        </select>
-                    </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="saveSubCategory()">保存</button>
@@ -248,7 +301,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确认</button>
+                <button id="delBtn" type="button" class="btn btn-primary">确认</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             </div>
         </div>
@@ -259,19 +312,137 @@
 
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="dev/common/js :: js"></script>
-<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
-<script src="/res/page/xlPaging.js" type="text/javascript"></script>
 <script>
 
+    // todo 分类图上传
+
     $(function () {
-        innnitCategory();
-    })
+        innitCategory();
+
+        initFileInput("file-Portrait1", "eryTuUd4/dev/upload");
+        initFileInput("file-Portrait2", "eryTuUd4/dev/upload");
+    });
+
+    //初始化fileinput控件（第一次初始化）
+    function initFileInput(ctrlName, uploadUrl, btnName) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            uploadUrl: uploadUrl, // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: true,
+            maxFileSize: 1000,
+            maxFilesNum: 1,
+            uploadButtonName: btnName,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
+
+        // // // 沙雕插件,异步事件失败了,随便写一个好了
+        // $("#" + btnName + "").removeAttr("onclick");
+        // $("#" + btnName + "").click(function () {
+        //     var formData = new FormData();
+        //     console.log($("#file-Portrait1"));
+        //     formData.append("file", $("#file-Portrait1")[0].files[0]);
+        //     $.ajax({
+        //         url: "upload",
+        //         dataType: "json",
+        //         type: "post",
+        //         processData: false, // 使数据不做处理
+        //         contentType: false, // 不要设置Content-Type请求头
+        //         data: formData,
+        //         success: function (data) {
+        //             console.log(data);
+        //             tips("文件上传成功");
+        //             $("#" + hiddenBox + "").empty();
+        //             $("#" + hiddenBox + "").append("<input type='hidden' id='" + hiddenBtnId + "' name='" + hiddenName + "' value='" + data.data.path + "'>");
+        //             // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        //         },
+        //         error: function () {
+        //             bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+        //         }
+        //     })
+        // });
+    }
+
+    $("#categoryFileForm").submit(function (e) {
+        var formData = new FormData();
+        console.log($("#file-Portrait1"));
+        formData.append("file", $("#file-Portrait1")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#categoryImg").empty();
+                $("#categoryImg").append("<input type='hidden' id='categoryImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+    $("#SubCategoryFileForm").submit(function (e) {
+        var formData = new FormData();
+        formData.append("file", $("#file-Portrait2")[0].files[0]);
+        $.ajax({
+            url: "upload",
+            dataType: "json",
+            type: "post",
+            processData: false, // 使数据不做处理
+            contentType: false, // 不要设置Content-Type请求头
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                alert("文件上传成功");
+                $("#SubCategoryImg").empty();
+                $("#SubCategoryImg").append("<input type='hidden' id='subCategoryImgPath' name='image' value='" + data.data.path + "'>");
+                // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        });
+        return false;
+    });
+
 
     function categoryEdit(categoryId) {
         // 取消父级点击事件
         // window.event.cancelBubble = true;
         $("#categoryModel").modal("show");
-        categoryDetail(categoryId)
+        $("#categoryModel").on('shown.bs.modal', function () {
+            // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
+        });
+
+        categoryDetail(categoryId);
+    }
+
+    function categoryAdd() {
+        // 取消父级点击事件
+        // window.event.cancelBubble = true;
+        // 如果分类有四个,那个禁止添加
+        $("#categoryId").val("");
+        $("#categoryName").val("");
+        $("#categoryStatus").val(2);
+        $("#tagName").val("");
+        $("#categoryModel").modal("show");
+    }
+
+    function subCategoryAdd() {
+        $("#subCategoryId").val("");
+        $("#categoryId").val($("#categoryIdTmp").val());
+        $("#subCategoryName").val("");
+        $("#subCategoryStatus").val(2);
+        $("#subCategoryModel").modal("show");
     }
 
     function subCategoryEdit(subCategoryId) {
@@ -279,18 +450,27 @@
         subCategoryDetail(subCategoryId)
     }
 
-    function del(type) {
-        if (type == 1) {
+    function del(type, categoryId, subCategoryId) {
+        if (type === 1) {
             $("#tipsBox").empty();
-            $("#tipsBox").append("确定要删除主分类吗?关联子分类也会删除")
+            $("#tipsBox").append("确定要删除主分类吗?关联子分类也会删除");
+            $("#delBtn").unbind();
+            $("#delBtn").click(function () {
+                delCategory(categoryId)
+            });
         }
         if (type == 2) {
             $("#tipsBox").empty();
-            $("#tipsBox").append("确定要删除子分类吗?")
+            $("#tipsBox").append("确定要删除子分类吗?");
+            $("#delBtn").unbind();
+            $("#delBtn").click(function () {
+                delSubCategory(categoryId, subCategoryId)
+            });
         }
         $("#tips").modal("show");
     }
 
+    // 保存主分类
     function saveCategory() {
         $.ajax({
             url: "save_category",
@@ -301,23 +481,14 @@
                 "categoryName": $("#categoryName").val(),
                 "status": $("#categoryStatus").val(),
                 "tag": $("#tagName").val(),
+                "description":$("#description").val(),
+                "image": $("#categoryImgPath").val() == "" ? null : $("#categoryImgPath").val()
             },
             success: function (data) {
                 console.log(data);
                 $("#categoryModel").modal("hide");
-                innnitCategory();
-                $.notify({
-                    icon: 'la la-bell',
-                    title: '提示',
-                    message: '操作成功',
-                }, {
-                    type: 'success',
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    },
-                    time: 10,
-                });
+                tips("操作成功");
+                innitCategory();
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -326,32 +497,73 @@
 
     }
 
+    // 删除主分类
+    function delCategory(categoryId) {
+        $.ajax({
+            url: "del_Category",
+            dataType: "json",
+            type: "post",
+            data: {
+                "categoryId": categoryId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitCategory();
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+    // 删除子分类
+    function delSubCategory(categoryId, subCategoryId) {
+        $.ajax({
+            url: "del_subCategory",
+            dataType: "json",
+            type: "post",
+            data: {
+                "subCategoryId": subCategoryId,
+            },
+            success: function (data) {
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    tips("操作成功");
+                    innitSubCategory(categoryId);
+                } else {
+                    tips("系统异常");
+                }
+            },
+            error: function () {
+                tips("系统异常");
+            }
+        })
+    }
+
+
+    // 保存子分类
     function saveSubCategory() {
         $.ajax({
             url: "save_subCategory",
             dataType: "json",
             type: "post",
             data: {
+                "categoryId": $("#categoryId").val(),
                 "subCategoryId": $("#subCategoryId").val(),
                 "subCategoryName": $("#subCategoryName").val(),
-                "status": $("#categoryStatus").val()
+                "status": $("#categoryStatus").val(),
+                "image": $("#subCategoryImgPath").val() == "" ? null : $("#subCategoryImgPath").val()
             },
             success: function (data) {
                 console.log(data);
                 $("#subCategoryModel").modal("hide");
-                innitSubCategory($("#subCategoryId").val())
-                $.notify({
-                    icon: 'la la-bell',
-                    title: '提示',
-                    message: '操作成功',
-                }, {
-                    type: 'success',
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    },
-                    time: 10,
-                });
+                innitSubCategory($("#categoryIdTmp").val());
+                tips("操作成功");
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -371,6 +583,7 @@
                 $("#categoryName").val(data.categoryName);
                 $("#categoryStatus").val(data.status);
                 $("#tagName").val(data.tag);
+                $("#description").val(data.description);
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -396,29 +609,45 @@
         })
     }
 
-    function innnitCategory() {
-        var categoryTr = $("#categoryTr");
+    function innitCategory(current) {
+        const categoryTr = $("#categoryTr");
+        if (current == null) {
+            current = 1;
+        }
         categoryTr.empty();
         $.ajax({
             url: "innit_dev_category",
             dataType: "json",
             type: "post",
+            data: {
+                "size": 6,
+                "current": current
+            },
             success: function (data) {
                 console.log(data);
-                data.forEach(function (item, index) {
-                    var str = "<tr data-Id='" + item.categoryId + "' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + index + "</td>\n" +
-                        "<td> " + item.categoryName + " </td>\n";
-                    if (item.status == 1) {
-                        str += "<td>启用</td>\n"
-                    } else {
-                        str += "<td> 禁用 </td>\n"
-                    }
-                    str += "<td> " + item.tag + " </td>\n" +
-                        "<td> <button class=\"btn btn-success\" onclick='categoryEdit(" + item.categoryId + ")'>编辑</button>&nbsp;" +
-                        "<button class=\"btn btn-danger\" onclick='del(1)'>删除</button> </td></tr>";
-                    categoryTr.append(str);
-                })
-                $("#categoryTr tr:eq(0)").click();
+                categoryTr.empty();
+                if (data.records.length >= 1) {
+                    data.records.forEach(function (item, index) {
+                        let str = "<tr data-Id='" + item.categoryId + "' onclick='innitSubCategory(this.getAttribute(\"data-Id\"))'><td>" + parseInt(index + 1) + "</td>\n" +
+                            "<td> " + item.categoryName + " </td>\n";
+                        if (item.status === 1) {
+                            str += "<td>启用</td>\n"
+                        } else {
+                            str += "<td> 禁用 </td>\n"
+                        }
+                        str += "<td> " + item.tag + " </td>\n" +
+                            "<td> <button class=\"btn btn-success\" onclick='categoryEdit(" + item.categoryId + ")'>编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\" onclick='del(1," + item.categoryId + ")'>删除</button> </td></tr>";
+                        categoryTr.append(str);
+                    });
+                    // 翻页插件
+                    $("#categoryTr tr:eq(0)").click();
+                    boxFooter2($("#CategoryPage"), data.total, data.size, data.current, data.pages, innitCategory);
+
+                }
+                // else{
+                //     $("#CategoryPage").empty();
+                // }
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -427,42 +656,74 @@
     }
 
 
-    function innitSubCategory(categoryId) {
-        var subCategoryTr = $("#subCategoryTr");
+    function innitSubCategory(categoryId, current) {
+        const subCategoryTr = $("#subCategoryTr");
+        $("#categoryIdTmp").val(categoryId);
+        if (current == null) {
+            current = 1;
+        }
         $.ajax({
             url: "innit_dev_subcategory",
             dataType: "json",
             type: "post",
             data: {
                 "categoryId": categoryId,
-                "size": 100,
-                "current": "1"
+                "size": 6,
+                "current": current
             },
             success: function (data) {
                 console.log("初始化子分类------------------------------------->")
                 console.log(data);
                 console.log("------------------------------------------------");
-                var str = "";
+                const str = "";
+                subCategoryTr.empty();
                 if (data.records.length >= 1) {
-                    subCategoryTr.empty();
+                    $("#subCategoryTips").empty();
                     data.records.forEach(function (item, index) {
-                        var str = "<tr data-Id='" + item.subCategoryId + "'><td>" + index + "</td>\n" +
+                        let str = "<tr data-Id='" + item.subCategoryId + "'><td>" + parseInt(index + 1) + "</td>\n" +
                             "<td> " + item.subCategoryName + " </td>\n";
-                        if (item.status == 1) {
+                        if (item.status === 1) {
                             str += "<td>启用</td>\n"
                         } else {
                             str += "<td> 禁用 </td>\n"
                         }
                         str += "<td> <button class=\"btn btn-success\" onclick='subCategoryEdit(" + item.subCategoryId + ")'>编辑</button>&nbsp;" +
-                            "<button class=\"btn btn-danger\" onclick='del(2)'>删除</button> </td></tr>";
+                            "<button class=\"btn btn-danger\" onclick='del(2," + item.categoryId + "," + item.subCategoryId + ")'>删除</button> </td></tr>";
                         subCategoryTr.append(str);
                     });
+                    // 翻页插件
+                    boxFooter2($("#subCategoryPage"), data.total, data.size, data.current, data.pages, innitSubCategory);
+                } else {
+                    $("#subCategoryTips").empty();
+                    $("#subCategoryTips").append("暂无数据");
+                    $("#subCategoryPage").empty();
                 }
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
             }
         })
+    }
+
+
+    // 翻页插件
+    function boxFooter2(box, total, size, current, pages, cllback) {
+        box.empty();
+        box.paging({
+            nowPage: current, // 当前页码,默认为1
+            pageNum: pages, // 总页码
+            buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
+            callback: function (num) { //回调函数,num为当前页码
+                // console.log(num);
+                if (cllback === innitSubCategory) {
+                    cllback($("#categoryIdTmp").val(), num);
+                } else {
+                    cllback(num);
+                }
+
+
+            }
+        });
     }
 
 
