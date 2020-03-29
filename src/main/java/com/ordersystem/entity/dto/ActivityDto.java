@@ -1,5 +1,6 @@
 package com.ordersystem.entity.dto;
 
+import com.ordersystem.entity.Product;
 import lombok.Data;
 
 /**
@@ -13,6 +14,8 @@ public class ActivityDto {
 
     private Integer productId;
 
+    private Integer type;
+
     private Integer priceParam1;
 
     private Integer priceParam2;
@@ -24,4 +27,16 @@ public class ActivityDto {
     private String productName;
 
     private String activityStr;
+
+    private String href;
+
+    private String hrefStr;
+
+    private String title;
+
+    private Integer activityType;
+
+    private Integer status;
+
+    private ProductDto product;
 }

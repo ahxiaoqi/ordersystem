@@ -71,9 +71,9 @@
                         <span class="badge badge-count">50</span>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a href="activity.html">
-                        <i class="la la-th"></i>
+                        <i class="la la-keyboard-o"></i>
                         <p>活动管理</p>
                         <span class="badge badge-count">50</span>
                     </a>
@@ -85,7 +85,7 @@
                         <span class="badge badge-count">50</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a href="slideDouble.html">
                         <i class="la la-keyboard-o"></i>
                         <p>轮播副图</p>
@@ -94,7 +94,7 @@
                 </li>
                 <li class="nav-item ">
                     <a href="order.html">
-                        <i class="la la-keyboard-o"></i>
+                        <i class="la la-th"></i>
                         <p>订单列表</p>
                         <span class="badge badge-count">6</span>
                     </a>
@@ -105,7 +105,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">活动管理</h4>
+                <h4 class="page-title">轮播副图</h4>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -114,27 +114,26 @@
                             <!--										<div class="card-category">Order List</div>-->
                             <!--									</div>-->
                             <div class="card-body">
-                                <button type="button" class="btn btn-primary" onclick="activityAdd()">添加</button>
+
+                                <button type="button" class="btn btn-primary" onclick="addDoubleSlide()">添加</button>
                                 <table class="table table-head-bg-success table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
                                         <th scope="col">序号</th>
                                         <th scope="col">标题</th>
-                                        <th scope="col">活动描述</th>
-                                        <th scope="col">商品信息</th>
-                                        <th scope="col">活动类型</th>
-                                        <th scope="col">启用|禁用</th>
+                                        <th scope="col">描述</th>
+                                        <th scope="col">开启|关闭</th>
                                         <th scope="col" style="width:30%">操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="activityTr">
+                                    <tbody id="slideDoubleTableTr">
 
                                     </tbody>
                                 </table>
                             </div>
                             <div class="card-footer">
                                 <hr>
-                                <div class="pageBtn" id="activityPage"></div>
+                                <div class="pageBtn" id="slideDoublePage"></div>
                             </div>
                         </div>
                     </div>
@@ -145,9 +144,9 @@
         <script th:replace="dev/common/footer :: footer"></script>
     </div>
 </div>
-<!-- Modal -->
+
 <!--主分类编辑-->
-<div class="modal fade" id="activityModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+<div class="modal fade" id="doubleSlideModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -158,25 +157,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="activityId">
+                <input type="hidden" id="doubleSlideId">
                 <div class="form-group">
-                    <label>产品名称</label>
-                    <input type="text" class="form-control" id="title" placeholder="请输入活动标题">
+                    <label>标题</label>
+                    <input type="text" class="form-control" id="title" placeholder="请输入标题">
                 </div>
                 <div class="form-group">
-                    <label>活动文字</label>
-                    <input type="text" class="form-control" id="activityStr" placeholder="请输入活动文字">
+                    <label>文字内容</label>
+                    <input type="text" class="form-control" id="detail" placeholder="请输入文字内容">
                 </div>
                 <div class="form-group">
-                    <label>活动描述</label>
-                    <input type="text" class="form-control" id="description" placeholder="请输入活动描述">
-                </div>
-                <div class="form-group">
-                    <label>活动类型</label>
-                    <select name="activityType" class="form-control input-pill" id="activityType">
-                        <option value="1">活动价</option>
-                        <option value="2">折扣</option>
-                    </select>
+                    <label>按钮文字</label>
+                    <input type="text" class="form-control" id="hrefStr" placeholder="请输入文字内容">
                 </div>
                 <div class="form-group">
                     <label>开启|关闭</label>
@@ -186,18 +178,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>价格</label>
-                    <input type="text" class="form-control" id="priceParam2" placeholder="请输入活动价格">
-                </div>
-                <div class="form-group">
-                    <label>按钮文字</label>
-                    <input type="text" class="form-control" id="hrefStr" placeholder="请输入按钮文字">
-                </div>
-                <div class="form-group">
-                    <label>活动图</label>
+                    <label>图片</label>
                     <div class="row" style="height: 300px">
 
-                        <form id="activityFileForm" enctype="multipart/form-data">
+                        <form id="doubleSlideFileForm" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input id="file-Portrait1" type="file" multiple class="file"
                                        data-overwrite-initial="false" data-min-file-count="1">
@@ -211,12 +195,13 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="saveActivity()">保存</button>
+                <button type="button" class="btn btn-primary" onclick="saveDoubleSlide()">保存</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <!--提示-->
 <div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
@@ -239,17 +224,15 @@
         </div>
     </div>
 </div>
-
 </body>
 <!-- 使用thymeleaf标签引入通用script -->
 <script th:replace="dev/common/js :: js"></script>
 <script>
 
     $(function () {
-        innitActivity(1);
+        innitSlideDouble(1);
         initFileInput("file-Portrait1", "eryTuUd4/dev/upload");
     });
-
 
     function initFileInput(ctrlName, uploadUrl, btnName) {
         var control = $('#' + ctrlName);
@@ -267,7 +250,8 @@
         });
     }
 
-    $("#activityFileForm").submit(function (e) {
+
+    $("#doubleSlideFileForm").submit(function (e) {
         var formData = new FormData();
         console.log($("#file-Portrait1"));
         formData.append("file", $("#file-Portrait1")[0].files[0]);
@@ -292,13 +276,13 @@
         return false;
     });
 
-    function innitActivity(current) {
-        let activityTr = $("#activityTr");
+    function innitSlideDouble(current) {
+        let slideDoubleTableTr = $("#slideDoubleTableTr");
         if (current == null) {
             current = 1;
         }
         $.ajax({
-            url: "innitActivity",
+            url: "innitDoubleSlide",
             dataType: "json",
             type: "post",
             data: {
@@ -307,42 +291,35 @@
             },
             success: function (data) {
                 console.log(data);
-                activityTr.empty();
+                slideDoubleTableTr.empty();
                 if (data.records.length >= 1) {
                     data.records.forEach(function (item, index) {
-                        let str = "<tr data-Id='" + item.activityId + "' ><td>" + parseInt(index + 1) + "</td>\n" +
+                        let str = "<tr data-Id='" + item.doubleSlideId + "' ><td>" + parseInt(index + 1) + "</td>\n" +
                             "<td> " + item.title + " </td>\n";
-                        str += "<td> " + item.description + " </td>\n";
-                        str += "<td> " + item.productId + " </td>\n";
-                        if (item.activityType == 1) {
-                            str += "<td>活动价</td>";
-                        } else {
-                            str += "<td>折扣价</td>";
+                        if (item.detail.length > 80) {
+                            item.detail = item.detail.substr(0, 79) + "...";
                         }
+                        str += "<td> " + item.detail + " </td>\n";
                         if (item.status == 1) {
-                            str += "<td>启用</td>";
+                            str += "<td>开启</td>";
                         } else {
-                            str += "<td>禁用</td>";
+                            str += "<td>关闭</td>";
                         }
-                        str += "<td> <button class=\"btn btn-success\" onclick='activityEdit(" + item.activityId + ")'>编辑</button>&nbsp;" +
-                            "<button class=\"btn btn-danger\" onclick='del(" + item.activityId + ")'>删除</button> </td></tr>";
-                        activityTr.append(str);
+                        str += "<td> <button class=\"btn btn-success\" onclick='doubleSlideEdit(" + item.doubleSlideId + ")'>编辑</button>&nbsp;" +
+                            "<button class=\"btn btn-danger\" onclick='del(" + item.doubleSlideId + ")'>删除</button> </td></tr>";
+                        slideDoubleTableTr.append(str);
                     });
                     // 翻页插件
-                    boxFooter2($("#activityPage"), data.total, data.size, data.current, data.pages, innitActivity);
+                    boxFooter2($("#slideDoublePage"), data.total, data.size, data.current, data.pages, innitSlideDouble);
                 }
                 /*
-                activityId
+                doubleSlideId
                 title
-                activityStr
-                description
-                priceParam1
-                priceParam2
+                detail
+                image
                 href
                 hrefStr
-                image
-                productId
-                activityType
+                status
                 */
             },
             error: function () {
@@ -351,37 +328,30 @@
         })
     }
 
-    function activityEdit(activityId) {
+    function doubleSlideEdit(doubleSlideId) {
         // 取消父级点击事件
         // window.event.cancelBubble = true;
-        $("#activityModel").modal("show");
-        $("#activityModel").on('shown.bs.modal', function () {
+        $("#doubleSlideModel").modal("show");
+        $("#doubleSlideModel").on('shown.bs.modal', function () {
             // initFileInput("file-Portrait", "eryTuUd4/dev/upload");
         });
 
-        activityDetail(activityId);
+        doubleSlideDetail(doubleSlideId);
     }
 
-    function activityDetail(activityId) {
+    function doubleSlideDetail(doubleSlideId) {
         $.ajax({
-            url: "get_activity_detail",
+            url: "get_double_slide_detail",
             dataType: "json",
             type: "post",
-            data: {"activityId": activityId},
+            data: {"doubleSlideId": doubleSlideId},
             success: function (data) {
                 console.log(data);
-                $("#activityId").val(activityId);
+                $("#doubleSlideId").val(doubleSlideId);
                 $("#title").val(data.title);
-                $("#activityStr").val(data.activityStr);
-                $("#description").val(data.description);
-                $("#priceParam1").val(data.priceParam1);
-                $("#priceParam2").val(data.priceParam2);
-                $("#href").val(data.href);
-                $("#hrefStr").val(data.hrefStr);
-                $("#image").val(data.image);
-                $("#productId").val(data.productId);
-                $("#activityType").val(data.activityType);
+                $("#detail").val(data.detail);
                 $("#status").val(data.status);
+                $("#hrefStr").val(data.hrefStr);
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -389,48 +359,36 @@
         })
     }
 
-
-    function activityAdd() {
-        $("#activityId").val("");
+    function addDoubleSlide() {
+        $("#doubleSlideId").val("");
         $("#title").val("");
-        $("#activityStr").val("");
-        $("#description").val("");
-        $("#priceParam1").val("");
-        $("#priceParam2").val("");
-        $("#href").val("");
-        $("#hrefStr").val("");
-        $("#image").val("");
-        $("#productId").val("");
-        $("#activityType").val(1);
-        $("#activityModel").modal("show");
+        $("#detail").val("");
+        $("#status").val(2);
+        $("#hrefStr").val();
+        $("#doubleSlideModel").modal("show");
     }
 
-    // 保存子分类
-    function saveActivity() {
+    function saveDoubleSlide() {
         $.ajax({
-            url: "save_activity",
+            url: "save_double_slide",
             dataType: "json",
             type: "post",
             data: {
-                "activityId": $("#activityId").val(),
+                "doubleSlideId": $("#doubleSlideId").val(),
                 "title": $("#title").val(),
-                "activityStr": $("#activityStr").val(),
+                "detail": $("#detail").val(),
                 "description": $("#description").val(),
-                "priceParam1": $("#priceParam1").val(),
-                "priceParam2": $("#priceParam2").val(),
-                "href": $("#href").val(),
+                "status": $("#status").val(),
                 "hrefStr": $("#hrefStr").val(),
-                "image": $("#image").val(),
-                "productId": $("#productId").val(),
-                "activityType": $("#activityType").val(),
-                "status": $("#status").val()
+                "image": $("#image").val()
             },
             success: function (data) {
                 console.log(data);
-                $("#activityModel").modal("hide");
-                innitActivity();
+                $("#doubleSlideModel").modal("hide");
+                innitSlideDouble();
                 tips("操作成功");
-            },
+            }
+            ,
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
             }
@@ -441,30 +399,30 @@
         $("#delBtn").unbind();
     }
 
-    function del(productId) {
+    function del(doubleSlideId) {
         removeClick();
         $("#delBtn").click(function () {
-            delActivity(productId)
+            delDoubleSlide(doubleSlideId)
         });
         $("#tipsBox").empty();
-        $("#tipsBox").append("确定要删除该活动吗?");
+        $("#tipsBox").append("确定要删除该轮播图吗?");
         $("#tips").modal("show");
     }
 
-    function delActivity(activityId) {
+    function delDoubleSlide(doubleSlideId) {
         removeClick();
         $.ajax({
-            url: "del_activity",
+            url: "del_double_slide",
             dataType: "json",
             type: "post",
             data: {
-                "activityId": activityId,
+                "doubleSlideId": doubleSlideId,
             },
             success: function (data) {
                 $("#tips").modal("hide");
                 if (data.code == 1000) {
                     tips("操作成功");
-                    innitActivity(1);
+                    innitSlideDouble(1);
                 } else {
                     tips("系统异常");
                 }
@@ -485,7 +443,8 @@
             buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
             callback: function (num) { //回调函数,num为当前页码
                 // console.log(num);
-                innitActivity(num);
+                innitSlideDouble(num);
+
             }
         });
     }

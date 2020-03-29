@@ -1,6 +1,9 @@
 package com.ordersystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ordersystem.entity.Activity;
 import com.ordersystem.entity.Slide;
 import com.ordersystem.mapper.SlideMapper;
 import com.ordersystem.service.GeneralService;
@@ -32,6 +35,7 @@ public class SlideService implements GeneralService<Slide> {
     public List<Slide> selectListByWrapper(Slide slide) {
         QueryWrapper<Slide> queryWrapper = new QueryWrapper<>();
         queryWrapper.setEntity(slide);
+        queryWrapper.orderByAsc("slideOrder");
         return slideMapper.selectList(queryWrapper);
     }
 
@@ -48,5 +52,12 @@ public class SlideService implements GeneralService<Slide> {
     @Override
     public void deleteById(Integer id) {
         slideMapper.deleteById(id);
+    }
+
+    public IPage<Slide> innitSlide(Page<Slide> page, Slide slide) {
+        QueryWrapper<Slide> queryWrapper = new QueryWrapper<>();
+        queryWrapper.setEntity(slide);
+        queryWrapper.orderByAsc("slideOrder");
+        return slideMapper.selectPage(page, queryWrapper);
     }
 }

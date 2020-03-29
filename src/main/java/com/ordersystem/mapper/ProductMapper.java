@@ -32,9 +32,9 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     @Results({
             @Result(column = "categoryId", property = "categoryId"),
-            @Result(property = "categoryName", column = "categoryId", one = @One(select = "com.orderSystem.mapper.CategoryMapper.selectCategoryName"),jdbcType = JdbcType.VARCHAR),
+            @Result(property = "categoryName", column = "categoryId", one = @One(select = "com.ordersystem.mapper.CategoryMapper.selectCategoryName"),jdbcType = JdbcType.VARCHAR),
             @Result(column = "subCategoryId", property = "subCategoryId"),
-            @Result(property = "subCategoryName", column = "subCategoryId", one = @One(select = "com.orderSystem.mapper.SubCategoryMapper.selectSubCategoryName"),jdbcType = JdbcType.VARCHAR),
+            @Result(property = "subCategoryName", column = "subCategoryId", one = @One(select = "com.ordersystem.mapper.SubCategoryMapper.selectSubCategoryName"),jdbcType = JdbcType.VARCHAR),
     })
     @SelectProvider(value = productMapperProvider.class,method = "innitProductListBox")
     IPage<ProductDto> innitProductList(Page<Product> page, Product product);
@@ -42,7 +42,8 @@ public interface ProductMapper extends BaseMapper<Product> {
     @Select("select * from t_product  where productId = #{productId}")
     @Results({
             @Result(column = "productId", property = "productId"),
-            @Result(property = "specList", column = "productId", many = @Many(select = "com.orderSystem.mapper.SpecMapper.selectSpecByProductId", fetchType = FetchType.EAGER))
+            @Result(property = "specList", column = "productId", many = @Many(select = "com.ordersystem.mapper.SpecMapper.selectSpecByProductId", fetchType = FetchType.EAGER))
     })
     ProductDto innitProductDetail(Integer productId);
+
 }

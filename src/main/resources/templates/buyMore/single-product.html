@@ -287,12 +287,46 @@
         $("#countBox").text(count)
     }
 
-    function addCar() {
+    function addCar(productId, specId, type, count) {
         alert("加入购物车");
+        $.ajax({
+            url: "add_car",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+                "specId": specId,
+                "type": specId,
+                "count": count
+            },
+            success: function (data) {
+                bs4pop.notice('加入购物车成功!', {position: 'topcenter'});
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
     }
 
-    function buy() {
+    function buy(productId, specId, type, count) {
         alert("立即购买");
+        $.ajax({
+            url: "buy_now",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+                "specId": specId,
+                "type": specId,
+                "count": count
+            },
+            success: function (data) {
+                bs4pop.notice('购买成功!', {position: 'topcenter'});
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
     }
 
     function specActive(id, tmpName) {

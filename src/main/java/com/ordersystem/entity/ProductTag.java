@@ -24,5 +24,5 @@ public class ProductTag {
     private Integer productTagId;
 
     @TableField(value = "productTagStr")
-    private Integer productTagStr;
+    private String productTagStr;
 }

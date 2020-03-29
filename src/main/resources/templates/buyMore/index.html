@@ -442,7 +442,7 @@
             url: "innit_buyMore_new_product",
             dataType: "json",
             data: {
-              "size":4
+                "size": 4
             },
             type: "post",
             success: function (data) {
@@ -511,7 +511,7 @@
                 if (data.length >= 1) {
                     slideBox.empty();
                     data.forEach(function (item, index) {
-                        if (item.isIndex == 1) {
+                        if (index == 0) {
                             str = "<div class=\"item active\">";
                         } else {
                             str = "<div class=\"item\">";

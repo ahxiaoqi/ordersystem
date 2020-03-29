@@ -2,7 +2,9 @@ package com.ordersystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ordersystem.entity.Order;
-import org.apache.ibatis.annotations.Mapper;
+import com.ordersystem.entity.dto.OrderDto;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
 /**
  * @author ahxiaoqi
@@ -10,4 +12,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
+
+    @Results({
+            @Result(column = "orderId", property = "orderId"),
+            @Result(property = "orderSub", column = "orderId", one = @One(select = "com.ordersystem.mapper.OrderSubMapper.selectByOderId"), jdbcType = JdbcType.VARCHAR),
+    })
+    @Select("select * from t_order where orderId = #{orderId}")
+    OrderDto getOrderDetail(Integer orderId);
 }
