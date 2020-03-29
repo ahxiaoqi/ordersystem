@@ -77,5 +77,4 @@ public class ProductService  implements GeneralService<Product> {
     public ProductDto innitProductDetail(Integer productId) {
         return productMapper.innitProductDetail(productId);
     }
-
 }

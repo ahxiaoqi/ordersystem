@@ -4,13 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ordersystem.data.ReturnData;
-import com.ordersystem.entity.Category;
-import com.ordersystem.entity.Product;
-import com.ordersystem.entity.SubCategory;
+import com.ordersystem.entity.*;
+import com.ordersystem.entity.dto.ActivityDto;
+import com.ordersystem.entity.dto.OrderDto;
 import com.ordersystem.entity.dto.ProductDto;
-import com.ordersystem.service.impl.CategoryService;
-import com.ordersystem.service.impl.ProductService;
-import com.ordersystem.service.impl.SubCategoryService;
+import com.ordersystem.service.impl.*;
 import com.ordersystem.util.MConstant.MConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,12 +47,28 @@ public class DevController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    ProductTagService productTagService;
+
+    @Autowired
+    ActivityService activityService;
+
+    @Autowired
+    SlideService slideService;
+
+    @Autowired
+    DoubleSlideService doubleSlideService;
+
+    @Autowired
+    OrderService orderService;
+
     private final String DEV_INDEX = "dev/index";
     private final String DEV_CATEGORY = "dev/category";
     private final String DEV_PRODUCT = "dev/product";
     private final String DEV_ORDER = "dev/order";
     private final String DEV_ACTIVITY = "dev/activity";
     private final String DEV_SLIDE = "dev/slide";
+    private final String DEV_SLIDE_DOUBLE = "dev/slideDouble";
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String clogin(Model model, HttpServletRequest request) {
@@ -84,6 +98,11 @@ public class DevController {
     @RequestMapping(value = "slide", method = RequestMethod.GET)
     public String slide(Model model, HttpServletRequest request) {
         return DEV_SLIDE;
+    }
+
+    @RequestMapping(value = "slideDouble", method = RequestMethod.GET)
+    public String slideDouble(Model model, HttpServletRequest request) {
+        return DEV_SLIDE_DOUBLE;
     }
 
     @ResponseBody
@@ -197,11 +216,151 @@ public class DevController {
         }
     }
 
-    // 产品删除
+    // 商品详情
     @ResponseBody
     @RequestMapping(value = "get_product_detail", method = RequestMethod.POST)
     public Product getProductDetail(@RequestParam("productId") Integer productId) {
         return productService.selectOneByWrapper(Product.builder().productId(productId).build());
+    }
+
+    // 获取标签列表
+    @ResponseBody
+    @RequestMapping(value = "innitTagList", method = RequestMethod.POST)
+    public List<ProductTag> innitTagList() {
+        return productTagService.selectListByWrapper(ProductTag.builder().build());
+    }
+
+    // 活动列表
+    @ResponseBody
+    @RequestMapping(value = "innitActivity", method = RequestMethod.POST)
+    public IPage<ActivityDto> innitActivity(Page<Activity> page, Activity activity) {
+        return activityService.innitActivity(page, activity);
+    }
+
+    // 轮播图列表
+    @ResponseBody
+    @RequestMapping(value = "innitSlide", method = RequestMethod.POST)
+    public IPage<Slide> innitSlide(Page<Slide> page, Slide slide) {
+        return slideService.innitSlide(page, slide);
+    }
+
+    // 订单列表
+    @ResponseBody
+    @RequestMapping(value = "innitOrder", method = RequestMethod.POST)
+    public IPage<Order> innitOrder(Page<Order> page, Order order) {
+        return orderService.innitSlide(page, order);
+    }
+
+    // 轮播图列表
+    @ResponseBody
+    @RequestMapping(value = "innitDoubleSlide", method = RequestMethod.POST)
+    public IPage<DoubleSlide> innitDoubleSlide(Page<DoubleSlide> page, DoubleSlide doubleSlide) {
+        return doubleSlideService.innitDoubleSlide(page, doubleSlide);
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "get_activity_detail", method = RequestMethod.POST)
+    public Activity getActivityDetail(@RequestParam("activityId") Integer activityId) {
+        return activityService.selectOneByWrapper(Activity.builder().activityId(activityId).build());
+    }
+
+    // 轮播图详情
+    @ResponseBody
+    @RequestMapping(value = "get_slide_detail", method = RequestMethod.POST)
+    public Slide getSlideDetail(@RequestParam("slideId") Integer slideId) {
+        return slideService.selectOneByWrapper(Slide.builder().slideId(slideId).build());
+    }
+
+    // 轮播副图详情
+    @ResponseBody
+    @RequestMapping(value = "get_double_slide_detail", method = RequestMethod.POST)
+    public DoubleSlide getDoubleSlideDetail(@RequestParam("doubleSlideId") Integer doubleSlideId) {
+        return doubleSlideService.selectOneByWrapper(DoubleSlide.builder().doubleSlideId(doubleSlideId).build());
+    }
+
+    // 订单详情
+    @ResponseBody
+    @RequestMapping(value = "get_order_detail", method = RequestMethod.POST)
+    public OrderDto getOrderDetail(@RequestParam("orderId") Integer orderId) {
+        return orderService.getOrderDetail(orderId);
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "save_activity", method = RequestMethod.POST)
+    public ReturnData saveActivity(Activity activity) {
+        try {
+            activity.setType(2);
+            return activityService.saveAndCheckCount(activity);
+        } catch (Exception e) {
+            logger.info("活动保存错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "活动保存错误");
+        }
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "save_slide", method = RequestMethod.POST)
+    public ReturnData saveSlide(Slide slide) {
+        try {
+            slideService.save(slide);
+        } catch (Exception e) {
+            logger.info("轮播图保存错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "活动保存错误");
+        }
+        return ReturnData.returnData(null);
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "save_double_slide", method = RequestMethod.POST)
+    public ReturnData saveDoubleSlide(DoubleSlide doubleSlide) {
+        try {
+            return doubleSlideService.saveAndCheckCount(doubleSlide);
+        } catch (Exception e) {
+            logger.info("轮播副图保存错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "活动保存错误");
+        }
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "del_activity", method = RequestMethod.POST)
+    public ReturnData delActivity(@RequestParam("activityId") Integer activityId) {
+        try {
+            activityService.deleteById(activityId);
+        } catch (Exception e) {
+            logger.info("删除活动错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "删除活动错误");
+        }
+        return ReturnData.returnData(null);
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "del_slide", method = RequestMethod.POST)
+    public ReturnData delSlide(@RequestParam("slideId") Integer slideId) {
+        try {
+            slideService.deleteById(slideId);
+        } catch (Exception e) {
+            logger.info("删除轮播图错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "删除活动错误");
+        }
+        return ReturnData.returnData(null);
+    }
+
+    // 活动详情
+    @ResponseBody
+    @RequestMapping(value = "del_double_slide", method = RequestMethod.POST)
+    public ReturnData delDoubleSlide(@RequestParam("doubleSlideId") Integer doubleSlideId) {
+        try {
+            doubleSlideService.deleteById(doubleSlideId);
+        } catch (Exception e) {
+            logger.info("删除轮播副图错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "删除活动错误");
+        }
+        return ReturnData.returnData(null);
     }
 
 

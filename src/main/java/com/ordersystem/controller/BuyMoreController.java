@@ -167,7 +167,7 @@ public class BuyMoreController {
     @ResponseBody
     @RequestMapping(value = "innit_buyMore_indexActivity", method = RequestMethod.POST)
     public Activity innitIndexActivity() {
-        return activityService.selectOneByWrapper(Activity.builder().type(2).build());
+        return activityService.selectOneByWrapper(Activity.builder().type(2).status(1).build());
     }
 
     // 初始化评论墙

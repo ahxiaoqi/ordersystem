@@ -22,7 +22,7 @@ import javax.validation.constraints.NotEmpty;
 @TableName("t_slide")
 public class Slide {
 
-    @TableId(type = IdType.AUTO,value = "slideId")
+    @TableId(type = IdType.AUTO, value = "slideId")
     private Integer slideId;
 
     @NotEmpty(message = "主标题不能为空!")
@@ -48,8 +48,8 @@ public class Slide {
     @TableField(value = "image")
     private String image;
 
-    @TableField(value = "isIndex")
-    private Integer isIndex;
+    @TableField(value = "slideOrder")
+    private Integer slideOrder;
 
     @TableField(value = "status")
     private Integer status;

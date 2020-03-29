@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import java.beans.Transient;
 
 /**
  * @author ahxiaoqi
@@ -53,6 +54,12 @@ public class Activity {
     @TableField(value = "image")
     private String image;
 
+    @TableField(value = "productId")
+    private Integer productId;
+
     @TableField(value = "activityType")
-    private String activityType;
+    private Integer activityType;
+
+    @TableField(value = "status")
+    private Integer status;
 }

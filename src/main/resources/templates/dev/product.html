@@ -87,6 +87,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="slideDouble.html">
+                        <i class="la la-keyboard-o"></i>
+                        <p>轮播副图</p>
+                        <span class="badge badge-count">50</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="order.html">
                         <i class="la la-th"></i>
                         <p>订单列表</p>
@@ -125,6 +132,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary" onclick="productAdd()">添加</button>
                                 <table class="table table-head-bg-success table-bordered-bd-info mt-4">
                                     <thead>
                                     <tr>
@@ -234,7 +242,9 @@
                 </div>
                 <div class="form-group">
                     <label>标签</label>
-                    <input type="text" class="form-control" id="tag" placeholder="请输入标签">
+                    <select name="tag" class="form-control input-pill" id="tag">
+                        <option value="0">无</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>是否新品</label>
@@ -283,8 +293,12 @@
     $(function () {
         innitProductList(1);
         innitCategoryName();
+        innitTagList();
         $("#categoryDrop").change(function () {
             innitSubCategoryName($("#categoryDrop").val());
+        });
+        $("#detailCategory").change(function(){
+            detailSubCategoryName( $("#detailCategory").val());
         });
         initFileInput("file-Portrait", "eryTuUd4/dev/upload");
         initFileInput("file-Portrait2", "eryTuUd4/dev/upload");
@@ -367,6 +381,7 @@
                 data.forEach(function (item, index) {
                     str = "<option  value='" + item.categoryId + "'>" + item.categoryName + "</option>";
                     $("#categoryDrop").append(str);
+                    $("#detailCategory").append(str);
                 })
             },
             error: function () {
@@ -396,6 +411,25 @@
         })
     }
 
+    function innitTagList(){
+        $.ajax({
+            url: "innitTagList",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                let str = "";
+                $("#tag").empty();
+                $("#tag").append("<option value=\"0\">无</option>");
+                data.forEach(function (item, index) {
+                    str = "<option  value='" + item.productTagId + "'>" + item.productTagStr + "</option>";
+                    $("#tag").append(str);
+                })
+            },
+            error: function () {
+                console.log("标签列表初始化错误")
+            }
+        })
+    }
 
     function innitProductList(current) {
         const productTableTr = $("#productTableTr");
@@ -462,18 +496,19 @@
     }
 
     function productAdd() {
-        $("#productId").val();
-        $("#productName").val(data.productName);
-        $("#detailCategory").val(data.subCategoryName);
-        $("#detailSubCategory").val(data.status);
-        $("#price").val(data.price);
-        $("#tag").val(data.tag);
-        $("#isNew").val(data.isNew);
+        $("#productId").val("");
+        $("#productName").val("");
+        $("#detailCategory").val(0);
+        $("#detailSubCategory").val(0);
+        $("#price").val("");
+        $("#tag").val(0);
+        $("#isNew").val(2);
+        $("#productModel").modal("show");
     }
 
     function productEdit(productId) {
+        productDetail(productId);
         $("#productModel").modal("show");
-        productDetail(productId)
     }
 
     function productDetail(productId) {
@@ -486,10 +521,11 @@
                 console.log(data);
                 $("#productId").val(data.productId);
                 $("#productName").val(data.productName);
-                $("#detailCategory").val(data.subCategoryName);
-                $("#detailSubCategory").val(data.status);
+                $("#detailCategory").val(data.categoryId);
+                detailSubCategoryName(data.categoryId);
+                $("#detailSubCategory").val(data.subCategoryId);
                 $("#price").val(data.price);
-                $("#tag").val(data.tag);
+                $("#tag").val(data.productTagId);
                 $("#isNew").val(data.isNew);
             },
             error: function () {
@@ -497,6 +533,30 @@
             }
         })
     }
+
+
+    function detailSubCategoryName(categoryId) {
+        $.ajax({
+            url: "innitSubCategoryName",
+            dataType: "json",
+            type: "post",
+            data: {"categoryId": categoryId},
+            async: false, // 同步
+            success: function (data) {
+                let str = "";
+                $("#detailSubCategory").empty();
+                $("#detailSubCategory").append("<option value=\"0\">请选择子分类</option>");
+                data.forEach(function (item, index) {
+                    str = "<option  value='" + item.subCategoryId + "'>" + item.subCategoryName + "</option>";
+                    $("#detailSubCategory").append(str);
+                })
+            },
+            error: function () {
+                console.log("分类名称初始化错误")
+            }
+        })
+    }
+
 
     function saveProduct() {
         $.ajax({
@@ -507,8 +567,9 @@
                 "productId": $("#productId").val(),
                 "productName": $("#productName").val(),
                 "categoryId": $("#detailCategory").val() == "" ? null : $("#detailCategory").val(),
+                "subCategoryId": $("#detailSubCategory").val() == "" ? null : $("#detailSubCategory").val(),
                 "price": $("#price").val(),
-                "tag": $("#tag").val(),
+                "productTagId": $("#tag").val(),
                 "image": $("#productImgPath").val() == "" ? null : $("#productImgPath").val(),
                 "detailImage": $("#productDetailImgPath").val() == "" ? null : $("#productDetailImgPath").val(),
                 "isNew": $("#isNew").val()
@@ -528,12 +589,12 @@
 
 
     function del(type, productId) {
-        $("#tipsBox").empty();
-        $("#tipsBox").append("确定要删除该商品吗?");
-        $("#delBtn").removeAttr("onclick");
+        $("#delBtn").unbind();
         $("#delBtn").click(function () {
             delProduct(productId)
         });
+        $("#tipsBox").empty();
+        $("#tipsBox").append("确定要删除该商品吗?");
         $("#tips").modal("show");
     }
 
