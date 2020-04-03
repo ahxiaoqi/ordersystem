@@ -1,5 +1,5 @@
 /*
-SQLyog Ultimate v12.2.6 (64 bit)
+SQLyog Ultimate
 MySQL - 8.0.15 : Database - ordersystem
 *********************************************************************
 */
@@ -9,7 +9,6 @@ MySQL - 8.0.15 : Database - ordersystem
 /*!40101 SET SQL_MODE=''*/;
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`ordersystem` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
@@ -29,7 +28,7 @@ CREATE TABLE `t_account` (
   `accountType` int(10) NOT NULL DEFAULT '3' COMMENT '用户类型1管理员 2 商家 3 普通用户',
   `headImg` varchar(100) NOT NULL DEFAULT '' COMMENT '头像',
   PRIMARY KEY (`accountId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)  ;
 
 /*Data for the table `t_account` */
 
@@ -45,10 +44,10 @@ DROP TABLE IF EXISTS `t_activity`;
 
 CREATE TABLE `t_activity` (
   `activityId` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '标题',
   `activityStr` varchar(20) NOT NULL DEFAULT '' COMMENT '活动文字',
   `description` varchar(50) DEFAULT '' COMMENT '活动描述',
   `type` int(11) NOT NULL DEFAULT '1' COMMENT '位置类型 1 普通 2 主页',
-  `title` varchar(50) DEFAULT '' COMMENT '标题',
   `priceParam1` int(11) DEFAULT NULL COMMENT '原价',
   `priceParam2` int(11) DEFAULT NULL COMMENT '优惠价格',
   `href` varchar(100) DEFAULT '' COMMENT '按钮地址',
@@ -56,16 +55,20 @@ CREATE TABLE `t_activity` (
   `image` varchar(100) NOT NULL DEFAULT '',
   `productId` int(11) DEFAULT NULL COMMENT '活动商品id',
   `activityType` int(11) DEFAULT '1' COMMENT '活动类型 1:活动价 2:折扣',
+  `status` int(3) NOT NULL DEFAULT '2' COMMENT '开启关闭',
   PRIMARY KEY (`activityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)  ;
 
 /*Data for the table `t_activity` */
 
-insert  into `t_activity`(`activityId`,`activityStr`,`description`,`type`,`title`,`priceParam1`,`priceParam2`,`href`,`hrefStr`,`image`,`productId`,`activityType`) values 
-(1,'25','测试一',1,'',NULL,NULL,'','','',0,2),
-(2,'降价啦降价啦','主页大活动',2,'哒哒哒哒哒',998,2,'https://baidu.com','链接','/res/buy_more/images/ad-2.jpg',1,1),
-(3,'','',1,'',567546,2,'','','',2,1),
-(4,'','',1,'',324324,3,'','','',3,1);
+insert  into `t_activity`(`activityId`,`title`,`activityStr`,`description`,`type`,`priceParam1`,`priceParam2`,`href`,`hrefStr`,`image`,`productId`,`activityType`,`status`) values 
+(2,'呵呵呵','降价啦降价啦','主页大活动',2,998,2333,'https://baidu.com','链接','uploadPath/405881050107904.jpg',1,1,2),
+(7,'活动添加测试','哈哈哈哈','梵蒂冈分店刚发的',2,343,22,'','按钮','/res/buy_more/images/ad-2.jpg',2,1,2),
+(9,'儿放啥的防守打法','违反手动阀啥的ad','123 手动阀',2,NULL,123123,'','手动阀','',NULL,1,2),
+(12,'儿放啥的防守打法','违反手动阀啥的ad','123 手动阀',2,NULL,123123,'','手动阀','',NULL,1,2),
+(14,'儿放啥的防守打法','违反手动阀啥的ad','123 手动阀',2,NULL,123123,'','手动阀','',NULL,1,2),
+(15,'儿放啥的防守打法','违反手动阀啥的ad','123 手动阀',2,NULL,123123,'','手动阀','',NULL,1,2),
+(16,'儿放啥的防守打法','违反手动阀啥的ad','123 手动阀',2,NULL,123123,'','手动阀','',NULL,1,1);
 
 /*Table structure for table `t_category` */
 
@@ -81,15 +84,15 @@ CREATE TABLE `t_category` (
   `image` varchar(100) DEFAULT '',
   `tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '标签',
   PRIMARY KEY (`categoryId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)  ;
 
 /*Data for the table `t_category` */
 
 insert  into `t_category`(`categoryId`,`categoryName`,`createTime`,`status`,`orders`,`description`,`image`,`tag`) values 
-(2,'河北菜地方','2020-01-26 14:08:30',1,45,'我也不知道写什么','/res/buy_more/images/bag1.png','New Arrival'),
+(1,'河北菜地方','2020-01-26 14:08:30',1,45,'我也不知道写什么','uploadPath/405726714363904.jpg','New Arrival'),
 (3,'浙江菜','2020-01-26 14:08:36',1,34325,'我也不知道写什么','/res/buy_more/images/bag1.png','New Trendy'),
-(4,'新疆菜','2020-01-26 14:08:56',1,123,'我也不知道写什么','/res/buy_more/images/bag1.png','New Trendy'),
-(5,'河南菜','2020-03-15 11:28:46',1,0,'','','');
+(4,'新疆菜','2020-01-26 14:08:56',1,123,'我也不知道写什么','uploadPath/405726719959040.jpg','New Trendy'),
+(5,'河南菜,卖完了','2020-03-15 11:28:46',1,0,'其实我和上面写的差不多','uploadPath/405726788894720.jpg','qishiwoshihanyupinyin');
 
 /*Table structure for table `t_comment` */
 
@@ -107,21 +110,21 @@ CREATE TABLE `t_comment` (
   `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   PRIMARY KEY (`commentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_comment` */
 
 insert  into `t_comment`(`commentId`,`title`,`detail`,`image`,`month`,`day`,`year`,`createTime`,`orderId`,`productId`) values 
-(1,'评论1','答复的','','2',2,'','2020-02-01 00:37:01',0,1),
-(2,'评论2','答复大师傅第三方收到但是','','8',11,'','2020-02-01 00:37:05',0,1),
-(3,'评论3','奥德赛范德萨是的发送到','','5',22,'','2020-02-01 00:37:06',0,2),
-(4,'评论4','大发大使馆的购房贷款来给你','','3',24,'','2020-02-01 00:37:06',0,3),
-(5,'评论5','答复看了','','9',4,'','2020-02-01 00:37:07',0,4),
-(6,'评论6',';l,gs;lfkhl;摸排','','12',1,'','2020-02-01 00:37:08',0,5),
-(7,'评论7','雷克第三方机构考虑对方及欧盟','','1',2,'','2020-02-01 00:37:08',0,6),
-(8,'评论8','fdslkgmljm','','4',23,'','2020-02-01 00:37:09',0,7),
-(9,'Latest Trendy Fashion for Women & Man Limited Stock','这是一个很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的评论','','2',5,'','2020-02-01 00:37:10',0,1),
-(10,'评论10','空白','','8',12,'','2020-02-01 00:37:12',0,1);
+(1,'评论1','答复的','/res/buy_more/images/b-post-1.jpg','2',2,'','2020-02-01 00:37:01',0,1),
+(2,'评论2','答复大师傅第三方收到但是','/res/buy_more/images/b-post-1.jpg','8',11,'','2020-02-01 00:37:05',0,1),
+(3,'评论3','奥德赛范德萨是的发送到','/res/buy_more/images/b-post-1.jpg','5',22,'','2020-02-01 00:37:06',0,2),
+(4,'评论4','大发大使馆的购房贷款来给你','/res/buy_more/images/b-post-1.jpg','3',24,'','2020-02-01 00:37:06',0,3),
+(5,'评论5','答复看了','/res/buy_more/images/b-post-1.jpg','9',4,'','2020-02-01 00:37:07',0,4),
+(6,'评论6',';l,gs;lfkhl;摸排','/res/buy_more/images/b-post-1.jpg','12',1,'','2020-02-01 00:37:08',0,5),
+(7,'评论7','雷克第三方机构考虑对方及欧盟','/res/buy_more/images/b-post-1.jpg','1',2,'','2020-02-01 00:37:08',0,6),
+(8,'评论8','fdslkgmljm','/res/buy_more/images/b-post-1.jpg','4',23,'','2020-02-01 00:37:09',0,7),
+(9,'Latest Trendy Fashion for Women & Man Limited Stock','这是一个很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的评论','/res/buy_more/images/b-post-1.jpg','2',5,'','2020-02-01 00:37:10',0,1),
+(10,'评论10','空白','/res/buy_more/images/b-post-1.jpg','8',12,'','2020-02-01 00:37:12',0,1);
 
 /*Table structure for table `t_double_slide` */
 
@@ -136,12 +139,13 @@ CREATE TABLE `t_double_slide` (
   `hrefStr` varchar(50) NOT NULL DEFAULT '' COMMENT '链接文字',
   `status` int(11) DEFAULT '2' COMMENT '状态',
   PRIMARY KEY (`doubleSlideId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_double_slide` */
 
 insert  into `t_double_slide`(`doubleSlideId`,`title`,`detail`,`image`,`href`,`hrefStr`,`status`) values 
-(1,'I am a hanhan','今日全场不要钱','/res/buy_more/images/b2.jpg','','按钮',1);
+(2,'电放费的','3日发大水 ','uploadPath/405886562623488.jpg','','手动阀阿萨德',2),
+(3,'发光飞碟','而特工分店','uploadPath/405886805221376.jpg','','电饭锅地方',1);
 
 /*Table structure for table `t_order` */
 
@@ -153,11 +157,44 @@ CREATE TABLE `t_order` (
   `accountId` int(10) NOT NULL DEFAULT '0' COMMENT '用户id',
   `price` int(10) NOT NULL DEFAULT '0' COMMENT '支付价格',
   `status` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '订单状态',
-  `createTime` timestamp NOT NULL,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`orderId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_order` */
+
+insert  into `t_order`(`orderId`,`orderCode`,`accountId`,`price`,`status`,`createTime`) values 
+(1,'N1234567890',1,345,1,'2020-03-29 23:46:43'),
+(2,'N1234567891',1,345,1,'2020-03-29 23:46:43'),
+(3,'N1234567892',1,345,1,'2020-03-29 23:46:43'),
+(4,'N1234567893',1,345,1,'2020-03-29 23:46:43'),
+(5,'N1234567894',1,345,1,'2020-03-29 23:46:43'),
+(6,'N1234567895',1,345,1,'2020-03-29 23:46:43'),
+(7,'N1234567896',1,345,1,'2020-03-29 23:46:43'),
+(8,'N1234567897',1,345,1,'2020-03-29 23:46:43');
+
+/*Table structure for table `t_order_sub` */
+
+DROP TABLE IF EXISTS `t_order_sub`;
+
+CREATE TABLE `t_order_sub` (
+  `orderSubId` int(10) NOT NULL AUTO_INCREMENT,
+  `orderSubCode` varchar(12) NOT NULL DEFAULT '',
+  `orderId` int(10) NOT NULL DEFAULT '0',
+  `orderCode` varchar(12) DEFAULT '',
+  `specId` int(10) NOT NULL DEFAULT '0',
+  `productId` int(10) NOT NULL DEFAULT '0',
+  `count` int(10) NOT NULL DEFAULT '0',
+  `price` int(10) NOT NULL DEFAULT '0',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`orderSubId`)
+)  ;
+
+/*Data for the table `t_order_sub` */
+
+insert  into `t_order_sub`(`orderSubId`,`orderSubCode`,`orderId`,`orderCode`,`specId`,`productId`,`count`,`price`,`createTime`) values 
+(1,'S1234567890',1,'N1234567890',1,1,1,1,'2020-03-30 00:01:32'),
+(2,'S1234567891',1,'N1234567890',2,1,1,1,'2020-03-30 00:01:46');
 
 /*Table structure for table `t_product` */
 
@@ -175,30 +212,26 @@ CREATE TABLE `t_product` (
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `productTagId` int(11) NOT NULL DEFAULT '0' COMMENT '产品标签id',
   `activityId` int(11) NOT NULL DEFAULT '0' COMMENT '活动id',
-  `isNew` int(11) DEFAULT '0' COMMENT '是否新品0不是1是',
+  `isNew` int(11) DEFAULT '2' COMMENT '是否新品2不是1是',
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)  ;
 
 /*Data for the table `t_product` */
 
 insert  into `t_product`(`productId`,`categoryId`,`subCategoryId`,`productName`,`price`,`image`,`detailImage`,`description`,`createTime`,`productTagId`,`activityId`,`isNew`) values 
-(1,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(2,4,1,'产品二',11,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述二','2020-01-29 13:31:45',0,1,1),
-(3,5,2,'产品三',2,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述三','2020-01-29 13:31:49',1,1,1),
-(4,3,3,'产品四',45,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述四','2020-01-29 13:31:53',1,4,0),
-(5,3,4,'产品五',23432432,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述五','2020-01-29 13:32:25',1,3,1),
-(6,2,5,'产品六',23,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述六','2020-01-29 13:32:36',1,0,0),
-(7,2,5,'产品七',67,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述其','2020-02-04 20:07:16',0,0,0),
-(8,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(9,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(10,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(11,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(12,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(13,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(14,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(15,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(16,1,1,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0),
-(19,1,6,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,0);
+(1,3,2,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',2,1,2),
+(4,3,2,'产品四',45,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述四','2020-01-29 13:31:53',1,4,2),
+(5,3,2,'产品五',234,'uploadPath/405732267085824.jpg','uploadPath/405732359553024.jpg','描述五','2020-01-29 13:32:25',1,3,2),
+(8,3,2,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',3,1,2),
+(9,5,3,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(10,3,2,'产品一',33,'uploadPath/405797530923008.jpg','uploadPath/405797531508736.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(11,5,3,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(13,1,3,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(15,5,3,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(16,5,15,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',1,1,2),
+(19,5,6,'产品一',33,'/res/buy_more/images/women1.jpg','/res/buy_more/images/single-product.jpg','描述一','2020-01-29 13:31:20',0,1,2),
+(23,1,3,'商',44,'uploadPath/405867776106496.jpg','uploadPath/405867777740800.jpg','','2020-03-29 02:43:31',3,0,1),
+(24,1,3,'对方水电费',656,'uploadPath/405867846524928.jpg','uploadPath/405867777740800.jpg','','2020-03-29 02:48:06',2,0,1);
 
 /*Table structure for table `t_product_tag` */
 
@@ -208,12 +241,14 @@ CREATE TABLE `t_product_tag` (
   `productTagId` int(11) NOT NULL AUTO_INCREMENT,
   `productTagStr` varchar(20) DEFAULT '' COMMENT '产品标签描述',
   PRIMARY KEY (`productTagId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_product_tag` */
 
 insert  into `t_product_tag`(`productTagId`,`productTagStr`) values 
-(1,'热销');
+(1,'热销'),
+(2,'精选'),
+(3,'主打');
 
 /*Table structure for table `t_slide` */
 
@@ -227,20 +262,20 @@ CREATE TABLE `t_slide` (
   `href` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '链接地址',
   `hrefStr` varchar(11) DEFAULT '我是链接' COMMENT '链接文字',
   `image` varchar(100) NOT NULL DEFAULT '' COMMENT '图片',
-  `isIndex` int(11) NOT NULL DEFAULT '2' COMMENT '是否首个显示1:是2:否',
+  `slideOrder` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
   `status` int(11) DEFAULT '2' COMMENT '状态 1:开启 2关闭',
   PRIMARY KEY (`slideId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_slide` */
 
-insert  into `t_slide`(`slideId`,`mainTitle`,`doubleTitle`,`description`,`href`,`hrefStr`,`image`,`isIndex`,`status`) values 
+insert  into `t_slide`(`slideId`,`mainTitle`,`doubleTitle`,`description`,`href`,`hrefStr`,`image`,`slideOrder`,`status`) values 
 (1,'轮播图测试','副标题1','我是个轮播图','https://baidu.com','我是链接','/res/buy_more/images/fashion-banner2.jpg',1,1),
-(2,'轮播图测试2','副标题2','哈哈','','我是链接','',2,1),
+(2,'轮播图测试2','副标题2','哈哈','','我是链接','uploadPath/405885360148480.jpg',2,1),
 (3,'轮播图测试3','副标题3','的否','','我是链接','',2,1),
-(4,'轮播图测试4','副标题4','大发','','我是链接','',2,1),
-(5,'轮播图测试5','副标题5','大师发送到发多少安抚','','我是链接','',2,2),
-(6,'轮播图测试6','副标题6','水电费按时','','我是链接','',2,2);
+(4,'轮播图测试4','副标题4','大发','','我是链接','uploadPath/405886552236032.jpg',2,1),
+(6,'轮播图测试6','副标题6','水电费按时','','我是链接','',2,2),
+(7,'的法国恢复','45突然','回复广告费','','按钮','',1,1);
 
 /*Table structure for table `t_spec` */
 
@@ -255,15 +290,15 @@ CREATE TABLE `t_spec` (
   `productId` int(10) NOT NULL COMMENT '产品id',
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`specId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_spec` */
 
 insert  into `t_spec`(`specId`,`specTitle`,`price`,`description`,`image`,`productId`,`createTime`) values 
-(1,'清蒸','1,2,3','就清蒸呗','',1,'2020-02-23 22:22:41'),
-(2,'红烧','2,35,324','','',1,'2020-02-23 22:24:42'),
-(3,'炖了吧','1,34,3','','',1,'2020-02-23 22:24:56'),
-(4,'干煸','42,43,1','','',1,'2020-02-23 22:25:15');
+(1,'清蒸','1,2,3','就清蒸呗','',5,'2020-02-23 22:22:41'),
+(2,'红烧','2,35,324','','',5,'2020-02-23 22:24:42'),
+(3,'炖了吧','1,34,3','','',5,'2020-02-23 22:24:56'),
+(4,'干煸','42,43,1','','',5,'2020-02-23 22:25:15');
 
 /*Table structure for table `t_subcategory` */
 
@@ -277,20 +312,26 @@ CREATE TABLE `t_subcategory` (
   `status` int(11) NOT NULL DEFAULT '2' COMMENT '子分类状态1：开启2：关闭',
   `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '/res/buy_more/images/women1.jpg',
   PRIMARY KEY (`subCategoryId`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 /*Data for the table `t_subcategory` */
 
 insert  into `t_subcategory`(`subCategoryId`,`subCategoryName`,`createTime`,`categoryId`,`status`,`image`) values 
-(2,'河北','2020-02-02 23:09:11',2,1,'/res/buy_more/images/women1.jpg'),
-(3,'浙江1','2020-02-02 23:09:12',3,1,'/res/buy_more/images/women1.jpg'),
+(2,'河北','2020-02-02 23:09:11',3,1,'/res/buy_more/images/women1.jpg'),
+(3,'浙江1','2020-02-02 23:09:12',1,1,'/res/buy_more/images/women1.jpg'),
 (4,'新疆','2020-02-02 23:09:13',4,1,'/res/buy_more/images/women1.jpg'),
 (14,'河北2','2020-03-15 11:22:31',2,1,''),
 (15,'河南1','2020-03-15 11:28:58',5,1,''),
 (16,'河南2','2020-03-15 11:29:05',5,1,''),
-(17,'河南3','2020-03-15 11:29:10',5,1,'');
+(17,'河南3','2020-03-15 11:29:10',5,1,''),
+(18,'11','2020-03-15 21:02:30',2,2,'/res/buy_more/images/women1.jpg'),
+(19,'123','2020-03-15 21:02:32',2,2,'/res/buy_more/images/women1.jpg'),
+(20,'12321','2020-03-15 21:02:35',2,2,'/res/buy_more/images/women1.jpg'),
+(21,'324324','2020-03-15 21:02:39',2,2,'/res/buy_more/images/women1.jpg'),
+(22,'123124','2020-03-15 21:02:42',2,2,'/res/buy_more/images/women1.jpg'),
+(23,'12412','2020-03-15 21:02:45',2,2,'/res/buy_more/images/women1.jpg'),
+(24,'哈哈哈哈','2020-03-22 15:41:58',1,1,'/res/buy_more/images/women1.jpg');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
