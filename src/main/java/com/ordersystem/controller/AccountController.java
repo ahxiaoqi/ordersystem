@@ -74,6 +74,14 @@ public class AccountController {
         return ReturnData.returnError(1001, "用户不存在");
     }
 
+
+    /**
+     *
+     * @param account
+     * @param model
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/name_check", method = RequestMethod.POST)
     public ReturnData nameCheck(Account account, Model model, HttpServletRequest request) {
@@ -83,6 +91,13 @@ public class AccountController {
         return ReturnData.returnSuccess(null);
     }
 
+    /**
+     *
+     * @param account
+     * @param model
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/login_register", method = RequestMethod.POST)
     public ReturnData nameRegister(Account account, Model model, HttpServletRequest request) {

@@ -34,7 +34,7 @@ public class productMapperProvider {
             if (Optional.ofNullable(product.getProductName()).isPresent() && !"".equals(product.getProductName())) {
                 WHERE("productName like concat('%',#{product.productName},'%')");
             }
-            ORDER_BY("createTime desc");
+            ORDER_BY("a.createTime asc");
         }}.toString();
 //        logger.info(sql);
         return sql;
