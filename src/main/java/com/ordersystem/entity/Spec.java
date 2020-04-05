@@ -27,7 +27,7 @@ public class Spec{
     private Integer specId;
 
     //逗号,分隔价格,暂时按大中小三个分量存储
-    @TableField(value = "subCategoryName")
+    @TableField(value = "price")
     private String price;
 
     @TableField(value = "specTitle")
@@ -46,7 +46,7 @@ public class Spec{
     private Integer productId;
 
     @TableField(value = "createTime")
-    private Date createTime;
+    private String createTime;
 
 
 }

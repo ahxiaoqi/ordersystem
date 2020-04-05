@@ -25,9 +25,9 @@
         <div class="container">
             <div class="row">
                 <div class="section-title col-md-offset-3 col-md-6 text-center">
-                    <h2>Single Product</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
-                        eros. Nullam malesuada erat ut turpis.</p>
+                    <h2>商品详情</h2>
+                    <!--                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis-->
+                    <!--                        eros. Nullam malesuada erat ut turpis.</p>-->
                 </div>
             </div>
         </div>
@@ -148,6 +148,28 @@
     </div>
 </section>
 
+<!--提示-->
+<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="padding-top: 15%" role="document">
+        <div class="modal-content" style="width:500px;">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">提示</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="tipsBox" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button id="delBtn" type="button" class="btn btn-primary">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 通用footer -->
 <div th:insert="buyMore/common/footer :: footer"></div>
 
@@ -160,6 +182,10 @@
 <script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
 </body>
 <script>
+    var ConnName;
+    var ConnType = 0;
+    var ConnCount = 1;
+    var ConnTitle;
     $(function () {
         innit();
     });
@@ -187,6 +213,9 @@
                 if (data != null) {
                     $("#productDetailBox").empty();
                     str += " <div class=\"col-md-4 col-sm-6 col-xs-12\">\n" +
+                        "   <input type='hidden' id='productCount'>\n" +
+                        "   <input type='hidden' id='productSpecId'>\n" +
+                        "   <input type='hidden' id='productSpecType'>\n" +
                         "                <div class=\"single-product-img\">\n" +
                         "                    <img class=\"img-responsive\" src=\" " + data.detailImage + " \" alt=\"\"/>\n" +
                         "                </div>\n" +
@@ -198,7 +227,7 @@
                         "                        </button>\n" +
                         "                        <button type=\"button\" class=\"btn btn-default\"> 37 - in Stock</button>\n" +
                         "                    </div>\n" +
-                        "                    <h3>" +  data.productName + "</h3>\n" +
+                        "                    <h3>" + data.productName + "</h3>\n" +
                         "                    <ul class=\"list-inline\">\n" +
                         "                        <li><i class=\"lnr lnr-star\"></i></li>\n" +
                         "                        <li><i class=\"lnr lnr-star\"></i></li>\n" +
@@ -217,7 +246,7 @@
                         for (var b = 0; b < data.specList.length; b++) {
                             var tmpName = "specTmp" + b;
                             window[tmpName] = data.specList[b].price.split(",");
-                            str += "<li id='spec" + b + "' onclick='specActive(this.id," + tmpName + ")'>" + data.specList[b].specTitle + "</li>"
+                            str += "<li id='spec" + b + "' onclick='specActive(this.id," + tmpName + ",\"" + data.specList[b].specTitle + "\"," + data.specList[b].specId + ")'>" + data.specList[b].specTitle + "</li>"
                             // console.log(tmpName)
                         }
                         str += "                                </ul>\n" +
@@ -227,9 +256,9 @@
                             "                            <td>分量</td>\n" +
                             "                            <td>\n" +
                             "                                <ul class=\"list-inline\">\n" +
-                            "                                    <li class=\"red specNum\">小份</li>\n" +
-                            "                                    <li class=\"yellow\">中份</li>\n" +
-                            "                                    <li class=\"black\">大份</li>\n" +
+                            "                                    <li class=\"red specNum\" onclick='productTypeCheck(0)'>小份</li>\n" +
+                            "                                    <li class=\"yellow\" onclick='productTypeCheck(1)'>中份</li>\n" +
+                            "                                    <li class=\"black\" onclick='productTypeCheck(2)'>大份</li>\n" +
                             "                                </ul>\n" +
                             "                            </td>\n" +
                             "                        </tr>\n" +
@@ -250,7 +279,7 @@
                     str += "                    <div id='specPrice' class=\"price\">$287.99</div>\n" +
                         "                    <div class=\"order-tag\">Tellus accumsan purus diam molestias</div>\n" +
                         "                    <div class=\"add-cart\"><a class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='addCar()'><i class=\"lnr lnr-cart\"></i>添加到购物车</a>\n" +
-                        "                   <a class=\"btn btn-add\" href=\"javacript:void(0);\" onclick='buy()' >立即购买</a>   \n" +
+                        "                   <a class=\"btn btn-add\" href=\"javacript:void(0);\" onclick='buy(\"" + data.productName + "\"," + data.productId + ")' >立即购买</a>   \n" +
                         "                    </div>\n" +
                         "                </div>\n" +
                         "            </div>";
@@ -273,7 +302,9 @@
             count += 1;
         }
         $("#countInput").val(count);
-        $("#countBox").text(count)
+        $("#countBox").text(count);
+        ConnCount = count;
+        priceChange();
     }
 
     function countReduce() {
@@ -284,7 +315,9 @@
             count -= 1;
         }
         $("#countInput").val(count);
-        $("#countBox").text(count)
+        $("#countBox").text(count);
+        ConnCount = count;
+        priceChange();
     }
 
     function addCar(productId, specId, type, count) {
@@ -308,20 +341,62 @@
         })
     }
 
-    function buy(productId, specId, type, count) {
-        alert("立即购买");
+    function buy(productName, productId) {
+        $("#delBtn").unbind();
+        const count = $("#countBox").text();
+        const productSpecId = $("#productSpecId").text();
+        // const productSpecType = $("#productSpecType").text();
+        $("#delBtn").click(function () {
+            buyView(productId)
+        });
+        $("#tipsBox").empty();
+        let str = "<p>确认购买信息:</p>";
+        str += "<p>商品名称:" + productName + "</p>";
+        str += "<p>口味:" + ConnTitle + "</p>";
+        str += "<p>分量:";
+        switch (ConnType) {
+            case 0: {
+                str += "小份";
+                break;
+            }
+            case 1: {
+                str += "中份";
+                break;
+            }
+            case 2: {
+                str += "大份";
+                break;
+            }
+        }
+        str += "</p>";
+        str += "<p>总价:" + ConnName[ConnType] * ConnCount + "</p>";
+        $("#tipsBox").append(str);
+        $("#tips").modal("show");
+    }
+
+    function buyView(productId) {
+        let price = ConnName[ConnType] * ConnCount;
+        let userName = $.cookie("accountId");
         $.ajax({
             url: "buy_now",
             dataType: "json",
             type: "post",
             data: {
                 "productId": productId,
-                "specId": specId,
-                "type": specId,
-                "count": count
+                "specId": $("#productSpecId").val(),
+                "type": ConnType,
+                "count": ConnCount,
+                "price": price,
+                "userName":userName
             },
             success: function (data) {
-                bs4pop.notice('购买成功!', {position: 'topcenter'});
+                $("#tips").modal("hide");
+                if (data.code == 1000) {
+                    confirm("购买成功!")
+                } else {
+                    confirm(data.msg);
+                }
+
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -329,11 +404,24 @@
         })
     }
 
-    function specActive(id, tmpName) {
+    function productTypeCheck(type) {
+        $("#productCount").val(type);
+        ConnType = type;
+        priceChange();
+    }
+
+    function specActive(id, tmpName, specTitle, specId) {
         $("#specList li").removeClass("specActive");
         $("#" + id + "").addClass("specActive");
-        // console.log(tmpName);
-        $("#specPrice").text("¥" + tmpName[0]);
+        $("#productSpecId").val(specId);
+        ConnName = tmpName;
+        ConnTitle = specTitle;
+        priceChange();
+    }
+
+    function priceChange() {
+        let price = ConnName[ConnType] * ConnCount;
+        $("#specPrice").text("¥" + price);
     }
 
     // 初始化热销产品

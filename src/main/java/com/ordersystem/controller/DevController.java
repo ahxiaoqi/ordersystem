@@ -62,6 +62,10 @@ public class DevController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    SpecService specService;
+
+
     private final String DEV_INDEX = "dev/index";
     private final String DEV_CATEGORY = "dev/category";
     private final String DEV_PRODUCT = "dev/product";
@@ -223,6 +227,46 @@ public class DevController {
         return productService.selectOneByWrapper(Product.builder().productId(productId).build());
     }
 
+    // 规格列表
+    @ResponseBody
+    @RequestMapping(value = "get_product_spec", method = RequestMethod.POST)
+    public List<Spec> getProductSpecList(@RequestParam("productId") Integer productId) {
+        return specService.selectListByWrapper(Spec.builder().productId(productId).build());
+    }
+
+    // 规格详情
+    @ResponseBody
+    @RequestMapping(value = "get_spec_detail", method = RequestMethod.POST)
+    public Spec getProductSpecDetail(@RequestParam("specId") Integer specId) {
+        return specService.selectOneByWrapper(Spec.builder().specId(specId).build());
+    }
+
+    // 规格列表
+    @ResponseBody
+    @RequestMapping(value = "del_spec", method = RequestMethod.POST)
+    public ReturnData delSpec(@RequestParam("specId") Integer specId) {
+        try {
+            specService.deleteById(specId);
+            return ReturnData.returnData(null);
+        } catch (Exception e) {
+            logger.info("删除规格出错{}", e.getMessage());
+            return ReturnData.returnError(1001, "保存出错");
+        }
+    }
+
+    // 保存规格
+    @ResponseBody
+    @RequestMapping(value = "save_spec", method = RequestMethod.POST)
+    public ReturnData getProductSpec(Spec spec) {
+        try {
+            specService.save(spec);
+            return ReturnData.returnData(null);
+        } catch (Exception e) {
+            logger.info("保存规格出错{}", e.getMessage());
+            return ReturnData.returnError(1001, "保存出错");
+        }
+    }
+
     // 获取标签列表
     @ResponseBody
     @RequestMapping(value = "innitTagList", method = RequestMethod.POST)
@@ -248,7 +292,7 @@ public class DevController {
     @ResponseBody
     @RequestMapping(value = "innitOrder", method = RequestMethod.POST)
     public IPage<Order> innitOrder(Page<Order> page, Order order) {
-        return orderService.innitSlide(page, order);
+        return orderService.innitOrder(page, order);
     }
 
     // 轮播图列表
@@ -362,6 +406,7 @@ public class DevController {
         }
         return ReturnData.returnData(null);
     }
+
 
 
     @PostMapping("/upload")

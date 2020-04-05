@@ -7,6 +7,7 @@
 		<title>BuyMore - eCommerce Bootstrap Template</title>
 
         <div th:insert="buyMore/common/css :: css"></div>
+
 	</head>	
     
     <body>
@@ -19,8 +20,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="section-title col-md-offset-3 col-md-6 text-center">
-                            <h2>FAQ</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam                                     malesuada erat ut turpis.</p>
+                            <h2>我的订单</h2>
+<!--                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam                                     malesuada erat ut turpis.</p>-->
                         </div>
                     </div>
                 </div>    
@@ -148,274 +149,70 @@
                         </div><!--collapse-->
                     </div>
                     <!-- right sidebar -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="sidebar">
-                            <!-- category widget -->
-                            <div class="panel widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Category</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="category-list">
-                                        <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                        <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Size widget -->
-                            <div class="panel widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Size</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-inline size">
-                                        <li class="active">XS</li>
-                                        <li>SM</li>
-                                        <li>MD</li>
-                                        <li>LG</li>
-                                        <li>XL</li>
-                                    </ul>   
-                                </div>
-                            </div>
-                            <!-- Manufatues widget -->
-                            <div class="panel manufatue widget panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Manufactues</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="category-list">
-                                        <li><i class="side-icon pull-right active">15</i>Gucci </li>
-                                        <li><i class="side-icon pull-right active">37</i>Asos </li>
-                                        <li><i class="side-icon pull-right active">50</i>Blubery </li>
-                                        <li><i class="side-icon pull-right active">78</i>H&M </li>
-                                        <li><i class="side-icon pull-right active">94</i>Tesco </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                        <div class="sidebar">-->
+<!--                            &lt;!&ndash; category widget &ndash;&gt;-->
+<!--                            <div class="panel widget panel-default">-->
+<!--                                <div class="panel-heading">-->
+<!--                                    <h3 class="panel-title">Category</h3>-->
+<!--                                </div>-->
+<!--                                <div class="panel-body">-->
+<!--                                    <ul class="category-list">-->
+<!--                                        <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
+<!--                                        <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
+<!--                                        <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
+<!--                                        <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
+<!--                                        <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Size widget &ndash;&gt;-->
+<!--                            <div class="panel widget panel-default">-->
+<!--                                <div class="panel-heading">-->
+<!--                                    <h3 class="panel-title">Size</h3>-->
+<!--                                </div>-->
+<!--                                <div class="panel-body">-->
+<!--                                    <ul class="list-inline size">-->
+<!--                                        <li class="active">XS</li>-->
+<!--                                        <li>SM</li>-->
+<!--                                        <li>MD</li>-->
+<!--                                        <li>LG</li>-->
+<!--                                        <li>XL</li>-->
+<!--                                    </ul>   -->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Manufatues widget &ndash;&gt;-->
+<!--                            <div class="panel manufatue widget panel-default">-->
+<!--                                <div class="panel-heading">-->
+<!--                                    <h3 class="panel-title">Manufactues</h3>-->
+<!--                                </div>-->
+<!--                                <div class="panel-body">-->
+<!--                                    <ul class="category-list">-->
+<!--                                        <li><i class="side-icon pull-right active">15</i>Gucci </li>-->
+<!--                                        <li><i class="side-icon pull-right active">37</i>Asos </li>-->
+<!--                                        <li><i class="side-icon pull-right active">50</i>Blubery </li>-->
+<!--                                        <li><i class="side-icon pull-right active">78</i>H&M </li>-->
+<!--                                        <li><i class="side-icon pull-right active">94</i>Tesco </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>    
-        </section>    
-        
-		<!-- Top footer -->
-		<section class="top-footer">
-            <div class="top-footer-overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Post From Blog</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                                 <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>Dec 23, 2015</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$25</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$45</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$35</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$85</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Top Sale Items</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$15</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$25</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$235</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status footer-bg">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                       <small>$55</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="top-footer-title"><h3 class="dash">Trendy Fashion</h3></div>
-                            <ul class="media-list">
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$95</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$55</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$45</small>
-                                    </div>
-                                </li>
-                                <li class="media latest-status">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="images/footer.jpg" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Lorem ipsum dolor sit amet consectetuer.</p>
-                                        <small>$65</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>    
-                </div> 
-			</div> 
-		</section>
-        
-        <!-- Middle footer -->
-		<section class="middle-footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-md-offset-2 col-md-8 col-xs-12 text-center">
-                        <div class="input-group subscribe-form input-group-lg">
-                            <input type="text" class="form-control" placeholder="Your Email Here" aria-describedby="sizing-addon1">
-                            <span class="input-group-addon subscribe-btn" id="sizing-addon1">Subscribe <i class="fa fa-send hidden-xs"></i></span>
-                        </div>
-                        <div>
-                            <a class="site-title" href="index.html">Buy<span>More</span></a>
-                            <p class="m-f-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit agrel. Donec odio. Quisque volutpat mattis eros. Nullam                               malesuada erat ut turpis. Suspendisse urna nibh viverra non.</p>
-                        </div>    
-                        <ul class="list-inline social-icon">
-                            <li><i class=" fa fa-facebook"></i></li>
-                            <li><i class=" fa fa-google-plus"></i></li>
-                            <li><i class=" fa fa-linkedin"></i></li>
-                            <li><i class=" fa fa-twitter"></i></li>
-                            <li><i class=" fa fa-skype"></i></li>
-                        </ul>
-                        <ul class="list-inline address">
-                            <li><i class=" lnr lnr-home"></i>Uk Street, Unesco limted Road</li>
-                            <li><i class=" lnr lnr-envelope"></i>infogmail@gmail.com</li>
-                            <li><i class=" lnr lnr-phone-handset"></i>(+8802) 890 876; (+8802) 790 776</li>
-                        </ul>
-                    </div>
-				</div>    
-			</div> 
-		</section>
-        
-        <!-- bottom footer -->
-		<footer class="bottom-footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-md-offset-3 col-md-6 col-xs-12 text-center">
-                        <p>BuyMore Template <i class=" lnr lnr-heart"></i> Boot Ultra | All Rights Reserved / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-                    </div>
-				</div>    
-			</div> 
-		</footer>
+        </section>
 
+
+        <!-- 通用footer -->
+        <div th:insert="buyMore/common/footer :: footer"></div>
         <script th:replace="buyMore/common/js :: js"></script>
+    <script>
+        $(function () {
+            innit();
+        });
+        function innit() {
+            innitFooterBox();
+        }
+    </script>
     </body>
 </html>
