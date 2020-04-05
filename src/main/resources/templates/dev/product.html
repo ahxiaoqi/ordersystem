@@ -79,7 +79,7 @@
                         <span class="badge badge-count">50</span>
                     </a>
                 </li>
-                <li class="nav-item " >
+                <li class="nav-item ">
                     <a href="slide.html">
                         <i class="la la-keyboard-o"></i>
                         <p>轮播图</p>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="form-group">
                     <label>产品图</label>
-                    <div class="row" style="height: 300px">
+                    <div class="row">
 
                         <form id="productFileForm" enctype="multipart/form-data">
                             <div class="form-group">
@@ -226,7 +226,7 @@
                 </div>
                 <div class="form-group">
                     <label>产品图详情图</label>
-                    <div class="row" style="height: 300px">
+                    <div class="row">
 
                         <form id="productFileForm2" enctype="multipart/form-data">
                             <div class="form-group">
@@ -261,7 +261,88 @@
         </div>
     </div>
 </div>
+<!--商品规格-->
+<div class="modal fade" id="productSpecModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">商品规格</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="productId2spec">
+                <label>规格列表</label>
+                <div>
+                    <table class="table table-head-bg-success table-bordered-bd-info mt-4">
+                        <thead>
+                        <tr>
+                            <th scope="col">序号</th>
+                            <th scope="col">规格标题</th>
+                            <th scope="col">规格描述</th>
+                            <th scope="col">价格</th>
+                            <th scope="col">创建时间</th>
+                            <th scope="col">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productSpecTr">
 
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary" onclick="specAddView()">规格添加</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--规格添加-->
+<div class="modal fade" id="specAddModel" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h6 class="modal-title">规格信息</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="hidden" id="specId">
+                    <label>规格名称</label>
+                    <input type="text" class="form-control" id="specTitle" placeholder="请输入规格名称">
+                </div>
+                <div class="form-group">
+                    <label>规格描述</label>
+                    <input type="text" class="form-control" id="specDescription" placeholder="请输入规格描述">
+                </div>
+                <div class="form-group">
+                    <label>小份价格</label>
+                    <input type="text" class="form-control" id="price1" placeholder="请输入小份价格">
+                </div>
+                <div class="form-group">
+                    <label>中份价格</label>
+                    <input type="text" class="form-control" id="price2" placeholder="请输入中份价格">
+                </div>
+                <div class="form-group">
+                    <label>大份价格</label>
+                    <input type="text" class="form-control" id="price3" placeholder="请输入大份价格">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveSpec()">保存</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--提示-->
 <div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
@@ -297,8 +378,8 @@
         $("#categoryDrop").change(function () {
             innitSubCategoryName($("#categoryDrop").val());
         });
-        $("#detailCategory").change(function(){
-            detailSubCategoryName( $("#detailCategory").val());
+        $("#detailCategory").change(function () {
+            detailSubCategoryName($("#detailCategory").val());
         });
         initFileInput("file-Portrait", "eryTuUd4/dev/upload");
         initFileInput("file-Portrait2", "eryTuUd4/dev/upload");
@@ -411,7 +492,7 @@
         })
     }
 
-    function innitTagList(){
+    function innitTagList() {
         $.ajax({
             url: "innitTagList",
             dataType: "json",
@@ -467,7 +548,7 @@
                         str += "<td> " + categoryName + " </td>\n" +
                             "<td> " + subCategoryName + " </td>\n" +
                             "<td> " + item.price + " </td>\n" +
-                            "<td> <img style='width:62px;height:82px' src='" + item.image + "'></td>\n"+
+                            "<td> <img style='width:62px;height:82px' src='" + item.image + "'></td>\n" +
                             "<td> <img style='width:62px;height:82px' src='" + item.detailImage + "'></td>\n";
                         let productTagStr = "无";
                         if (item.productTagStr != null) {
@@ -479,7 +560,8 @@
                             isNewStr = "是";
                         }
                         str += "<td> " + isNewStr + " </td>\n" +
-                            "<td> <button class=\"btn btn-success\" onclick='productEdit(" + item.productId + ")'>编辑</button>&nbsp;" +
+                            "<td> <button class=\"btn btn-success\" onclick='productEdit(" + item.productId + ")'>商品信息</button>&nbsp;" +
+                            " <button class=\"btn btn-success\" onclick='productSpec(" + item.productId + ")'>商品规格</button>&nbsp;" +
                             "<button class=\"btn btn-danger\" onclick='del(1," + item.productId + ")'>删除</button> </td></tr>";
                         productTableTr.append(str);
                     });
@@ -506,9 +588,24 @@
         $("#productModel").modal("show");
     }
 
+    function specAddView() {
+        $("#specId").val("");
+        $("#specTitle").val("");
+        $("#specDescription").val("");
+        $("#price1").val("");
+        $("#price2").val("");
+        $("#price3").val("");
+        $("#specAddModel").modal("show");
+    }
+
     function productEdit(productId) {
         productDetail(productId);
         $("#productModel").modal("show");
+    }
+
+    function productSpec(productId) {
+        productSpecList(productId);
+        $("#productSpecModel").modal("show");
     }
 
     function productDetail(productId) {
@@ -527,6 +624,67 @@
                 $("#price").val(data.price);
                 $("#tag").val(data.productTagId);
                 $("#isNew").val(data.isNew);
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function specEdit(specId) {
+        $.ajax({
+            url: "get_spec_detail",
+            dataType: "json",
+            type: "post",
+            data: {"specId": specId},
+            success: function (data) {
+                console.log(data);
+                $("#specId").val(data.specId);
+                $("#specTitle").val(data.specTitle);
+                $("#specDescription").val(data.description);
+                let price = data.price.split(",");
+                $("#price1").val(price[0]);
+                $("#price2").val(price[1]);
+                $("#price3").val(price[2]);
+                $("#specAddModel").modal("show");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function productSpecList(productId) {
+        $("#productId2spec").val(productId);
+        $.ajax({
+            url: "get_product_spec",
+            dataType: "json",
+            type: "post",
+            data: {"productId": productId},
+            success: function (data) {
+                console.log(data);
+                const specTr = $("#productSpecTr");
+                specTr.empty();
+                let str = "";
+                data.forEach(function (item, index) {
+                    str += "<tr>";
+                    str += "<td>" + index + 1 + "</td>";
+                    str += "<td>" + item.specTitle + "</td>";
+                    str += "<td>" + item.description + "</td>";
+                    let price = item.price.split(",");
+                    str += "<td>" +
+                        "<p>小份:" + price[0] + "</p>" +
+                        "<p>中份:" + price[1] + "</p>" +
+                        "<p>大份:" + price[2] + "</p>" +
+                        "</td>";
+                    str += "<td>" + item.createTime + "</td>";
+                    str += "<td>" +
+                        "<button class=\"btn btn-success\" onclick='specEdit(" + item.specId + ")'>规格信息</button>&nbsp;" +
+                        "<button class=\"btn btn-danger\" onclick='delSpecView(" + item.specId + ")'>删除</button>";
+                    "</td>";
+                    str += "</tr>";
+                });
+                specTr.append(str);
             },
             error: function () {
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
@@ -587,6 +745,64 @@
 
     }
 
+    function saveSpec() {
+        let price = "";
+        let tmp1 = isNaN(parseInt($("#price1").val())) ? 0 : $("#price1").val();
+        let tmp2 = isNaN(parseInt($("#price2").val())) ? 0 : $("#price2").val();
+        let tmp3 = isNaN(parseInt($("#price3").val())) ? 0 : $("#price3").val();
+        price = tmp1 + "," + tmp2 + "," + tmp3;
+        $.ajax({
+            url: "save_spec",
+            dataType: "json",
+            type: "post",
+            data: {
+                "specId": $("#specId").val(),
+                "specTitle": $("#specTitle").val(),
+                "productId": $("#productId2spec").val(),
+                "description": $("#specDescription").val(),
+                "price": price
+            },
+            success: function (data) {
+                console.log(data);
+                $("#specAddModel").modal("hide");
+                tips("操作成功");
+                productSpecList($("#productId2spec").val());
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+
+    }
+
+    function delSpecView(specId) {
+        $("#delBtn").unbind();
+        $("#delBtn").click(function () {
+            delSpec(specId)
+        });
+        $("#tipsBox").empty();
+        $("#tipsBox").append("确定要删除该规格吗?");
+        $("#tips").modal("show");
+    }
+
+    function delSpec(specId) {
+        $.ajax({
+            url: "del_spec",
+            dataType: "json",
+            type: "post",
+            data: {
+                "specId": specId,
+            },
+            success: function (data) {
+                // alert("操作成功!");
+                productSpecList($("#productId2spec").val());
+                $("#tips").modal("hide");
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
 
     function del(type, productId) {
         $("#delBtn").unbind();

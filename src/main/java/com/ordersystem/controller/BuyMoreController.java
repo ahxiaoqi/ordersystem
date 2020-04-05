@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ordersystem.data.ReturnData;
 import com.ordersystem.entity.*;
-import com.ordersystem.entity.dto.ActivityDto;
-import com.ordersystem.entity.dto.CommentDto;
-import com.ordersystem.entity.dto.ProductDto;
-import com.ordersystem.entity.dto.productBuyDto;
+import com.ordersystem.entity.dto.*;
 import com.ordersystem.service.impl.*;
 import com.ordersystem.util.MConstant.MConstant;
 import org.slf4j.Logger;
@@ -71,6 +68,9 @@ public class BuyMoreController {
 
     @Autowired
     SubCategoryService subCategoryService;
+
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String clogin(Model model, HttpServletRequest request) {
@@ -236,10 +236,16 @@ public class BuyMoreController {
         return productService.innitProductDetail(productId);
     }
 
+    // 直接购买
     @ResponseBody
-    @RequestMapping(value = "buy_product", method = RequestMethod.POST)
-    public ReturnData buyProduct(productBuyDto product) {
-        return ReturnData.returnData(null);
+    @RequestMapping(value = "buy_now", method = RequestMethod.POST)
+    public ReturnData buyNow(OrderBuyNowDto orderBuyNowDto) {
+        try {
+            return orderService.buyNow(orderBuyNowDto);
+        } catch (Exception e) {
+            logger.info("购买错误{}", e.getMessage());
+            return ReturnData.returnError(1001, "购买错误");
+        }
     }
 
 }

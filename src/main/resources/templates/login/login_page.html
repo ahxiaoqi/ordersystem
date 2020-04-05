@@ -220,7 +220,7 @@
                     bs4pop.notice("登录成功", {position: 'topcenter'});
                     setTimeout(function () {
                         $.cookie('accountId', username, { expires: 1 ,path:  "/"});
-                        console.log($.cookie("accountId"))
+                        console.log($.cookie("accountId"));
                         $(location).prop('href', data.msg);
                         // $(location).prop("pathname",data.msg);
                         // console.log($(location))

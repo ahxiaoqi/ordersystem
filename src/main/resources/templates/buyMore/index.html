@@ -401,7 +401,7 @@
                     categoryDetailBox.append("   <div class=\"col-md-3 col-sm-6 col-xs-12\">\n" +
                         "                        <div class=\"ad-box-1\">\n" +
                         "                        <img style='width:270px;height:250px' src=\"" + item.image + "\" alt=\"bag\"/>\n" +
-                        "                        <div class=\"overlay\">\n" +
+                        "                        <div class=\"overlay\" onclick=''>\n" +
                         "                        <small>" + item.tag + "</small>\n" +
                         "                    <h3>" + item.description + "</h3>\n" +
                         "                    </div>\n" +
@@ -605,7 +605,7 @@
             type: "post",
             data: {"size": 3},
             success: function (data) {
-                console.log("初始化评论墙------------------------------------->")
+                console.log("初始化评论墙------------------------------------->");
                 console.log(data);
                 console.log("------------------------------------------------");
                 if (data.length >= 1) {
