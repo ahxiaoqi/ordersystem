@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ordersystem.entity.Product;
 import com.ordersystem.entity.dto.CommentDto;
 import com.ordersystem.entity.dto.ProductDto;
+import com.ordersystem.entity.dto.productCarDto;
 import com.ordersystem.provider.productMapperProvider;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
@@ -24,7 +25,8 @@ public interface ProductMapper extends BaseMapper<Product> {
             "a.`activityId` = b.activityId LEFT JOIN  t_product_tag c ON a.`productTagId` = c.`productTagId` ORDER BY RAND() LIMIT #{num}")
     List<ProductDto> selectHotProduct(int num);
 
-    @Select("select a.*,b.detail as commentDetail,b.month,b.year,b.day from t_product a left join t_comment b on a.productId = b.productId order by b.createTime limit 1,#{size}")
+    @Select("SELECT b.*,a.detail AS commentDetail,a.month,a.year,a.day FROM t_comment a LEFT JOIN t_product b ON \n" +
+            "a.productId = b.productId ORDER BY a.commentId LIMIT #{size}")
     List<ProductDto> innitNewCommentBox(Integer size);
 
     @Select("select a.price,a.image,a.description,b.year,b.month,b.day from t_product a left join t_comment b on a.productId = b.productId limit #{start},#{end}")
@@ -46,4 +48,7 @@ public interface ProductMapper extends BaseMapper<Product> {
     })
     ProductDto innitProductDetail(Integer productId);
 
+    @Select("SELECT a.productId,a.productName,b.specId,b.specTitle,a.image FROM `t_product` a LEFT JOIN `t_spec` b ON " +
+            "a.`productId` = b.`productId` WHERE b.productId = #{productId} AND b.`specId` = #{specId}")
+    productCarDto getCarProductDetail(productCarDto carDto);
 }

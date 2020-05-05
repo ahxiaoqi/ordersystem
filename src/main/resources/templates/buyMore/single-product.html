@@ -41,11 +41,11 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="menu-link">
                     <div class="well well-lg page-label">
-                        <h3 class="pull-left">Single Product</h3>
+                        <h3 class="pull-left">商品详情</h3>
                         <ul class="list-inline pull-right">
-                            <li>Home</li>
+                            <li>首页</li>
                             <li><i class="fa fa-angle-double-right"></i></li>
-                            <li>Single Product</li>
+                            <li>商品详情</li>
                         </ul>
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                     }
                     str += "                    <div id='specPrice' class=\"price\">$287.99</div>\n" +
                         "                    <div class=\"order-tag\">Tellus accumsan purus diam molestias</div>\n" +
-                        "                    <div class=\"add-cart\"><a class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='addCar()'><i class=\"lnr lnr-cart\"></i>添加到购物车</a>\n" +
+                        "                    <div class=\"add-cart\"><a class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='addCar(" + data.productId + ")'><i class=\"lnr lnr-cart\"></i>添加到购物车</a>\n" +
                         "                   <a class=\"btn btn-add\" href=\"javacript:void(0);\" onclick='buy(\"" + data.productName + "\"," + data.productId + ")' >立即购买</a>   \n" +
                         "                    </div>\n" +
                         "                </div>\n" +
@@ -320,25 +320,42 @@
         priceChange();
     }
 
-    function addCar(productId, specId, type, count) {
-        alert("加入购物车");
-        $.ajax({
-            url: "add_car",
-            dataType: "json",
-            type: "post",
-            data: {
-                "productId": productId,
-                "specId": specId,
-                "type": specId,
-                "count": count
-            },
-            success: function (data) {
-                bs4pop.notice('加入购物车成功!', {position: 'topcenter'});
-            },
-            error: function () {
-                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
-            }
-        })
+    function addCar(productId) {
+        let accountId = $.cookie("accountId");
+        let oldJson =  window.localStorage.getItem('carProduct' + accountId + '');
+        let carProductList = [];
+        let carProduct = {
+            "price": ConnName[ConnType] * ConnCount,
+            "userName": accountId,
+            "productId": productId,
+            "specId": $("#productSpecId").val(),
+            "type": ConnType,
+            "count": ConnCount,
+        };
+        if (oldJson != null){
+            carProductList = JSON.parse(oldJson);
+        }
+        carProductList.push(carProduct);
+        window.localStorage.setItem('carProduct' + accountId + '',JSON.stringify(carProductList));
+        confirm("加入购物车成功!");
+        $("#shoppingCarTips").html(carProductList.length);
+        // $.ajax({
+        //     url: "add_car",
+        //     dataType: "json",
+        //     type: "post",
+        //     data: {
+        //         "productId": productId,
+        //         "specId": specId,
+        //         "type": specId,
+        //         "count": count
+        //     },
+        //     success: function (data) {
+        //         bs4pop.notice('加入购物车成功!', {position: 'topcenter'});
+        //     },
+        //     error: function () {
+        //         bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+        //     }
+        // })
     }
 
     function buy(productName, productId) {
@@ -370,6 +387,8 @@
         }
         str += "</p>";
         str += "<p>总价:" + ConnName[ConnType] * ConnCount + "</p>";
+        str += "<input type='text' class=\"form-control\" id='tel' placeholder='请输入电话'></br>";
+        str += "<input type='text' class=\"form-control\" id='address' placeholder='请输入联系地址'>";
         $("#tipsBox").append(str);
         $("#tips").modal("show");
     }
@@ -387,7 +406,9 @@
                 "type": ConnType,
                 "count": ConnCount,
                 "price": price,
-                "userName":userName
+                "userName": userName,
+                "tel": $("#tel").val(),
+                "address": $("#address").val()
             },
             success: function (data) {
                 $("#tips").modal("hide");

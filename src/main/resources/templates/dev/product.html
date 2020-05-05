@@ -668,7 +668,8 @@
                 let str = "";
                 data.forEach(function (item, index) {
                     str += "<tr>";
-                    str += "<td>" + index + 1 + "</td>";
+                    let num = index + 1;
+                    str += "<td>" + num + "</td>";
                     str += "<td>" + item.specTitle + "</td>";
                     str += "<td>" + item.description + "</td>";
                     let price = item.price.split(",");

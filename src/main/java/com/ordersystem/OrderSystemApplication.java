@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@MapperScan("com.orderSystem.mapper")
 @SpringBootApplication
 public class OrderSystemApplication {
 

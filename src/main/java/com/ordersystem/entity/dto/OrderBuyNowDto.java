@@ -26,9 +26,15 @@ public class OrderBuyNowDto {
 
     private Integer count;
 
+    private Integer productId;
+
     private Integer specId;
 
     private Integer specType;
+
+    private Integer tel;
+
+    private String address;
 
     private String createTime;
 

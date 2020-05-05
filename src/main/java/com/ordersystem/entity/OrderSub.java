@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.beans.Transient;
+import java.io.Serializable;
+
 /**
  * @author ahxiaoqi
  * @date 2020/3/29 23:27
@@ -18,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @TableName("t_order_sub")
-public class OrderSub {
+public class OrderSub implements Serializable {
 
     @TableId(type = IdType.AUTO, value = "orderSubId")
     private Integer orderSubId;
@@ -49,5 +52,8 @@ public class OrderSub {
 
     @TableField(value = "createTime")
     private String createTime;
+
+    @TableField(value = "isComment")
+    private Integer isComment;
 
 }

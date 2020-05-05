@@ -1,218 +1,259 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<title>BuyMore - eCommerce Bootstrap Template</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>BuyMore - eCommerce Bootstrap Template</title>
 
-        <div th:insert="buyMore/common/css :: css"></div>
+    <!--======== All Stylesheet =========-->
+    <link th:href="@{${buyResPath}}+'/bootstrap/css/bootstrap.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/font-awesome.min.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/linearicons.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/style.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/responsive.css'" rel="stylesheet"/>
+    <link th:href="@{${buyResPath}}+'/css/selfStyle.css'" rel="stylesheet"/>
+</head>
 
-	</head>	
-    
-    <body>
-		<!-- Header -->
-        <div th:insert="buyMore/common/header :: copy"></div>
-            
-        <!-- page header -->    
-        <section class="page-header">
-            <div class="page-header-overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title col-md-offset-3 col-md-6 text-center">
-                            <h2>我的订单</h2>
-<!--                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam                                     malesuada erat ut turpis.</p>-->
-                        </div>
+<body>
+<!-- Header -->
+<div th:insert="buyMore/common/header :: copy"></div>
+
+<!-- page header -->
+<section class="page-header">
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="section-title col-md-offset-3 col-md-6 text-center">
+                    <h2>订单列表</h2>
+                    <!--                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis-->
+                    <!--                        eros. Nullam malesuada erat ut turpis.</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- menu row -->
+<section class="menu-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="menu-link">
+                    <div class="well well-lg page-label">
+                        <h3 class="pull-left">我的订单</h3>
+                        <ul class="list-inline pull-right">
+                            <li>主页</li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li>我的订单</li>
+                        </ul>
                     </div>
-                </div>    
-            </div>    
-        </section> 
-         
-        <!-- menu row -->    
-        <section class="menu-row">    
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="menu-link">
-                            <div class="well well-lg page-label">
-                                <h3 class="pull-left">FAQ</h3>
-                                <ul class="list-inline pull-right">
-                                    <li>Home</li>
-                                    <li><i class="fa fa-angle-double-right"></i></li>
-                                    <li>FAQ</li>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product -->
+<section class="product-list">
+    <div class="grid-product">
+        <div class="container">
+            <div class="row">
+                <!-- left sidebar -->
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <!-- category widget -->
+                        <div class="panel widget panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">分类</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul id="categoryBox" class="category-list">
+                                    <li id='categoryLi1' onclick=" categoryClick(this.id,2);">
+                                        <i class="fa fa-eye side-icon pull-left categoryHref active"></i>未评论<i
+                                            class="fa fa-angle-right pull-right"></i>
+                                    </li>
+                                    <li id='categoryLi2' onclick=" categoryClick(this.id,1);">
+                                        <i class="fa fa-eye side-icon pull-left categoryHref"></i>已评论<i
+                                            class="fa fa-angle-right pull-right"></i>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>  
-        
-        <!-- FAQ -->
-        <section class="faq-section faq-brands">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9 col-sm-6 col-xs-12">
-                        <div class="section-title">
-                            <h3>FAQ</h3>
-                            <small>Our faq vehicula pede leo ante vitae primis</small>
-                            <span class="section-border"><span class="dash"></span></span>
+                <!-- product list -->
+                <div class="col-md-9">
+                    <!-- ad 3 -->
+                    <div class="row">
+                        <div class="ad-3">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div><img class="img-responsive ad-3" src="/res/buy_more/images/banner1.jpg" alt=""/>
+                                </div>
+                            </div>
                         </div>
-                        <p class="faq-description">Lorem ipsum dolor sit amet, eu adipiscing volutpat, mus augue pede. Dui massa gravida amet sed, praesent pretium aliquam ligula rutrum, elit et risus cum tincidunt ipsum amet sed.</p>
-                        
-                        <!-- faq collapse -->
-                        <div class="panel-group faq" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading active" role="tab" id="headingOne">
-                                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#1" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-question-circle
-"></i>Women Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Nec elit in pede, at sagittis, vitae aliquet vehicula feugiat. Cras dui, libero purus aptent velit sit aenean, volutpat nec sollicitudin ante fermentum ac, dui quisque ante. Mattis proin lectus scelerisque justo, facilisis scelerisque vitae at sociosqu ipsum dolor, id risus laoreet mauris leo volutpat, cras ut ut sodales. Pretium aliquam sit nunc porttitor wisi vestibulum, vel aenean accumsan gravida et massa volutpat. Dolor fusce vestibulum in, montes sit vel ligula vestibulum, erat aliquet amet mattis ultrices. Neque velit non sit quis ante nulla, at orci impedit a mi erat, et at interdum. Nascetur dolor, odio volutpat nulla pede urna euismod rutrum.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#2" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#3" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#4" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#5" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#6" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#7" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-question-circle
-"></i>Men Latest fashion Clothes</a></h4>
-                                </div>
-                                <div id="7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <strong>Trendy Styles dolor sit amet reprehenderit</strong>
-                                        <p>Lorem ipsum dolor sit amet reprehenderit, enim eiusmod high life accusamus terry                                                                 richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck                                                 quinoa nesciunt laborum eiusmod.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--collapse-->
                     </div>
-                    <!-- right sidebar -->
-<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
-<!--                        <div class="sidebar">-->
-<!--                            &lt;!&ndash; category widget &ndash;&gt;-->
-<!--                            <div class="panel widget panel-default">-->
-<!--                                <div class="panel-heading">-->
-<!--                                    <h3 class="panel-title">Category</h3>-->
-<!--                                </div>-->
-<!--                                <div class="panel-body">-->
-<!--                                    <ul class="category-list">-->
-<!--                                        <li><i class="fa fa-eye side-icon pull-left active"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
-<!--                                        <li><i class="fa fa-eyedropper side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
-<!--                                        <li><i class="fa fa-flash side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
-<!--                                        <li><i class="fa fa-flask side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
-<!--                                        <li><i class="fa fa-fire side-icon pull-left"></i>Premium Store <i class="fa fa-angle-right pull-right"></i></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Size widget &ndash;&gt;-->
-<!--                            <div class="panel widget panel-default">-->
-<!--                                <div class="panel-heading">-->
-<!--                                    <h3 class="panel-title">Size</h3>-->
-<!--                                </div>-->
-<!--                                <div class="panel-body">-->
-<!--                                    <ul class="list-inline size">-->
-<!--                                        <li class="active">XS</li>-->
-<!--                                        <li>SM</li>-->
-<!--                                        <li>MD</li>-->
-<!--                                        <li>LG</li>-->
-<!--                                        <li>XL</li>-->
-<!--                                    </ul>   -->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Manufatues widget &ndash;&gt;-->
-<!--                            <div class="panel manufatue widget panel-default">-->
-<!--                                <div class="panel-heading">-->
-<!--                                    <h3 class="panel-title">Manufactues</h3>-->
-<!--                                </div>-->
-<!--                                <div class="panel-body">-->
-<!--                                    <ul class="category-list">-->
-<!--                                        <li><i class="side-icon pull-right active">15</i>Gucci </li>-->
-<!--                                        <li><i class="side-icon pull-right active">37</i>Asos </li>-->
-<!--                                        <li><i class="side-icon pull-right active">50</i>Blubery </li>-->
-<!--                                        <li><i class="side-icon pull-right active">78</i>H&M </li>-->
-<!--                                        <li><i class="side-icon pull-right active">94</i>Tesco </li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
+                    <!-- 商品列表 -->
+                    <div id="searchCondition">
+                        <input id="isComment" type="hidden" name="isComment" value="2">
+                    </div>
+                    <div id="productListBox" tabindex="0" hidefocus="true">
+
+                    </div>
+                    <div id="page"></div>
+
                 </div>
-            </div>    
-        </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 通用footer -->
+<div th:insert="buyMore/common/footer :: footer"></div>
+
+<!--======== All Javascript =========-->
+<script th:src="@{${buyResPath}}+'/bootstrap/js/jquery-2.1.1.js'" type="text/javascript"></script>
+<script th:src="@{${buyResPath}}+'/bootstrap/js/bootstrap.min.js'" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="/res/pop/js/bs4.pop.js" type="text/javascript"></script>
+<script src="/res/page/xlPaging.js" type="text/javascript"></script>
+<script th:replace="buyMore/common/loginCheck :: loginCheck"></script>
+
+<script>
+    $(function () {
+        innit();
+        innitFooterBox();
+    });
+
+    // 初始化方法
+    function innit() {
+        innitMyOrderList();
+    }
 
 
-        <!-- 通用footer -->
-        <div th:insert="buyMore/common/footer :: footer"></div>
-        <script th:replace="buyMore/common/js :: js"></script>
-    <script>
-        $(function () {
-            innit();
-        });
-        function innit() {
-            innitFooterBox();
+    // 设置选中样式
+    function categoryClick(id, isComment) {
+        // console.log($(".categoryHref"));
+        $(".categoryHref").removeClass("active");
+        $("#" + id + " i:eq(0)").addClass("active");
+        $("#isComment").val(isComment);
+        innitMyOrderList();
+    }
+
+    // 初始化商品列表
+    function innitMyOrderList(current) {
+        var productListBox = $("#productListBox");
+        if (current == null || current <= 0) {
+            current = 1;
         }
-    </script>
-    </body>
+        const isComment = $("#isComment").val() == 0 ? null : $("#isComment").val();
+        if (userId == null) {
+            userId = 0;
+        }
+        $.ajax({
+            url: "innit_my_order_list",
+            dataType: "json",
+            type: "post",
+            data: {
+                "current": current,
+                "size": 3,
+                "accountId": userId,
+                "isComment": isComment,
+            },
+            success: function (data) {
+                console.log("初始化商品列表------------------------------------->")
+                console.log(data);
+                console.log("------------------------------------------------");
+                let str = "";
+                productListBox.empty();
+                if (data.records.length >= 1) {
+                    data.records.forEach(function (item, index) {
+                        if (index == 3) {
+                            str = "  <div class=\"row\">\n";
+                        } else {
+                            str = "  <div class=\"row m-30\">\n";
+                        }
+                        str += "                                <div class=\"col-md-4 col-sm-5 col-xs-12\">\n" +
+                            "                                    <div class=\"single-grid\">\n" +
+                            "                                        <div class=\"grid-img\">\n" +
+                            "                                            <img class=\"img-resposive\" src=\"" + item.product.image + "\" alt=\"women\" />\n" +
+                            "                                            <div class=\"grid-overlay\">\n" +
+                            "                                                <ul>\n" +
+                            "                                                    <li><i class=\"lnr lnr-link\"></i></li>\n" +
+                            "                                                    <li><i class=\"lnr lnr-heart\"></i></li>\n" +
+                            "                                                    <li><i class=\"lnr lnr-camera\"></i></li>\n" +
+                            "                                                    <li><i class=\"lnr lnr-cart\"></i></li>\n" +
+                            "                                                </ul>\n" +
+                            "                                            </div>\n" +
+                            "                                        </div>\t\n" +
+                            "                                    </div>\n" +
+                            "                                </div>\n" +
+                            "                                <div class=\"col-md-8 col-sm-7 col-xs-12 list-detail\">\n" +
+                            "                                    <h3>" + item.product.productName + " <span>¥" + item.price + "</span></h3>\n" +
+                            "                                    <p>" + item.product.description + "</p>\n" +
+                            "                                    <p>主订单编号:" + item.orderCode + "</p>\n" +
+                            "                                    <p>子订单编号:" + item.orderSubCode + "</p>\n";
+                        if (item.isComment == 2) {
+                            str += " <div><input type='text' style='margin-bottom: 10px' class=\"form-control\" id='comment" + index + "' placeholder='请输入评论'></div>\n" +
+                                "  <a href=\"javascript:void(0);\" class=\"btn btn-default\" onclick='comment(" + index + "," + item.productId + "," + item.orderId + "," + item.orderSubId + ")'><i class=\"lnr lnr-file-empty\" ></i>评论</a>\n";
+                        } else {
+                            str += "<h3>此订单已评论</h3>";
+                        }
+                        str += "                                </div>\n" +
+                            "                            </div>";
+                        productListBox.append(str);
+                    });
+                    productListBox.append(str);
+                    // 翻页插件
+                    boxFooter2(data.total, data.size, data.current, data.pages);
+                } else {
+                    $("#page").empty();
+                }
+            },
+            error: function () {
+                bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+            }
+        })
+    }
+
+    function comment(index, productId, orderId, orderSubId) {
+        $.ajax({
+            url: "product_comment",
+            dataType: "json",
+            type: "post",
+            data: {
+                "productId": productId,
+                "orderId": orderId,
+                "orderSubId": orderSubId,
+                "detail": $("#comment" + index + "").val()
+            },
+            success: function (res) {
+                if (res.code == 1000) {
+                    alert("保存成功");
+                    innitMyOrderList();
+                } else {
+                    alert(res.msg);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+    function boxFooter2(total, size, current, pages) {
+        $("#page").empty();
+        $("#page").paging({
+            nowPage: current, // 当前页码,默认为1
+            pageNum: pages, // 总页码
+            buttonNum: 7, //要展示的页码数量，默认为7，若小于5则为5
+            callback: function (num) { //回调函数,num为当前页码
+                // console.log(num);
+                innitMyOrderList(num);
+                productListBox.focus();
+            }
+        });
+    }
+</script>
+</body>
 </html>

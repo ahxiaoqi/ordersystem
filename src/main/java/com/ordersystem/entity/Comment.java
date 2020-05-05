@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.beans.Transient;
+
 /**
  * @author ahxiaoqi
  * @date 2020/2/1 0:23
@@ -33,10 +35,13 @@ public class Comment {
     private String image;
 
     @TableField(value = "month")
-    private String month;
+    private Integer month;
 
     @TableField(value = "day")
-    private String day;
+    private Integer day;
+
+    @TableField(value = "year")
+    private Integer year;
 
     @TableField(value = "createTime")
     private String createTime;

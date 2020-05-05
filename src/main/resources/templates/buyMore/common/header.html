@@ -1,4 +1,4 @@
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="copy">
     <header class="header">
@@ -30,11 +30,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-md-offset-7 col-xs-6">
                         <div class="cart-label dropdown">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <small class="hidden-xs">Shopping Cart</small> <i class="lnr lnr-cart"></i> <span>3</span>
+                            <a id="carBtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                               onclick="carBtn()" role="button" aria-haspopup="true" aria-expanded="false">
+                                <small class="hidden-xs">我的购物车</small> <i class="lnr lnr-cart"></i> <span
+                                    id="shoppingCarTips">0</span>
                             </a>
-                            <ul class="dropdown-menu carts">
-                                <li><p> Cart Empty !!! </p></li>
+                            <ul id="carBox" class="dropdown-menu carts">
                             </ul>
                         </div>
                     </div>
@@ -42,13 +43,37 @@
             </div>
         </div>
 
+        <!--提示-->
+        <div class="modal fade" id="carTips" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="padding-top: 15%" role="document">
+                <div class="modal-content" style="width:500px;">
+                    <div class="modal-header bg-primary">
+                        <h6 class="modal-title">提示</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="carTipsBox" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="carBuyBtn" type="button" class="btn btn-primary">确认</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="bottom-header">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <nav class="navbar navbar-default">
                         <div class="container">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-id" aria-expanded="false">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#menu-id" aria-expanded="false">
                                     <span class="sr-only">Toggle navigation</span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -56,11 +81,11 @@
                             </div>
                             <div class="collapse navbar-collapse" id="menu-id">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="index.html"  >首页</a>
+                                    <li><a href="index.html">首页</a>
                                     </li>
-                                    <li ><a href="product-grid.html">全部商品</a>
+                                    <li><a href="product-grid.html">全部商品</a>
                                     </li>
-                                    <li ><a href="blog-left-sidebar.html" >评论列表</a>
+                                    <li><a href="blog-left-sidebar.html">评论列表</a>
                                     </li>
                                     <li><a href="faq.html">我的订单</a></li>
                                     <li><a href="about.html">关于</a></li>
@@ -69,7 +94,8 @@
                                 <div class="nav-search">
                                     <form class="navbar-form navbar-right" role="search">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Search Your Item Here"><i class="fa fa-search search-btn"></i>
+                                            <input type="text" class="form-control" placeholder="Search Your Item Here"><i
+                                                class="fa fa-search search-btn"></i>
                                         </div>
                                     </form>
                                 </div>

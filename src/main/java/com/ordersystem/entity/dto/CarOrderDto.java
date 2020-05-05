@@ -1,18 +1,16 @@
 package com.ordersystem.entity.dto;
 
 
-import com.ordersystem.entity.OrderSub;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author ahxiaoqi
  * @date 2020/3/29 23:25
  */
 @Data
-public class OrderDto implements Serializable {
+public class CarOrderDto implements Serializable {
     private Integer orderId;
 
     private String orderCode;
@@ -31,5 +29,5 @@ public class OrderDto implements Serializable {
 
     private String address;
 
-    private List<OrderSub> orderSub;
+    private String orderSub;
 }
