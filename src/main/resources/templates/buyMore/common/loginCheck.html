@@ -6,6 +6,7 @@
 </head>
 <body>
 <script th:fragment="loginCheck">
+    var userId;
     $(function () {
         userInnit();
     });
@@ -19,11 +20,13 @@
                 data: {"accountId": accountId},
                 dataType: "json",
                 type: "post",
+                async: false,
                 success: function (data) {
                     console.log(data);
                     if (data.code == 1000) {
+                        userId = data.data.accountId;
                         $("#useroginBox").append("<li><i class=\"lnr lnr-heart\"></i>\n" +
-                            "                <span  class=\"hidden-xs\">" + data.msg + "</span>" +
+                            "                <span  class=\"hidden-xs\">" + data.data.userName + "</span>" +
                             "</li>");
                         $("#useroginBox").append("<li><i class=\"lnr lnr-heart\"></i>\n" +
                             "                <span onclick=\"loginOut()\" class=\"hidden-xs\">退出</span>" +

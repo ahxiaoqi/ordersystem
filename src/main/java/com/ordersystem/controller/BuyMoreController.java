@@ -116,9 +116,11 @@ public class BuyMoreController {
     @ResponseBody
     @RequestMapping(value = "accountIndo_innit", method = RequestMethod.POST)
     public ReturnData accountIndo_innit(String accountId, Model model, HttpServletRequest request, HttpSession session) {
-        if (Optional.ofNullable(session.getAttribute("accountId")).isPresent()) {
-            if (accountId.equals(session.getAttribute("accountId"))) {
-                return ReturnData.returnData(accountId);
+        if (Optional.ofNullable(session.getAttribute("account")).isPresent()) {
+            Account res = (Account) session.getAttribute("account");
+            if (accountId.equals(res.getUserName())) {
+                res.setPassWord("密码怎么能明文回显呢：）");
+                return ReturnData.returnData(null,res);
             }
             return ReturnData.returnError(1001, "未登录");
         }
@@ -239,13 +241,60 @@ public class BuyMoreController {
     // 直接购买
     @ResponseBody
     @RequestMapping(value = "buy_now", method = RequestMethod.POST)
-    public ReturnData buyNow(OrderBuyNowDto orderBuyNowDto) {
+    public ReturnData buyNow(OrderBuyNowDto orderBuyNowDto,HttpSession session) {
         try {
-            return orderService.buyNow(orderBuyNowDto);
+            return orderService.buyNow(orderBuyNowDto,session);
         } catch (Exception e) {
             logger.info("购买错误{}", e.getMessage());
             return ReturnData.returnError(1001, "购买错误");
         }
     }
 
+    // 获取购物车商品信息
+    @ResponseBody
+    @RequestMapping(value = "getCarProductDetail", method = RequestMethod.POST)
+    public ReturnData getCarProductDetail(productCarDto carDto,HttpSession session) {
+        try {
+            if (!Optional.ofNullable(session.getAttribute("account")).isPresent())
+                return ReturnData.returnError(1001, "未登录") ;
+
+            return ReturnData.returnData(null,productService.getCarProductDetail(carDto));
+        } catch (Exception e) {
+            logger.info("购物车商品信息获取出错{}", e.getMessage());
+            return ReturnData.returnError(1001, "购物车商品信息获取出错");
+        }
+    }
+    // 购物车
+    @ResponseBody
+    @RequestMapping(value = "car_buy", method = RequestMethod.POST)
+    public ReturnData carBuy(CarOrderDto orderDto,HttpSession session) {
+        try {
+            if (!Optional.ofNullable(session.getAttribute("account")).isPresent())
+                return ReturnData.returnError(1001, "未登录") ;
+            return ReturnData.returnData(null,orderService.carBuy(orderDto,session));
+        } catch (Exception e) {
+            logger.info("购物车商品信息获取出错{}", e.getMessage());
+            return ReturnData.returnError(1001, "购物车购买出错");
+        }
+    }
+    // 评论
+    @ResponseBody
+    @RequestMapping(value = "product_comment", method = RequestMethod.POST)
+    public ReturnData productComment(CommentAddDto comment,HttpSession session) {
+        try {
+            if (!Optional.ofNullable(session.getAttribute("account")).isPresent())
+                return ReturnData.returnError(1001, "未登录") ;
+            return commentService.productComment(comment,session);
+        } catch (Exception e) {
+            logger.info("评论失败{}", e.getMessage());
+            return ReturnData.returnError(1001, "评论失败");
+        }
+    }
+
+    // 我的订单
+    @ResponseBody
+    @RequestMapping(value = "innit_my_order_list",method = RequestMethod.POST)
+    public IPage<OrderSubDto> innitMyOrderList(OrderDto orderDto,Page<OrderDto> page){
+        return orderService.innitMyOrderList(orderDto,page);
+    }
 }

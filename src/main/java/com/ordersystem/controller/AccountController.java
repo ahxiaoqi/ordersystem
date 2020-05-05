@@ -54,7 +54,7 @@ public class AccountController {
                 case 1 :{
                     // 管理员
                     // 简单验证,session存用户名
-                    session.setAttribute("accountId",account.getUserName());
+                    session.setAttribute("account",res);
                     return ReturnData.returnData(MConstant.DEV_INDEX);
                 }
                 case 2 :{
@@ -63,7 +63,7 @@ public class AccountController {
                 }
                 case 3 :{
                     // 普通用户
-                    session.setAttribute("accountId",account.getUserName());
+                    session.setAttribute("account",res);
                     return ReturnData.returnData(MConstant.BUY_INDEX);
                 }
                 default:{

@@ -35,7 +35,13 @@ public class Order {
     @TableField(value = "status")
     private Integer status;
 
+    @TableField(value = "address")
+    private String address;
+
     @TableField(value = "createTime")
     private String createTime;
+
+    @TableField(value = "tel")
+    private Integer tel;
 
 }

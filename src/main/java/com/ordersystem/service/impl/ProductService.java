@@ -3,9 +3,11 @@ package com.ordersystem.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ordersystem.data.ReturnData;
 import com.ordersystem.entity.Product;
 import com.ordersystem.entity.dto.CommentDto;
 import com.ordersystem.entity.dto.ProductDto;
+import com.ordersystem.entity.dto.productCarDto;
 import com.ordersystem.mapper.ProductMapper;
 import com.ordersystem.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import java.util.Optional;
  * @date 2020/1/29 13:21
  */
 @Service
-public class ProductService  implements GeneralService<Product> {
+public class ProductService implements GeneralService<Product> {
 
     @Autowired
     @SuppressWarnings("all")
@@ -58,8 +60,8 @@ public class ProductService  implements GeneralService<Product> {
         return productMapper.selectHotProduct(num);
     }
 
-    public  IPage<ProductDto> initNewProduct(Page<Product> page) {
-        return productMapper.innitProductList(page,new Product());
+    public IPage<ProductDto> initNewProduct(Page<Product> page) {
+        return productMapper.innitProductList(page, new Product());
     }
 
     public List<ProductDto> innitNewCommentBox(Integer size) {
@@ -67,14 +69,18 @@ public class ProductService  implements GeneralService<Product> {
     }
 
     public List<CommentDto> innitFooterGoods(Integer start, Integer end) {
-        return productMapper.innitFooterGoods(start,end);
+        return productMapper.innitFooterGoods(start, end);
     }
 
     public IPage<ProductDto> innitProductListBox(Product product, Page<Product> page) {
-        return productMapper.innitProductList(page,product);
+        return productMapper.innitProductList(page, product);
     }
 
     public ProductDto innitProductDetail(Integer productId) {
         return productMapper.innitProductDetail(productId);
+    }
+
+    public productCarDto getCarProductDetail(productCarDto carDto) {
+        return productMapper.getCarProductDetail(carDto);
     }
 }

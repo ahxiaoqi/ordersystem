@@ -404,7 +404,7 @@
                             "                                <div class=\"col-md-8 col-sm-7 col-xs-12 list-detail\">\n" +
                             "                                    <h3>" + item.productName + " <span>¥" + item.price + "</span></h3>\n" +
                             "                                    <p>" + item.description + "</p>\n" +
-                            "                                    <a href=\"#\" class=\"btn btn-default\"><i class=\"lnr lnr-file-empty\" ></i>See Detail</a>\n" +
+                            "                                    <a href=\"javascript:void(0);\" class=\"btn btn-default\" onclick='showDetail("+item.productId+")'><i class=\"lnr lnr-file-empty\" ></i>查看详情</a>\n" +
                             "                                </div>\n" +
                             "                            </div>";
                         productListBox.append(str);
@@ -420,6 +420,10 @@
                 bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
             }
         })
+    }
+
+    function showDetail(productId) {
+        $(location).prop('href', "single-product.html?productId=" + productId);
     }
 
     function boxFooter2(total, size, current, pages) {

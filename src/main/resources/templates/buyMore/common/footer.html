@@ -135,6 +135,179 @@
             innitFooterGoodes("newGoodsBox1", "innit_buyMore_footer_goods", 1, 4);
             innitFooterGoodes("newGoodsBox2", "innit_buyMore_footer_goods", 5, 9);
             innitMinPriceGoodsBox();
+            // 购物车
+
+        }
+
+        function carBtn() {
+            let accountId = $.cookie("accountId");
+            let emptyStr = "<li><p> 购物车为空!!! </p></li>";
+            let carStr = "";
+            let carBox = $("#carBox");
+            carBox.empty();
+            let carProduct = JSON.parse(window.localStorage.getItem('carProduct' + accountId + ''));
+            if ($("#carBtn").attr("aria-expanded") == "false") {
+                if (carProduct == null || carProduct.length == 0) {
+                    carBox.append(emptyStr);
+                } else {
+                    carProduct.forEach(function (item, index) {
+                        let productInfo = getCarProductDetail(item.productId, item.specId);
+                        if (productInfo == null || productInfo === "") {
+                            alert("请先登录!");
+                            throw new Error("请先登录");
+                        }
+                        console.log(productInfo);
+                        let type = "";
+                        switch (productInfo.type) {
+                            case 0: {
+                                type += "小份";
+                                break;
+                            }
+                            case 1: {
+                                type += "中份";
+                                break;
+                            }
+                            case 2: {
+                                type += "大份";
+                                break;
+                            }
+                        }
+                        carStr += "<li style=\"height:140px\">" +
+                            "<div><input type='checkbox' name='carCheck' class='carCheck' value='" + index + "'></div>" +
+                            "<div>" +
+                            "<div style='width:80px;height:80px;float:left;padding:5px'><img style='width: 100%;height: 100%' src='" + productInfo.image + "'></div>" +
+                            "<div style='float:left;'>" +
+                            "<p>产品名称:" + productInfo.productName + "</p>" +
+                            "<p>规格名称:" + productInfo.specTitle + "</p>" +
+                            "<p>数量:" + item.count + "</p>" +
+                            "<p>分量:" + type + "</p>" +
+                            "<p>价格:" + item.price + "</p>" +
+                            "<a style=\"margin:5px\" class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='removeCarProduct(" + index + ")'><i class=\"lnr lnr-cart\"></i>删除</a>" +
+                            "</div>" +
+                            "</div>" +
+                            "</li>";
+                    });
+                    carStr += "<li><a style=\"margin:5px\" style='background: red' class=\"btn btn-default\" href=\"javacript:void(0);\" onclick='carBuyInnit()'>结算</a></li>";
+                    carBox.append(carStr);
+                }
+            }
+        }
+
+        function carBuyInnit() {
+            let arr = [];
+            let accountId = $.cookie("accountId");
+            $("input[name='carCheck']:checked").each(function (i) {
+                arr.push($(this).val());
+            });
+            console.log(arr);
+            let carProduct = JSON.parse(window.localStorage.getItem('carProduct' + accountId + ''));
+            let buyArr = [];
+            let price = 0;
+            arr.forEach(function (item, index) {
+                price += carProduct[item].price;
+                buyArr.push(carProduct[item]);
+            });
+            carBuy(buyArr, price, arr);
+        }
+
+        function carBuy(buyArr, price, indexArr) {
+            $("#carBuyBtn").unbind();
+            // const productSpecType = $("#productSpecType").text();
+            $("#carBuyBtn").click(function () {
+                carBuyView(buyArr, indexArr)
+            });
+            $("#carTipsBox").empty();
+            let str = "<p>确认购买信息:</p>";
+            str += "<p>总价:" + price + "</p>";
+            str += "<input type='text' class=\"form-control\" id='tel' placeholder='请输入电话'></br>";
+            str += "<input type='text' class=\"form-control\" id='address' placeholder='请输入联系地址'>";
+            $("#carTipsBox").append(str);
+            $("#carTips").modal("show");
+        }
+
+        function carBuyView(buyArr, indexArr) {
+            $.ajax({
+                url: "car_buy",
+                dataType: "json",
+                type: "post",
+                // traditional:true,
+                data: {
+                    "orderSub": JSON.stringify(buyArr),
+                    "tel": $("#tel").val(),
+                    "address": $("#address").val()
+                },
+                success: function (data) {
+                    $("#carTips").modal("hide");
+                    if (data.code == 1000) {
+                        confirm("购买成功!");
+                        SuccessRemoveCarProduct(buyArr);
+
+                    } else {
+                        confirm(data.msg);
+                    }
+
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            })
+        }
+
+        function getCarProductDetail(productId, specId) {
+            var res = "";
+            $.ajax({
+                url: "getCarProductDetail",
+                dataType: "json",
+                type: "post",
+                async: false,
+                data: {
+                    "productId": productId,
+                    "specId": specId
+                },
+                success: function (data) {
+                    res = data.data;
+                },
+                error: function () {
+                    bs4pop.notice('初始化异常,请稍后重试!', {position: 'topcenter'});
+                }
+            });
+            return res;
+        }
+
+        function removeCarProduct(index) {
+            let accountId = $.cookie("accountId");
+            let carProduct = JSON.parse(window.localStorage.getItem('carProduct' + accountId + ''));
+            if (carProduct != null || carProduct.length > 0) {
+                carProduct.splice(index, 1);
+                window.localStorage.setItem('carProduct' + accountId + '', JSON.stringify(carProduct));
+            }
+        }
+
+        function SuccessRemoveCarProduct(productAr) {
+            let accountId = $.cookie("accountId");
+            let carProduct = JSON.parse(window.localStorage.getItem('carProduct' + accountId + ''));
+            for (let n = 0; n <= productAr.length; n++) {
+                for (let m = 0; m <= carProduct.length; m++) {
+                    if (JSON.stringify(productAr[n]) === JSON.stringify(carProduct[m])) {
+                            carProduct.splice(m, 1);
+                    }
+                }
+            }
+
+            // productAr.forEach(function (item, index) {
+            // carProductTmp.forEach(function (item2, index2) {
+            //     if (JSON.stringify(item) === JSON.stringify(item2)) {
+            //         carProduct.splice(index2, 1);
+            //     }
+            // console.log(JSON.stringify(item));
+            // console.log(JSON.stringify(item2));
+            // });
+            // console.log(carProductTmp);
+            // console.log(item);
+            // let tmp = $.inArray(JSON.stringify(item),carProductTmp);
+            // carProduct.splice(tmp,1);
+            // });
+            window.localStorage.setItem('carProduct' + accountId + '', JSON.stringify(carProduct));
         }
 
         // 初始化底部最新评论
@@ -155,9 +328,9 @@
                                 // console.log(item.detail)
                                 item.commentDetail = item.commentDetail.substr(0, 79) + "...";
                             }
-                            var newCommentBoxStr = "<li class=\"media latest-status footer-bg\">\n" +
+                            let newCommentBoxStr = "<li class=\"media latest-status footer-bg\">\n" +
                                 "                            <div class=\"media-left\">\n" +
-                                "                                <a href=\"#\"><img class=\"media-object\" src=\"/res/buy_more/images/footer.jpg\" alt=\"\"></a>\n" +
+                                "                                <a href=\"#\"><img class=\"media-object\" src=\"" + item.image + "\" alt=\"\"></a>\n" +
                                 "                            </div>\n" +
                                 "                            <div class=\"media-body\">\n" +
                                 "                                <p>" + item.commentDetail + ".</p>\n" +
